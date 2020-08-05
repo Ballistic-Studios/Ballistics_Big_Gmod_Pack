@@ -16,7 +16,7 @@ OverallScale=1  #overall scale of the plow. Can be changed for customs/narrowgau
 
 #------ Plow Config
 
-PlowType = 2 #0 = Strike Plate, 1 = Foot Board, 2 = Plow
+PlowType = 2 #0 = Strike Plate, 1 = Foot Board, 2 = Plow 3 = No
 MuDoors = 1 #0 = Closed, 1 = Open, 2 = None
 StreamlinedDoors = 1 #0 = None, 1 = Closed, 2 = Open
 
