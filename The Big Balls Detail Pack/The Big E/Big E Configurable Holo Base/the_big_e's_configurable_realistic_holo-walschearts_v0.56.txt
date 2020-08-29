@@ -1,7 +1,7 @@
-@name good_train_stuff/The Big E's Configurable Realistic Holo-Walschearts V0.56
+@name The Big E's Configurable Realistic Holo-Walschearts V0.56
 @inputs Values:array WheelRotation Reverser
-@outputs ComboPosL SwingL
-@persist EccMul Values:array EccSwingL EccSwingR WheelRotation Base:entity VSMul VSL VSR Reverser PRWidth Scale ComboSwingL ComboSwingR ComboPosL ComboPosR CMR PR:entity PL:entity ValveRodAngL ValveRodAngR RodMat:string P SwingL SwingR
+@outputs 
+@persist EccMul Values:array EccSwingL EccSwingR WheelRotation Base:entity VSMul VSL VSR Reverser PRWidth Scale ComboSwingL ComboSwingR ComboPosL ComboPosR CMR PR:entity PL:entity ValveRodAngL ValveRodAngR RodMat:string P
 @trigger 
 #Valve Gear is a lot more complex than the main set of rods, so they will require a lot more manual editing than the base e2. 
 #However, it will still be able to be somewhat automated.
@@ -31,7 +31,7 @@ A=1
 B=Wheel
 holoCreate(A)
 holoParent(A, B)
-holoAng(A, B:toWorld(ang(50.5,180,0)) )
+holoAng(A, B:toWorld(ang(12.5,180,0)) )
 holoModel(A, "models/unionssteamkits/ps-4_rods_eccentriccrank_b.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(0*Scale,(PRWidth+4)*Scale,-Radius*Scale)))
@@ -52,7 +52,7 @@ B=Wheel
 holoCreate(A)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(-Radius/2.9*Scale,(PRWidth+4)*Scale,0*Scale)))
+holoPos(A,B:toWorld(vec(Radius/2.9*Scale,(PRWidth+4)*Scale,0*Scale)))
 holoScale(A, vec(0*Scale))
 holoColor(A,vec(255))   
 #Crank Right/Parent
@@ -60,7 +60,7 @@ A=4
 B=Wheel
 holoCreate(A)
 holoParent(A, B)
-holoAng(A, B:toWorld(ang(153-50.5,0,0)) )
+holoAng(A, B:toWorld(ang(153-12.5,0,0)) )
 holoModel(A, "models/unionssteamkits/ps-4_rods_eccentriccrank_b.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(-Radius*Scale,(-PRWidth-4)*Scale,0*Scale)))
@@ -81,7 +81,7 @@ B=Wheel
 holoCreate(A)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(0*Scale,(-PRWidth-4)*Scale,Radius/2.9*Scale)))
+holoPos(A,B:toWorld(vec(0*Scale,(-PRWidth-4)*Scale,-Radius/2.9*Scale)))
 holoScale(A, vec(0*Scale))
 holoColor(A,vec(255))
 #Eccentric Crank Left Parent
@@ -90,7 +90,7 @@ B=Base
 holoCreate(A)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(40*Scale,(PRWidth+4)*Scale,15*Scale)))
+holoPos(A,B:toWorld(vec(50*Scale,(PRWidth+4)*Scale,15*Scale)))
 holoScale(A, vec(0*Scale))
 holoColor(A,vec(255))
 #Eccentric Rod Left Parent
@@ -108,7 +108,7 @@ B=Base
 holoCreate(A)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(70*Scale,(-PRWidth-4)*Scale,15*Scale)))
+holoPos(A,B:toWorld(vec(50*Scale,(-PRWidth-4)*Scale,15*Scale)))
 holoScale(A, vec(0*Scale))
 holoColor(A,vec(255))
 #Eccentric Rod Right Parent
@@ -125,7 +125,7 @@ A=13
 B=holoEntity(7)
 holoCreate(A)
 holoParent(A, B)
-holoAng(A, B:toWorld(ang(10,0,0)) )
+holoAng(A, B:toWorld(ang(0,0,0)) )
 holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(0*Scale))
 holoColor(A,vec(255))
@@ -171,7 +171,7 @@ B=Base
 holoCreate(A)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(180*Scale,(-PRWidth-4)*Scale,22*Scale)))
+holoPos(A,B:toWorld(vec(100*Scale,(-PRWidth-4)*Scale,22*Scale)))
 holoScale(A, vec(0*Scale))
 holoColor(A,vec(255))
 #Combination Lever to Union Link Parent Left
@@ -239,45 +239,45 @@ holoColor(A,vec(255))
 A=23
 B=holoEntity(8)
 holoCreate(A)
-holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x42x1_5.mdl")
+holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x54x1_5.mdl")
 holoMaterial(A,RodMat)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,90)) )
-holoPos(A,B:toWorld(vec(21*Scale,-2*Scale,0*Scale)))
+holoPos(A,B:toWorld(vec(27*Scale,-2*Scale,0*Scale)))
 holoScale(A, vec(1*Scale,1*Scale,1*Scale))
 holoColor(A,vec(255))
 #Eccentric Rod Right Detailing
 A=24
 B=holoEntity(10)
 holoCreate(A)
-holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x42x1_5.mdl")
+holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x54x1_5.mdl")
 holoMaterial(A,RodMat)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,90)) )
-holoPos(A,B:toWorld(vec(21*Scale,2*Scale,0*Scale)))
+holoPos(A,B:toWorld(vec(27*Scale,2*Scale,0*Scale)))
 holoScale(A, vec(1*Scale,1*Scale,1*Scale))
 holoColor(A,vec(255))
 #Valve Rod Left Detailing
 A=25
 B=holoEntity(13)
 holoCreate(A)
-holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x36x1_5.mdl")
+holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x48x1_5.mdl")
 holoMaterial(A,RodMat)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,90)) )
-holoPos(A,B:toWorld(vec(-20*Scale,-2*Scale,0*Scale)))
-holoScale(A, vec(1.1*Scale,1*Scale,1*Scale))
+holoPos(A,B:toWorld(vec(-25*Scale,-2*Scale,0*Scale)))
+holoScale(A, vec(1.05*Scale,1*Scale,1*Scale))
 holoColor(A,vec(255))
 #Valve Rod Right Detailing
 A=26
 B=holoEntity(14)
 holoCreate(A)
-holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x36x1_5.mdl")
+holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x48x1_5.mdl")
 holoMaterial(A,RodMat)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,90)) )
-holoPos(A,B:toWorld(vec(-20*Scale,2*Scale,0*Scale)))
-holoScale(A, vec(1.1*Scale,1*Scale,1*Scale))
+holoPos(A,B:toWorld(vec(-25*Scale,2*Scale,0*Scale)))
+holoScale(A, vec(1.05*Scale,1*Scale,1*Scale))
 holoColor(A,vec(255))
 #Combination Lever Left Detailing
 A=27
@@ -391,8 +391,8 @@ holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x12x1_5.mdl")
 holoMaterial(A,RodMat)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(-4.5*Scale,-2*Scale,0*Scale)))
-holoScale(A, vec(0.8*Scale,1*Scale,1*Scale))
+holoPos(A,B:toWorld(vec(-5*Scale,-2*Scale,0*Scale)))
+holoScale(A, vec(0.9*Scale,1*Scale,1*Scale))
 holoColor(A,vec(255))
 A=38
 B=holoEntity(15)
@@ -412,8 +412,8 @@ holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x12x1_5.mdl")
 holoMaterial(A,RodMat)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(-4.5*Scale,2*Scale,0*Scale)))
-holoScale(A, vec(0.8*Scale,1*Scale,1*Scale))
+holoPos(A,B:toWorld(vec(-5*Scale,2*Scale,0*Scale)))
+holoScale(A, vec(0.9*Scale,1*Scale,1*Scale))
 holoColor(A,vec(255))
 A=40
 B=holoEntity(16)
@@ -553,7 +553,7 @@ B=Base
 holoCreate(A)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(65*Scale,0*Scale,22*Scale)))
+holoPos(A,B:toWorld(vec(75*Scale,0*Scale,22*Scale)))
 holoScale(A, vec(0*Scale))
 holoColor(A,vec(255))
 #Reversing Arm Attach Left Parent
@@ -589,7 +589,7 @@ B=Base
 holoCreate(A)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(32*Scale,-26*Scale,20*Scale)))
+holoPos(A,B:toWorld(vec(23*Scale,-26*Scale,20*Scale)))
 holoScale(A, vec(0*Scale))
 holoColor(A,vec(255))
 A=74
@@ -614,7 +614,7 @@ B=Base
 holoCreate(A)
 holoParent(A, B)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(-8*Scale,-26*Scale,30*Scale)))
+holoPos(A,B:toWorld(vec(-18*Scale,-26*Scale,30*Scale)))
 holoScale(A, vec(0*Scale))
 holoColor(A,vec(255))
 
@@ -772,11 +772,11 @@ A=72
 B=holoEntity(56)
 holoCreate(A)
 holoParent(A, B)
-holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x30x1_5.mdl")
+holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x54x1_5.mdl")
 holoMaterial(A,RodMat)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(-16*Scale,0*Scale,0*Scale)))
-holoScale(A, vec(1.1*Scale,1*Scale,1*Scale))
+holoPos(A,B:toWorld(vec(-26*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(1*Scale))
 A=77
 B=holoEntity(75)
 holoCreate(A)
@@ -784,8 +784,8 @@ holoParent(A, B)
 holoModel(A,"models/sprops/rectangles_thin/size_0/rect_1_5x18x1_5.mdl")
 holoMaterial(A,RodMat)
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(-8*Scale,0*Scale,0*Scale)))
-holoScale(A, vec(0.9*Scale,1*Scale,1*Scale))
+holoPos(A,B:toWorld(vec(-9*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(1*Scale))
 A=78
 B=holoEntity(75)
 holoCreate(A)
@@ -859,7 +859,7 @@ holoParent(A, B)
 holoModel(A,"models/sprops/cylinders/size_1/cylinder_1_5x12.mdl")
 holoMaterial(A,RodMat)
 holoAng(A, B:toWorld(ang(0,0,90)) )
-holoPos(A,B:toWorld(vec(0*Scale,-4*Scale,0*Scale)))
+holoPos(A,B:toWorld(vec(0*Scale,4*Scale,0*Scale)))
 holoScale(A, vec(1*Scale))
 A=83
 B=Base
@@ -868,7 +868,7 @@ holoParent(A, B)
 holoModel(A,"models/unionsparts/power_reverser_2.mdl")
 holoEntity(A):setSubMaterial(1,"icegt/loco/ice_trainmetal_black")
 holoAng(A, B:toWorld(ang(0,0,0)) )
-holoPos(A,B:toWorld(vec(-10*Scale,-26*Scale,25*Scale)))
+holoPos(A,B:toWorld(vec(-20*Scale,-26*Scale,25*Scale)))
 holoScale(A, vec(0.5*Scale))
 A=84
 B=holoEntity(76)
@@ -907,34 +907,32 @@ if(P>0)
 
 
 
-SwingL=(sin(WheelRotation-90)*EccMul)
-SwingR=(cos(WheelRotation-90)*EccMul)
-EccSwingL=-SwingL-10
-EccSwingR=-SwingR-10
+EccSwingL=(sin(WheelRotation-90)*EccMul)-10
+EccSwingR=(cos(WheelRotation-90)*EccMul)-10
 CMR=(sin(WheelRotation+90)*EccMul)-10
-ComboSwingL=((((SwingR-10)*1.1)-(EccSwingL/4*Reverser))*1.2)+10
-ComboSwingR=(((CMR*1.1)-(-SwingR/4*Reverser))*1.2)+10
-ComboPosL=((-SwingL/9)*Reverser)
-ComboPosR=((SwingR/9)*Reverser)
+ComboSwingL=(((EccSwingR*1.1)-(EccSwingL/4*Reverser))*1.2)+10
+ComboSwingR=(((CMR*1.1)-(EccSwingR/4*Reverser))*1.2)+10
+ComboPosL=((-EccSwingL/9)*Reverser)
+ComboPosR=((EccSwingR/9)*Reverser)
 
 
 
 
 
 
-holoAng(7, Base:toWorld(ang(EccSwingL,0,0)) )
-holoAng(9, Base:toWorld(ang(EccSwingR,0,0)) )
+holoAng(7, Base:toWorld(ang(EccSwingL-10,0,0)) )
+holoAng(9, Base:toWorld(ang(EccSwingR-10,0,0)) )
 holoAng(11,holoEntity(17):toWorld(ang(-ComboSwingL,0,0)) )
 holoAng(12,holoEntity(18):toWorld(ang(-ComboSwingR,0,0)) )
 holoPos(13,holoEntity(7):toWorld(vec(abs(Reverser*1)*Scale,0*Scale,-Reverser*6*Scale)))
 holoPos(14,holoEntity(9):toWorld(vec(abs(Reverser*1)*Scale,0*Scale,-Reverser*6*Scale)))
 holoAng(17,Base:toWorld(ang(ComboSwingL,0,0)))        
 holoAng(18,Base:toWorld(ang(ComboSwingR,0,0)) )
-holoPos(17,Base:toWorld(vec((80-ComboPosL)*Scale,(PRWidth+5.5)*Scale,(22-abs(ComboSwingL/50))*Scale)))
-holoPos(18,Base:toWorld(vec((80+ComboPosR)*Scale,(-PRWidth-5.5)*Scale,(22-abs(ComboSwingR/50))*Scale)))
+holoPos(17,Base:toWorld(vec((100+ComboPosL)*Scale,(PRWidth+5.5)*Scale,(22-abs(ComboSwingL/50))*Scale)))
+holoPos(18,Base:toWorld(vec((100-ComboPosR)*Scale,(-PRWidth-5.5)*Scale,(22-abs(ComboSwingR/50))*Scale)))
 holoAng(53,Base:toWorld(ang(-Reverser*16,0,0)) )
 holoAng(57,Base:toWorld(ang(-Reverser*24,0,0)) )
-holoPos(76,Base:toWorld(vec(((Reverser*-4)+16)*Scale,-26*Scale,25*Scale)))
+holoPos(76,Base:toWorld(vec(((Reverser*-4)+6)*Scale,-26*Scale,25*Scale)))
 #holoAng(15, PL:toWorld(ang(0,0,0)) )
 #holoAng(16, PR:toWorld(ang(0,0,0)) )
 local EccRodAngL=(holoEntity(3):pos()-holoEntity(8):pos()):toAngle()
