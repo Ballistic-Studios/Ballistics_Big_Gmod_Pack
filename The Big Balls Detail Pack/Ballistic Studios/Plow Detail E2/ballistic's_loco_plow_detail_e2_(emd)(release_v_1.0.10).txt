@@ -67,20 +67,19 @@ Grove (Plow, Foot Boards, Ditchlights)
 ]#
 #[
 To do list:
-Rework the entire E2
-Work on the Include Functions
+Make E2 more flexiable and more customisable
 ]#
 #[ 
 
 DO NOT MESS WITH ANYTHING BEYOND THIS POINT
 
-Unless your Kiwi Master or Laz then it's cool                                                                                           Too bad, The Big E takes orders from nobody!
+                                                                                       Too bad, The Big E takes orders from nobody!
 
 FINE, You can mess with it too E
 
 
 ]#
-
+#please help I want to kill myself
 if(first() | duped()){
 if(PlowType <= 1) {MuDoors = 0}
 else{MuDoors = MuDoors}
@@ -113,7 +112,7 @@ MUPC2 = MuPlugColor2
 MUPC3 = MuPlugColor3
 OvSc = OverallScale
 CpSc = CouplerScale
-
+#this looks like the yandare dev code with all the if commands god help me
 A = 0
 holoCreate(A)
 holoParent(A, entity())
@@ -407,7 +406,7 @@ holoClip(A,1,vec(-85,0,0),vec(0,0,-1),0)
 
 }
 }
-#Code for moving parts                                                                                                                                                                                                                                                                                                                                                                                  The Big E was here lmao
+#Code for moving parts                                                                                                                                                                                                                                                                                                                   #The Big E was here lmao
 CB = (CutBar*2)+1-Decouple
 holoBodygroup(200,2,CB)
 holoBodygroup(100,1,Decouple)
