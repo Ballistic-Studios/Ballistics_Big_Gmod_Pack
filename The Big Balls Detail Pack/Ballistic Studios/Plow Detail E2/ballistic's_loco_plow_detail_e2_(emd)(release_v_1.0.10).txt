@@ -16,22 +16,22 @@ OverallScale=1  #overall scale of the plow. Can be changed for customs/narrowgau
 
 #------ Plow Config
 
-PlowType = 2 #0 = Strike Plate, 1 = Foot Board, 2 = Plow 3 = No
-MuDoors = 1 #0 = Closed, 1 = Open, 2 = None
-StreamlinedDoors = 1 #0 = None, 1 = Closed, 2 = Open
+PlowType = 0 #0 = Strike Plate, 1 = Foot Board, 2 = Plow 3 = No
+MuDoors = 0 #0 = Closed, 1 = Open, 2 = None
+StreamlinedDoors = 0 #0 = None, 1 = Closed, 2 = Open
 
 #------ Cutbar/Ditchlight Config
 
-CutBar = 1# The Type of Cut Bar You Want to Have.  Range of 0 through 3.
-Ditchlights = 1 #0 = No Ditchlights, 1 = Ditchlights
+CutBar = 0# The Type of Cut Bar You Want to Have.  Range of 0 through 3.
+Ditchlights = 0 #0 = No Ditchlights, 1 = Ditchlights
 DitchlightType = 0 #0 = Squared Ditchlights 1 = Round Ditchlights 2 = Round Small Ditchlights
 DitchlightX = 0 #Ditchlight Pos X
-DitchlightY = 6.8 #Ditchlgith Pos Y
-DitchlightZ = 6  #Ditchlight Pos Z
+DitchlightY = 0 #Ditchlgith Pos Y
+DitchlightZ = 0  #Ditchlight Pos Z
 
 #------ Coupler Config
 
-Coupler = 1 #0 = No Coupler, 1 = Fake Real Coupler
+Coupler = 0 #0 = No Coupler, 1 = Fake Real Coupler
 CouplerMat = "models/proppertextures/wheel"  #Material used for the coupler.
 CouplerScale=1  #scale of the coupler. Can be changed for narrowgauge coupling systems.
 
@@ -39,28 +39,28 @@ CouplerScale=1  #scale of the coupler. Can be changed for narrowgauge coupling s
 
 Hose = 3 #The Ammount of hoses ya want
 MuHose = 0 #0 = Yes I want MU's 1 = Nah fam no MU for you 
-Kinky = 1 #0 = none kinky 1 = maxamum kink
+Kinky = 0 #0 = none kinky 1 = maxamum kink
 
 #------ Ungodly Large MU Config
 
-MuPlug = 2 #0 = no. 1 = I'll take one please 2 = Another One 3 = and they don't stop coming 4 and up = they stopped coming
+MuPlug = 0 #0 = no. 1 = I'll take one please 2 = Another One 3 = and they don't stop coming 4 and up = they stopped coming
 MuType = 0 #0 = regular mu plugs 1 = MU Cable (use the MU1 stuff)
-MuX = 18 #Mu 1/2 Plug Pos X
+MuX = 0 #Mu 1/2 Plug Pos X
 MuY = 0 #Mu 1/2 Plug h Pos Y
-MuZ = 18  #Mu 1/2 Plug  Pos Z
+MuZ = 0  #Mu 1/2 Plug  Pos Z
 MuX3 = 0 #Mu 3 Plug  Pos X
 MuY3 = 0 #Mu 3 Plug Pos Y
-MuZ3 = 7  #Mu 3 Plug Pos Z
-MuPlugColor1 = vec(100,40,40)
-MuPlugColor2 = vec(40,40,100)
-MuPlugColor3 = vec(36)
+MuZ3 = 0  #Mu 3 Plug Pos Z
+MuPlugColor1 = vec(255)
+MuPlugColor2 = vec(255)
+MuPlugColor3 = vec(255)
 
 #[
 Credits:
 Ballistic Studios (Creator/Owner)
 Big E (E2 Codeneer/Co-Owner thing/Maker of moving bits (please send all questions to him thanks))
 Calensk Kerman (Beta Tester)
-Red Stone [Kenny] (Beta Tester)
+Red Stone (Beta Tester)
 Laz (Hoses)
 Anyone999991 (Cut Bar)
 Grove (Plow, Foot Boards, Ditchlights)
