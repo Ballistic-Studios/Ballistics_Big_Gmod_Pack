@@ -1,5 +1,5 @@
 @name Ballistic's Body Detail E2 | V1.0.0 | EMD Standard
-@inputs [Entity Bogie1 Bogie2]:entity 
+@inputs [Entity]:entity 
 @outputs Num:string
 @persist A Line2
 @model models/beer/wiremod/gate_e2.mdl  
@@ -436,23 +436,6 @@ holoPos(A,Entity:toWorld(vec(-291+Glass,-48,109.5)))
 holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
 holoScale(A,vec(1))
 holoAlpha(A,255)
-
-
-
-    
-   
-    
-    
-   
-    
-  
- 
-
-
-
-
-
-
 }  
     
 
