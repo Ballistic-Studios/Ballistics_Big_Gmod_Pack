@@ -962,4 +962,5 @@ for(N=0,3){
 }
 
 
-
+timer(0,"spawn")
+print("now you've done it")
