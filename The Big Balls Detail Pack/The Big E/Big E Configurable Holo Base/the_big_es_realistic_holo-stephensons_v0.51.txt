@@ -8,6 +8,9 @@
 #However, it will still be able to be somewhat automated.
 #Dirrections| Good Luck
 #NOT CONFIGURABLE, COMPLETELY MANUAL
+#baker valve gear when
+#please
+#i need
 
 if(first()|dupefinished()|duped()){
 PRWidth=Values[1,number]
