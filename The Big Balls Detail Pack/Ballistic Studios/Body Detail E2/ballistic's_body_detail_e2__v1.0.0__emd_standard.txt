@@ -39,7 +39,7 @@ if(first() | dupefinished())
     holoEntity(A):setSubMaterial(1,"railwaylogos/generic/numbers_futura/numboard")
     holoEntity(A):setSubMaterial(5,"models/proppertextures/enamel_black")
     holoScale(A,vec(1.3,1.3,1))
-    A = 7
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/magtrainslocos/numplates/numplate_mcab_4d.mdl")
@@ -53,7 +53,7 @@ if(first() | dupefinished())
     holoEntity(A):setSubMaterial(1,"railwaylogos/generic/numbers_futura/numboard")
     holoEntity(A):setSubMaterial(5,"models/proppertextures/enamel_black")
     holoScale(A,vec(1.3,1.3,1))
-    A = 8
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/magtrainslocos/numplates/numplate_mcab_4d.mdl")
@@ -67,7 +67,7 @@ if(first() | dupefinished())
     holoEntity(A):setSubMaterial(1,"railwaylogos/generic/numbers_futura/numboard")
     holoEntity(A):setSubMaterial(5,"models/proppertextures/enamel_black")
     holoScale(A,vec(1.3,1.3,1))
-    A = 9
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/magtrainslocos/numplates/numplate_mcab_4d.mdl")
@@ -81,7 +81,7 @@ if(first() | dupefinished())
     holoEntity(A):setSubMaterial(1,"railwaylogos/generic/numbers_futura/numboard")
     holoEntity(A):setSubMaterial(5,"models/proppertextures/enamel_black")
     holoScale(A,vec(1.3,1.3,1))
-    A = 10
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/magtrains/numplate_emd_4d.mdl")
@@ -95,7 +95,7 @@ if(first() | dupefinished())
     holoEntity(A):setSubMaterial(1,"railwaylogos/generic/numbers_futura/numboard")
     holoEntity(A):setSubMaterial(5,"models/proppertextures/invisible")
     holoScale(A,vec(1.5,1.5,0))
-    A = 11
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/magtrains/numplate_emd_4d.mdl")
@@ -110,7 +110,7 @@ if(first() | dupefinished())
     holoEntity(A):setSubMaterial(5,"models/proppertextures/invisible")
     holoScale(A,vec(1.5,1.5,0))
 #Details Rear---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    A = 12
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
@@ -122,7 +122,7 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 13
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
@@ -134,7 +134,7 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 14
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
@@ -146,7 +146,7 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 15
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
@@ -158,7 +158,7 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 16
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
@@ -170,7 +170,7 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 160
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
@@ -182,7 +182,7 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 17
+    A+
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
@@ -194,21 +194,21 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 18
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/anytrains/props/detail/grabiron_rearfan.mdl")
     holoColor(A,Grab_Color)
     holoAng(A,Entity:toWorld(ang(0,0,0)))
     holoPos(A,Entity:toWorld(vec(120+Rearstuff,0,131))) 
-    A = 19
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/headlights/headlight_base_twinbeam_plate.mdl")
     holoColor(A,Headlight_Plate_R)
     holoAng(A,Entity:toWorld(ang(0,90,90)))
     holoPos(A,Entity:toWorld(vec(151+Rearstuff,0,110))) 
-    A = 20
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/headlights/headlight_twinbeam_plate.mdl")
@@ -216,7 +216,7 @@ if(first() | dupefinished())
     holoAng(A,Entity:toWorld(ang(0,90,90)))
     holoPos(A,Entity:toWorld(vec(151+Rearstuff,0,110))) 
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 21
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/auxlights/class_light.mdl")
@@ -226,7 +226,7 @@ if(first() | dupefinished())
     holoEntity(A):setSubMaterial(2,"models/proppertextures/enamel_black")
     holoEntity(A):setSubMaterial(1,"models/proppertextures/invisible")
     holoEntity(A):setSubMaterial(3,"models/proppertextures/invisible")
-    A = 22
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/auxlights/class_light.mdl")
@@ -237,7 +237,7 @@ if(first() | dupefinished())
     holoEntity(A):setSubMaterial(1,"models/proppertextures/invisible")
     holoEntity(A):setSubMaterial(3,"models/proppertextures/invisible")
 #Details Front---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    A = 23
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
@@ -249,7 +249,7 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 24
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
@@ -261,7 +261,7 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 25
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/headlights/headlight_twinbeam_plate.mdl")
@@ -269,7 +269,7 @@ if(first() | dupefinished())
     holoAng(A,Entity:toWorld(ang(-90,0,0)))
     holoPos(A,Entity:toWorld(vec(-380+Frontgrabs,0,120))) 
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 26
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/auxlights/class_light.mdl")
@@ -279,7 +279,7 @@ if(first() | dupefinished())
     holoEntity(A):setSubMaterial(2,"models/proppertextures/enamel_black")
     holoEntity(A):setSubMaterial(1,"models/proppertextures/invisible")
     holoEntity(A):setSubMaterial(3,"models/proppertextures/invisible")
-    A = 27
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/auxlights/class_light.mdl")
@@ -289,7 +289,7 @@ if(first() | dupefinished())
     holoEntity(A):setSubMaterial(2,"models/proppertextures/enamel_black")
     holoEntity(A):setSubMaterial(1,"models/proppertextures/invisible")
     holoEntity(A):setSubMaterial(3,"models/proppertextures/invisible")
-    A = 28
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
@@ -301,7 +301,7 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 29
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
@@ -313,7 +313,7 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 30
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/nathan/p_series/p5_lm.mdl")
@@ -325,7 +325,7 @@ if(first() | dupefinished())
     holoBodygroup(A,2,2)
     holoBodygroup(A,3,2)
     holoBodygroup(A,4,2)
-    A = 300
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/antennae/sinclair.mdl")
@@ -333,7 +333,7 @@ if(first() | dupefinished())
     holoAng(A,Entity:toWorld(ang(0,180,0)))
     holoPos(A,Entity:toWorld(vec(-362+Frontstuff,30,133))) 
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A = 3000
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/antennae/firecracker.mdl")
@@ -345,7 +345,7 @@ if(first() | dupefinished())
     
     
 #Windows-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-A = 31
+A++
 holoCreate(A)
 holoParent(A,Entity)
 holoModel(A,"models/sprops/rectangles_superthin/size_4_5/rect_42x72.mdl")
@@ -355,7 +355,7 @@ holoPos(A,Entity:toWorld(vec(-369.5+Glass,0,90)))
 holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
 holoScale(A,vec(1.6,1,0.4))
 holoAlpha(A,150)
-A = 33
+A++
 holoCreate(A)
 holoParent(A,Entity)
 holoModel(A,"models/sprops/rectangles_superthin/size_4_5/rect_42x72.mdl")
@@ -366,7 +366,7 @@ holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
 holoScale(A,vec(1.6,1,0.4))
 
 holoAlpha(A,150)
-A = 35
+A++
 holoCreate(A)
 holoParent(A,Entity)
 holoModel(A,"models/sprops/rectangles_superthin/size_4_5/rect_42x72.mdl")
@@ -376,7 +376,7 @@ holoPos(A,Entity:toWorld(vec(-331+Glass,58.5,90)))
 holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
 holoScale(A,vec(0.5,0.7,0.4))
 holoAlpha(A,150)
-A = 36
+A++
 holoCreate(A)
 holoParent(A,Entity)
 holoModel(A,"models/sprops/rectangles_superthin/size_4_5/rect_42x72.mdl")
@@ -386,7 +386,7 @@ holoPos(A,Entity:toWorld(vec(-331+Glass,-58.5,90)))
 holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
 holoScale(A,vec(0.5,0.7,0.4))
 holoAlpha(A,150)
-A = 37
+A++
 holoCreate(A)
 holoParent(A,Entity)
 holoModel(A,"models/anytrains/props/detail/wiper_single.mdl")
@@ -396,7 +396,7 @@ holoPos(A,Entity:toWorld(vec(-291+Glass,48,109.5)))
 holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
 holoScale(A,vec(1))
 holoAlpha(A,255)
-A = 38
+A++
 holoCreate(A)
 holoParent(A,Entity)
 holoModel(A,"models/anytrains/props/detail/wiper_single.mdl")
@@ -406,7 +406,7 @@ holoPos(A,Entity:toWorld(vec(-370+Glass,48,109.5)))
 holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
 holoScale(A,vec(1))
 holoAlpha(A,255)
-A = 39
+A++
 holoCreate(A)
 holoParent(A,Entity)
 holoModel(A,"models/anytrains/props/detail/wiper_single.mdl")
@@ -416,7 +416,7 @@ holoPos(A,Entity:toWorld(vec(-370+Glass,-48,109.5)))
 holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
 holoScale(A,vec(1))
 holoAlpha(A,255)
-A = 40
+A++
 holoCreate(A)
 holoParent(A,Entity)
 holoModel(A,"models/anytrains/props/detail/wiper_double.mdl")
@@ -426,7 +426,7 @@ holoPos(A,Entity:toWorld(vec(-370+Glass,0,108)))
 holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
 holoScale(A,vec(1))
 holoAlpha(A,255)
-A = 41
+A++
 holoCreate(A)
 holoParent(A,Entity)
 holoModel(A,"models/anytrains/props/detail/wiper_single.mdl")
@@ -437,12 +437,3 @@ holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
 holoScale(A,vec(1))
 holoAlpha(A,255)
 }  
-    
-
-    
-    
-
-    
-    
-    
-  
