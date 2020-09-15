@@ -1,19 +1,19 @@
 @name The Big E's Configurable Holo-Base V0.55
 @inputs Base:entity
-@outputs WheelRotation Values:array
+@outputs WheelRotation Values:array [RodColor1 RodColor2]:vector 
 @persist WheelRotation Diameter SpeedMultiplier Scale PMoveR PWidth Radius PMoveL PRMul PistonAngle PRAngR PRAngL PRAngUp PRAngSide Spin
 @trigger 
 if(first()|dupefinished()|duped()){
 
 BaseAngle=ang(0,0,0)    #Used if the base block/bogey has a rotated center. Rotates the entire wheelbase about the main Drive axle.
-BaseOffset=vec(-25,0,-11)   #Adjusts how far from the center of the base block the wheelbase will be. Will be used to make sure the wheels are touching the track.
+BaseOffset=vec(0,0,0)   #Adjusts how far from the center of the base block the wheelbase will be. Will be used to make sure the wheels are touching the track.
 Diameter=33     #in inches, range of 21 to 110, although 99-104 may not work. Does not have to be multiples of six!
 Radius=10   #The Distance from the center of the wheel the rods will be. Will also adjust rod attachment points.
 Faxles=1    #Number of axles in front of the main drive axle. Maximum 3!
 Faxle1=0    #Offset in inches for each Front axle. Will move each front axle forward or backward independently, relative to the Axle Spacing.
 Faxle2=0
 Faxle3=0
-Raxles=0   #Number of axles behind the main drive axle. Maximum 3!
+Raxles=1   #Number of axles behind the main drive axle. Maximum 3!
 Raxle1=0    #Offset in inches for each Rear axle. Will move each rear axle forward or backward independently, relative to the Axle Spacing.
 Raxle2=0
 Raxle3=0
@@ -27,6 +27,7 @@ WheelMat5="icegt/loco/ice_trainmetal_black"
 WheelColor=vec(255)   #Changes the color of the wheels. 
 RodMat="models/proppertextures/aluminum"
 RadMat2=""
+RodColor1=vec(255) #soon tm
 MWidth=20.5    #This changes how far from the center of the wheelbase the Main Side Rods will be.
 PRWidth=24.5    #This changes how far from the center of the wheelbase the Piston Rods will be.
 PWidth=26.5
@@ -44,6 +45,7 @@ PRodLength=70       #How Long the Piston Rods are, usually will be the same as P
 PRAngUp=0        #How far up the the piston rods will point.
 PRAngSide=1.5       #How far out to the side the piston rods will point.
 Spin=18             #Used to make the wheels spin while the base is being worked on. For whatever reason, valve gear may bug out if the number is even.
+
 ####################################################################################################################################################################################################################################################################################################################################################################################################################################
 D=(round(Diameter/6))*6
 PistonPos=vec(PistonForward*Scale,0,PistonHeight*Scale)
