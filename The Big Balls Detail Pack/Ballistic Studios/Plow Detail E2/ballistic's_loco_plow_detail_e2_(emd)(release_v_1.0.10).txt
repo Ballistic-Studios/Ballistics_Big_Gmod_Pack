@@ -114,6 +114,9 @@ OvSc = OverallScale
 CpSc = CouplerScale
 #this looks like the yandare dev code with all the if commands god help me
 A = 0
+if(F==0) {}
+if(F==255){
+A++
 holoCreate(A)
 holoParent(A, entity())
 holoAng(A, entity():toWorld(ang(-90,0,0)) )
@@ -122,7 +125,10 @@ holoEntity(A):setSubMaterial(1,Mat)
 holoPos(A,entity():toWorld(vec(50*OvSc,0*OvSc,7*OvSc)))
 holoScale(A, vec(1*OvSc,1.2*OvSc,1*OvSc))
 holoColor(A,Color)
-holoAlpha(A , F)
+}
+if(E==0){}
+if(E==255)
+{
 A++
 holoCreate(A)
 holoParent(A, entity())
@@ -132,7 +138,8 @@ holoMaterial(A,Mat)
 holoPos(A,entity():toWorld(vec(49*OvSc,0*OvSc,-1*OvSc)))
 holoScale(A, vec(1*OvSc,1.2*OvSc,1*OvSc))
 holoColor(A,Color)
-holoAlpha(A,E)
+}
+
 A++
 holoCreate(A)
 holoParent(A, entity())
@@ -142,7 +149,7 @@ holoMaterial(A,Mat)
 holoPos(A,entity():toWorld(vec(49*OvSc,41.98*OvSc,-1*OvSc)))
 holoScale(A, vec(1*OvSc,1*OvSc,1.386*OvSc))
 holoColor(A,Color)
-holoAlpha(A,E)
+
 A++
 holoCreate(A)
 holoParent(A, entity())
@@ -152,7 +159,9 @@ holoMaterial(A,Mat)
 holoPos(A,entity():toWorld(vec(49*OvSc,-41.98*OvSc,-1*OvSc)))
 holoScale(A, vec(1*OvSc,1*OvSc,1.386*OvSc))
 holoColor(A,Color)
-holoAlpha(A,E)
+}
+if(G==0){}
+if(G==255){
 A++
 holoCreate(A)
 holoParent(A, entity())
@@ -164,8 +173,9 @@ holoScale(A, vec(1.0*OvSc))
 holoColor(A,Color)
 holoBodygroup(A,1,MuDoors)
 holoBodygroup(A,2,StreamlinedDoors)
-holoAlpha(A , G)
-
+}
+if(H==0){}
+if(H==255){
 A=100
 holoCreate(A)
 holoParent(A, entity())
@@ -175,7 +185,7 @@ holoMaterial(A,CouplerMat)
 holoPos(A,entity():toWorld(vec(30*OvSc,0.1*OvSc,13.5*OvSc)))
 holoScale(A, vec(1*OvSc))
 holoColor(A,vec(255) )
-holoAlpha(A , H)
+}
 A++
 holoCreate(A)
 holoParent(A, entity())
@@ -239,7 +249,8 @@ holoColor(A,Color)
 holoParent(2,1)
 holoScale(A,vec(1*OvSc))
 holoEntity(A):setSubMaterial(2,CouplerMat) 
-
+if(D==0){}
+if(D==255){
 A++ 
 holoCreate(A)
 holoPos(A,entity():toWorld(vec((-9+DitchlightZ)*OvSc,(-23-DitchlightX)*OvSc,(10-DitchlightY)*OvSc)))
@@ -250,7 +261,7 @@ holoScale(A, vec(1*OvSc))
 holoMaterial(A, (Mat3))
 holoColor(A,Color3)
 holoParent(2,1)
-holoAlpha(A,D)
+
 A++ 
 holoCreate(A)
 holoPos(A,entity():toWorld(vec((-9+DitchlightZ)*OvSc,(23+DitchlightX)*OvSc,(10-DitchlightY)*OvSc)))
@@ -261,7 +272,7 @@ holoScale(A, vec(1*OvSc))
 holoMaterial(A, (Mat3))
 holoColor(A,Color3)
 holoParent(2,1)
-holoAlpha(A,D)
+
 if(DT == 0){A++ 
 holoCreate(A)
 holoPos(A,entity():toWorld(vec((-10+DitchlightZ)*OvSc,(23+DitchlightX)*OvSc,(11-DitchlightY)*OvSc)))
@@ -272,7 +283,7 @@ holoScale(A, vec(1*OvSc))
 holoEntity(A):setSubMaterial(1,Mat3)
 holoColor(A,Color3)
 holoParent(2,1)
-holoAlpha(A,D)
+
 A++ 
 holoCreate(A)
 holoPos(A,entity():toWorld(vec((-10+DitchlightZ)*OvSc,(-23-DitchlightX)*OvSc,(11-DitchlightY)*OvSc)))
@@ -283,7 +294,7 @@ holoScale(A, vec(1*OvSc))
 holoEntity(A):setSubMaterial(1,Mat3)
 holoColor(A,Color3)
 holoParent(2,1)
-holoAlpha(A,D)
+
 }
 if(DT == 1){A++ 
 holoCreate(A)
@@ -295,7 +306,6 @@ holoScale(A, vec(1*OvSc))
 holoEntity(A):setSubMaterial(1,Mat3)
 holoColor(A,Color3)
 holoParent(2,1)
-holoAlpha(A,D)
 A++ 
 holoCreate(A)
 holoPos(A,entity():toWorld(vec(-10+DitchlightZ,-23-DitchlightX,11-DitchlightY)*OvSc))
@@ -306,7 +316,7 @@ holoScale(A, vec(1*OvSc))
 holoEntity(A):setSubMaterial(1,Mat3)
 holoColor(A,Color3)
 holoParent(2,1)
-holoAlpha(A,D)
+
 }
 if(DT == 2){A++ 
 holoCreate(A)
@@ -318,7 +328,7 @@ holoScale(A, vec(1*OvSc))
 holoEntity(A):setSubMaterial(1,Mat3)
 holoColor(A,Color3)
 holoParent(2,1)
-holoAlpha(A,D)
+
 A++ 
 holoCreate(A)
 holoPos(A,entity():toWorld(vec(-10+DitchlightZ,-23-DitchlightX,11-DitchlightY)*OvSc))
@@ -329,7 +339,7 @@ holoScale(A, vec(1*OvSc))
 holoEntity(A):setSubMaterial(1,Mat3)
 holoColor(A,Color3)
 holoParent(2,1)
-holoAlpha(A,D)
+}
 }
 if(MuType==0) {
 if(MuPlug >= 1){A++ 
@@ -414,6 +424,8 @@ holoPos(300,entity():toWorld(vec((19+C-(Decouple*4.5))*OvSc,0,14.2*OvSc)))
 if(Decouple>0){Bogey:constraintBreak("rope")}
 #holoBodygroup(300,1,Decouple)
 #Code for ditch lights 
+if(D==0){}
+if(D==255){
 A++
 spriteSpawn(A,"sprites/light_glow01")
 spriteSetPos(A,entity():toWorld(vec(-10+DitchlightZ,23+DitchlightX,11-DitchlightY)*OvSc))
@@ -426,3 +438,4 @@ spriteSetPos(A,entity():toWorld(vec(-10+DitchlightZ,-23-DitchlightX,11-Ditchligh
 spriteSetAlpha(A,255)
 spriteSetColor(A,D1)
 spriteSetParent(A,entity())
+}
