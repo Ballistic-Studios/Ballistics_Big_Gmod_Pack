@@ -1,4 +1,4 @@
-@name The Big E's Configurable Holo-Base V0.55
+@name The Big E's Configurable Holo-Base V0.56
 @inputs Base:entity
 @outputs WheelRotation Values:array [RodColor1 RodColor2]:vector 
 @persist WheelRotation Diameter SpeedMultiplier Scale PMoveR PWidth Radius PMoveL PRMul PistonAngle PRAngR PRAngL PRAngUp PRAngSide Spin
@@ -27,7 +27,7 @@ WheelMat5="icegt/loco/ice_trainmetal_black"
 WheelColor=vec(255)   #Changes the color of the wheels. 
 RodMat="models/proppertextures/aluminum"
 RadMat2=""
-RodColor1=vec(255) #soon tm
+RodColor1=vec(255) #Color of the rods for the base
 MWidth=20.5    #This changes how far from the center of the wheelbase the Main Side Rods will be.
 PRWidth=24.5    #This changes how far from the center of the wheelbase the Piston Rods will be.
 PWidth=26.5
@@ -427,7 +427,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_256.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(((Raxles-Faxles)/-2)*AxleSpacing*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(0.0039*(Raxles+Faxles)*AxleSpacing*Scale,RodMul*Scale,RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 A=31
 B=holoEntity(23)
 holoCreate(A)
@@ -437,7 +437,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_end.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(-Raxles*AxleSpacing*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 A=32
 B=holoEntity(23)
 holoCreate(A)
@@ -447,7 +447,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_end.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(Faxles*AxleSpacing*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 #Main Rod Left Detailing
 A=33
 B=holoEntity(24)
@@ -458,7 +458,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_256.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(((Raxles-Faxles)/-2)*AxleSpacing*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(0.0039*(Raxles+Faxles)*AxleSpacing*Scale,RodMul*Scale,RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 A=34
 B=holoEntity(24)
 holoCreate(A)
@@ -468,7 +468,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_end.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(-Raxles*AxleSpacing*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 A=35
 B=holoEntity(24)
 holoCreate(A)
@@ -478,7 +478,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_end.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(Faxles*AxleSpacing*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 }
 #Piston Rod Right
 A=36
@@ -490,7 +490,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_end.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 A=37
 B=holoEntity(25)
 holoCreate(A)
@@ -500,7 +500,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_128.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(PRodLength/2*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(PRodLength/128*Scale,RodMul*Scale,RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 #Piston Rod Left
 A=38
 B=holoEntity(26)
@@ -511,7 +511,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_end.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 A=39
 B=holoEntity(26)
 holoCreate(A)
@@ -521,7 +521,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_128.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(PRodLength/2*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(PRodLength/128*Scale,RodMul*Scale,RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 #Piston Right
 A=40
 B=holoEntity(28)
@@ -532,7 +532,7 @@ holoModel(A, "models/bobsters_trains/uk/peckett/w6/piston.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(PistonMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 holoClip(A,1,vec(35,0,0),vec(-1,0,0),0)
 holoClipEnabled(A,1,1)
 #Piston Left
@@ -545,7 +545,7 @@ holoModel(A, "models/bobsters_trains/uk/peckett/w6/piston.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(PistonMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 holoClip(A,1,vec(35,0,0),vec(-1,0,0),0)
 holoClipEnabled(A,1,1)
 #Rod Connection Points
@@ -559,7 +559,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 A=43
 B=holoEntity(24)
 holoCreate(A)
@@ -569,7 +569,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 }
 if(Raxles>1){
 A=44
@@ -581,7 +581,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(-AxleSpacing*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 A=45
 B=holoEntity(24)
 holoCreate(A)
@@ -591,7 +591,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(-AxleSpacing*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 }
 if(Raxles>2){
 A=46
@@ -603,7 +603,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(-AxleSpacing*2*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 A=47
 B=holoEntity(24)
 holoCreate(A)
@@ -613,7 +613,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(-AxleSpacing*2*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 }
 if(Faxles>1){
 A=48
@@ -625,7 +625,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(AxleSpacing*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 A=49
 B=holoEntity(24)
 holoCreate(A)
@@ -635,7 +635,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(AxleSpacing*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 }
 if(Faxles>2){
 A=50
@@ -647,7 +647,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(AxleSpacing*2*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 A=51
 B=holoEntity(24)
 holoCreate(A)
@@ -657,7 +657,7 @@ holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
 holoMaterial(A,RodMat)
 holoPos(A,B:toWorld(vec(AxleSpacing*2*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodMul*Scale))
-holoColor(A,vec(255))
+holoColor(A,RodColor1)
 }
 
 
