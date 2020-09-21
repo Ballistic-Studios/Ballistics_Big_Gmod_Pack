@@ -1,6 +1,6 @@
 @name The Big E's Configurable Holo-Base V0.56
 @inputs Base:entity
-@outputs WheelRotation Values:array [RodColor1 RodColor2]:vector 
+@outputs WheelRotation Values:array  
 @persist WheelRotation Diameter SpeedMultiplier Scale PMoveR PWidth Radius PMoveL PRMul PistonAngle PRAngR PRAngL PRAngUp PRAngSide Spin
 @trigger 
 if(first()|dupefinished()|duped()){
@@ -709,7 +709,7 @@ holoPos(29,holoEntity(27):toWorld(vec(PMoveL*Scale,PWidth*Scale,0*Scale)))
 }    
 updateRods(0)
     
-Values=array(PRWidth,PWidth,RodMat,holoEntity(2),PistonHeight,PistonForward,PistonAngle,Scale,Radius,holoEntity(1),holoEntity(28),holoEntity(29))    
+Values=array(PRWidth,PWidth,RodMat,holoEntity(2),PistonHeight,PistonForward,PistonAngle,Scale,Radius,holoEntity(1),holoEntity(28),holoEntity(29),RodColor1,RodColor2)    
     
     
     
