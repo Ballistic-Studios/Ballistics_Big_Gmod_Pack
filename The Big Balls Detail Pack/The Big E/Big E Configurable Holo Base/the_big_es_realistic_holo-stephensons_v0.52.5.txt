@@ -1,5 +1,5 @@
-@name The Big E's Realistic Holo-Stephensons V0.52
-@inputs Values:array WheelRotation Reverse RodColor2:vector
+@name The Big E's Realistic Holo-Stephensons V0.52.5
+@inputs Values:array WheelRotation Reverse 
 @outputs 
 @persist  Values:array WheelRotation Base:entity  Reverser PRWidth Scale  PR:entity PL:entity  RodMat:string RodColor2:vector
 @persist  EccMoveL Rev P
@@ -25,7 +25,7 @@ Radius=Values[9,number]
 Base=Values[10,entity]
 PR=Values[11,entity]
 PL=Values[12,entity]
-
+RodColor2[13,vector]
 #Crank axle parents
 #Left
 A=1
