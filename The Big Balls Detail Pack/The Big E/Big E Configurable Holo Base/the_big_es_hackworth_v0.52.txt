@@ -1,0 +1,597 @@
+@name The Big E's Hackworth V0.52
+@inputs Values:array WheelRotation Reverser
+@outputs 
+@persist EccMul Values:array SliderLeft SliderRight ValveStemLeft ValveStemRight WheelRotation Base:entity PRWidth PR:entity PL:entity  RodMat:string Scale
+@persist P EM EA EO:vector CO:vector CAO CAM CL UO:vector UL ERL
+@trigger 
+#Valve Gear is a lot more complex than the main set of rods, so they will require a lot more manual editing than the base e2. 
+#However, it will still be able to be somewhat automated.
+
+
+
+if(first()|dupefinished()|duped()){
+
+###### IGNORE THESE IGNORE THESE IGNORE THESE #################################################################################################################################################################################################################################
+PRWidth=Values[1,number]        #IGNORE THIS
+PWidth=Values[2,number]         #IGNORE THIS
+RodMat=Values[3,string]         #IGNORE THIS
+Wheel=Values[4,entity]          #IGNORE THIS
+PistonHeight=Values[5,number]   #IGNORE THIS
+PistonForward=Values[6,number]  #IGNORE THIS
+PistonAngle=Values[7,number]    #IGNORE THIS
+Scale=Values[8,number]          #IGNORE THIS
+Radius=Values[9,number]         #IGNORE THIS
+Base=Values[10,entity]          #IGNORE THIS
+PR=Values[11,entity]            #IGNORE THIS
+PL=Values[12,entity]            #IGNORE THIS
+##########################################################################################################################
+
+
+
+##########################################################################################################################################################
+
+
+
+#Crank Left Parent
+
+
+A=1
+B=Wheel
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(0*Scale,(PRWidth+4)*Scale,3*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))   
+#Crank Right Parent
+A=2
+B=Wheel
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(3*Scale,(-PRWidth-4)*Scale,0*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+
+#Slider Left
+A=3
+B=Base
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(0*Scale,(PRWidth+4)*Scale,22*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+A=4
+B=holoEntity(3)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+
+#Slider Right
+A=5
+B=Base
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(0*Scale,(-PRWidth-4)*Scale,22*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+A=6
+B=holoEntity(5)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+
+#Valve Stem Parent
+A=7
+B=Base
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(-3.5,0,0)) )
+holoPos(A,B:toWorld(vec(54*Scale,0*Scale,15*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+#left
+A=8
+B=holoEntity(7)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(0*Scale,(PRWidth+4)*Scale,0*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+#right
+A=9
+B=holoEntity(7)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(0*Scale,(-PRWidth-4)*Scale,0*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+
+#valve stem attachments
+#left
+A=10
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,15*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+A=11
+B=holoEntity(8)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+#right
+A=12
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,15*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+A=13
+B=holoEntity(9)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+#Detail##############################
+#Cranks
+#left
+A++
+B=Wheel
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_3/cylinder_6x6.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,(PRWidth),-Radius)))
+holoScale(A, vec(0.7,0.7,0.9))
+holoColor(A,vec(255))
+A++
+B=Wheel
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,-90)) )
+holoModel(A, "models/unionsparts/valve_base2.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,(PRWidth+3),-Radius)))
+holoScale(A, vec(0.4,0.4,0.4))
+holoColor(A,vec(255))
+A++
+B=Wheel
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(90,0,0)) )
+holoModel(A, "models/sprops/rectangles_thin/size_0/rect_1_5x12x1_5.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,(PRWidth+2.5),(-Radius/2)+1.5)))
+holoScale(A, vec((Radius+3)/12,1,1))
+holoColor(A,vec(255))
+A++
+B=Wheel
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,(PRWidth+3.75),3)))
+holoScale(A, vec(0.8,0.8,1.5))
+holoColor(A,vec(255))
+#right
+A++
+B=Wheel
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_3/cylinder_6x6.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(-Radius,(-PRWidth),0)))
+holoScale(A, vec(0.7,0.7,0.9))
+holoColor(A,vec(255))
+A++
+B=Wheel
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/unionsparts/valve_base2.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(-Radius,(-PRWidth-3),0)))
+holoScale(A, vec(0.4,0.4,0.4))
+holoColor(A,vec(255))
+A++
+B=Wheel
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/sprops/rectangles_thin/size_0/rect_1_5x12x1_5.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec((-Radius/2)+1.5,(-PRWidth-2.5),0)))
+holoScale(A, vec((Radius+3)/12,1,1))
+holoColor(A,vec(255))
+A++
+B=Wheel
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(3,(-PRWidth-3.75),0)))
+holoScale(A, vec(0.8,0.8,1.5))
+holoColor(A,vec(255))
+
+
+#Slider rods
+#left
+A++
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,1,0)))
+holoScale(A, vec(1.3,1.3,0.4))
+holoColor(A,vec(255))
+A++
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(90,0,0)) )
+holoModel(A, "models/sprops/rectangles_thin/size_0/rect_1_5x24x1_5.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,1,11.5)))
+holoScale(A, vec(0.9,0.8,1))
+holoColor(A,vec(255))
+A++
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,0.25,15)))
+holoScale(A, vec(0.7,0.7,1))
+holoColor(A,vec(255))
+#right
+A++
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,-1,0)))
+holoScale(A, vec(1.3,1.3,0.4))
+holoColor(A,vec(255))
+A++
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(90,0,0)) )
+holoModel(A, "models/sprops/rectangles_thin/size_0/rect_1_5x24x1_5.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,-1,11.5)))
+holoScale(A, vec(0.9,0.8,1))
+holoColor(A,vec(255))
+A++
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,-0.25,15)))
+holoScale(A, vec(0.7,0.7,1))
+holoColor(A,vec(255))
+#slider guides
+#left
+A++
+B=holoEntity(3)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/holograms/hq_stube.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,-2.5,0)))
+holoScale(A, vec(0.2,1.2,0.15))
+holoColor(A,vec(255))
+holoClip(A,1,vec(0,-6,0),vec(0,1,0),0)
+holoClipEnabled(A,1,1)
+holoClip(A,2,vec(0,6,0),vec(0,-1,0),0)
+holoClipEnabled(A,2,1)
+A++
+B=holoEntity(3)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,-2.5,6)))
+holoScale(A, vec(0.8,0.6,0.2))
+holoColor(A,vec(255))
+A++
+B=holoEntity(3)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,-2.5,-6)))
+holoScale(A, vec(0.8,0.6,0.2))
+holoColor(A,vec(255))
+A++
+B=holoEntity(3)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,-4.25,0)))
+holoScale(A, vec(1,1,0.6))
+holoColor(A,vec(255))
+A++
+B=holoEntity(3)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_1/cylinder_1_5x42.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,-PRWidth-4,0)))
+holoScale(A, vec(1,1,1.1))
+holoColor(A,vec(255))
+
+
+#right
+A++
+B=holoEntity(5)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/holograms/hq_stube.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,2.5,0)))
+holoScale(A, vec(0.2,1.2,0.15))
+holoColor(A,vec(255))
+holoClip(A,1,vec(0,-6,0),vec(0,1,0),0)
+holoClipEnabled(A,1,1)
+holoClip(A,2,vec(0,6,0),vec(0,-1,0),0)
+holoClipEnabled(A,2,1)
+A++
+B=holoEntity(5)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,2.5,6)))
+holoScale(A, vec(0.8,0.6,0.2))
+holoColor(A,vec(255))
+A++
+B=holoEntity(5)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,2.5,-6)))
+holoScale(A, vec(0.8,0.6,0.2))
+holoColor(A,vec(255))
+A++
+B=holoEntity(5)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,4.25,0)))
+holoScale(A, vec(1,1,0.6))
+holoColor(A,vec(255))
+#sliders
+#left
+A++
+B=holoEntity(4)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/sprops/rectangles/size_1/rect_3x3x3.mdl")
+holoMaterial(A,"models/proppertextures/brass")
+holoPos(A,B:toWorld(vec(0,-2.5,0)))
+holoScale(A, vec(0.7,0.5,0.8))
+holoColor(A,vec(255))
+A++
+B=holoEntity(4)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,1,0)))
+holoScale(A, vec(0.7,0.7,0.7))
+holoColor(A,vec(255))
+A++
+B=holoEntity(4)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_1/cylinder_1_5x6.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,0,0)))
+holoScale(A, vec(0.9,0.9,0.8))
+holoColor(A,vec(255))
+#right
+A++
+B=holoEntity(6)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/sprops/rectangles/size_1/rect_3x3x3.mdl")
+holoMaterial(A,"models/proppertextures/brass")
+holoPos(A,B:toWorld(vec(0,2.5,0)))
+holoScale(A, vec(0.7,0.5,0.8))
+holoColor(A,vec(255))
+A++
+B=holoEntity(6)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,-1,0)))
+holoScale(A, vec(0.7,0.7,0.7))
+holoColor(A,vec(255))
+A++
+B=holoEntity(6)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_1/cylinder_1_5x6.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,0,0)))
+holoScale(A, vec(0.9,0.9,0.8))
+holoColor(A,vec(255))
+#Valve stems
+#left
+A++
+B=holoEntity(8)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(90,0,0)) )
+holoModel(A, "models/sprops/cylinders/size_1/cylinder_1_5x12.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(6,0,0)))
+holoScale(A, vec(1,1,1))
+holoColor(A,vec(255))
+A++
+B=holoEntity(8)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,0,0)))
+holoScale(A, vec(1,1,1))
+holoColor(A,vec(255))
+#right
+A++
+B=holoEntity(9)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(90,0,0)) )
+holoModel(A, "models/sprops/cylinders/size_1/cylinder_1_5x12.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(6,0,0)))
+holoScale(A, vec(1,1,1))
+holoColor(A,vec(255))
+A++
+B=holoEntity(9)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_2/cylinder_3x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,0,0)))
+holoScale(A, vec(1,1,1))
+holoColor(A,vec(255))
+#Valve Stem Rods
+#left
+A++
+B=holoEntity(11)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_1/cylinder_1_5x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,0,0)))
+holoScale(A, vec(1.1,1.1,1.3))
+holoColor(A,vec(255))
+A++
+B=holoEntity(11)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/sprops/rectangles_thin/size_0/rect_1_5x54x1_5.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(27,0,0)))
+holoScale(A, vec(1,1,1))
+holoColor(A,vec(255))
+#right
+A++
+B=holoEntity(13)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,90)) )
+holoModel(A, "models/sprops/cylinders/size_1/cylinder_1_5x3.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(0,0,0)))
+holoScale(A, vec(1.1,1.1,1.3))
+holoColor(A,vec(255))
+A++
+B=holoEntity(13)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/sprops/rectangles_thin/size_0/rect_1_5x54x1_5.mdl")
+holoMaterial(A,RodMat)
+holoPos(A,B:toWorld(vec(27,0,0)))
+holoScale(A, vec(1,1,1))
+holoColor(A,vec(255))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+SliderLeft=cos(WheelRotation)*3*(1+abs(Reverser/2.75))
+SliderRight=-sin(WheelRotation)*3*(1+abs(Reverser/2.75))
+SliderRodLeft=-sin(WheelRotation+(Reverser*45))*3
+SliderRodRight=-cos(WheelRotation+(Reverser*45))*3
+
+ValveStemLeft=-(sin(WheelRotation+(1*90))*2*Reverser)+(sin(WheelRotation)*1)#^abs(Reverser))
+ValveStemRight=-(cos(WheelRotation+(1*90))*2*Reverser)+(cos(WheelRotation)*1)#^abs(Reverser))
+
+
+holoPos(4,holoEntity(3):toWorld(vec(0*Scale,0*Scale,SliderLeft*Scale)))
+holoPos(6,holoEntity(5):toWorld(vec(0*Scale,0*Scale,SliderRight*Scale)))
+holoAng(1, Base:toWorld(ang(SliderRodLeft*(2.6+(abs(Reverser)/(2^(1-abs(Reverser*1))))),0,0)) )
+holoAng(2, Base:toWorld(ang(SliderRodRight*(2.6+(abs(Reverser)/(2^(1-abs(Reverser*1))))),0,0)) )
+holoAng(3, Base:toWorld(ang(Reverser*-45,0,0)) )
+holoAng(5, Base:toWorld(ang(Reverser*-45,0,0)) )
+
+holoPos(8,holoEntity(7):toWorld(vec(ValveStemLeft*Scale,(PRWidth+4)*Scale,0*Scale)))
+holoPos(9,holoEntity(7):toWorld(vec(ValveStemRight*Scale,(-PRWidth-4)*Scale,0*Scale)))
+
+local ValveRodL=(holoEntity(10):pos()-holoEntity(11):pos()):toAngle()
+holoAng(11,ValveRodL)
+local ValveRodL=(holoEntity(12):pos()-holoEntity(13):pos()):toAngle()
+holoAng(13,ValveRodL)
+
+
