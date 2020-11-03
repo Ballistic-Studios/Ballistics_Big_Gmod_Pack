@@ -709,7 +709,7 @@ holoPos(29,holoEntity(27):toWorld(vec(PMoveL*Scale,PWidth*Scale,0*Scale)))
 }    
 updateRods(0)
     
-Values=array(PRWidth,PWidth,RodMat,holoEntity(2),PistonHeight,PistonForward,PistonAngle,Scale,Radius,holoEntity(1),holoEntity(28),holoEntity(29),RodColor1,RodColor2)    
+Values=array(PRWidth,PWidth,RodMat,holoEntity(2),PistonHeight,PistonForward,PistonAngle,Scale,Radius,holoEntity(1),holoEntity(28),holoEntity(29),RodColor1,)    
     
     
     
