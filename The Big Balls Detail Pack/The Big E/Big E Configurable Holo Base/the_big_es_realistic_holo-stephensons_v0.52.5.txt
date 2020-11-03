@@ -25,7 +25,6 @@ Radius=Values[9,number]
 Base=Values[10,entity]
 PR=Values[11,entity]
 PL=Values[12,entity]
-RodColor2[13,vector]
 #Crank axle parents
 #Left
 A=1
