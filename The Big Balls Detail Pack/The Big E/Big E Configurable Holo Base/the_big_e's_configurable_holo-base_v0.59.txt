@@ -13,14 +13,14 @@ BaseOffset=vec(0,0,-11)   #Adjusts how far from the center of the base block the
 Diameter=30     #in inches, range of 21 to 110, although 99-104 may not work. Does not have to be multiples of six!
 Radius=6.5   #The Distance from the center of the wheel the rods will be. Will also adjust rod attachment points.
 Faxles=1    #Number of axles in front of the main drive axle. Maximum 3!
-Faxle1=0    #Offset in inches for each Front axle. Will move each front axle forward or backward independently, relative to the Axle Spacing.
+Faxle1=5    #Offset in inches for each Front axle. Will move each front axle forward or backward independently, relative to the Axle Spacing.
 Faxle2=0
 Faxle3=0
-Raxles=1   #Number of axles behind the main drive axle. Maximum 3!
-Raxle1=0    #Offset in inches for each Rear axle. Will move each rear axle forward or backward independently, relative to the Axle Spacing.
+Raxles=2   #Number of axles behind the main drive axle. Maximum 3!
+Raxle1=-5    #Offset in inches for each Rear axle. Will move each rear axle forward or backward independently, relative to the Axle Spacing.
 Raxle2=0
 Raxle3=0
-AxleSpacing=33    #How far apart the wheels will be from center-to-center by default.
+AxleSpacing=38    #How far apart the wheels will be from center-to-center by default.
 Gauge=32    #Gauge of the track this will run on in Playerscale inches.  Reference: 1 foot = 12 inches. If the wheels do not align with the track width you specified, check to make sure the general scale multiplier is equal to 1.
 WheelMat1="icegt/loco/ice_trainmetal_black"     #Materials used for the wheel.
 WheelMat2=""
@@ -37,7 +37,7 @@ Spin=0             #Used to make the wheels spin while the base is being worked 
 
 #Main Rods
 RodMat="models/proppertextures/aluminum"        #The first main rod Submaterial
-RodMat2="icegt/loco/ice_trainmetal_white"       #The second main rod Submaterial
+RodMat2="models/proppertextures/aluminum"       #The second main rod Submaterial
 RodColor=vec(150,50,50)   #Changes the color of the rod. 
 MWidth=19.8    #This changes how far from the center of the wheelbase the Main Side Rods will be.
 RodScale=0.5       #Multiplier for how thick the main rods are.
@@ -49,11 +49,12 @@ PRAngUp=0        #How far up the the piston rods will point.
 PRAngSide=0       #How far out to the side the piston rods will point.
 PRWidth=23    #This changes how far from the center of the wheelbase the Piston Rods will be.
 PistonRodMat="models/proppertextures/aluminum"        #The first piston rod Submaterial
-PistonRodMat2="icegt/loco/ice_trainmetal_white"       #The second piston rod Submaterial
+PistonRodMat2="models/proppertextures/aluminum"       #The second piston rod Submaterial
 #Piston Rod models
 PREndMod="models/bobsters_trains_2/modular_rod/rod_end.mdl"   #What model you want to use for the piston rod end
 PREndScale=0.5                                                #Sets the scale for the piston rod end piece
-PREndAng=ang(0,180,0)                                         #The angle set for the piston rod ends
+PREndAngL=ang(0,180,0)                                         #The angle set for the piston rod ends
+PREndAngR=ang(0,180,0)
 PREndBG0L=0  #Sets the bodygroups for the left piston rod end
 PREndBG1L=0
 PREndBG2L=0
@@ -534,7 +535,7 @@ A=36
 B=holoEntity(25)
 holoCreate(A)
 holoParent(A, B)
-holoAng(A, B:toWorld(PREndAng) )
+holoAng(A, B:toWorld(PREndAngR) )
 holoModel(A, PREndMod)
 holoEntity(A):setSubMaterial(2,PistonRodMat)
 holoEntity(A):setSubMaterial(1,PistonRodMat2)
@@ -562,7 +563,7 @@ A=38
 B=holoEntity(26)
 holoCreate(A)
 holoParent(A, B)
-holoAng(A, B:toWorld(PREndAng) )
+holoAng(A, B:toWorld(PREndAngL) )
 holoModel(A, PREndMod)
 holoEntity(A):setSubMaterial(2,PistonRodMat)
 holoEntity(A):setSubMaterial(1,PistonRodMat2)
