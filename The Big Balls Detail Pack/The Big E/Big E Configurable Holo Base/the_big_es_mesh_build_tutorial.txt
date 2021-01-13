@@ -1,0 +1,25 @@
+@name The Big E's Mesh Build Tutorial
+@inputs Base:entity
+@outputs
+@persist
+@trigger
+
+local P2M = p2mCreate(Base:pos(), Base:angles(), 38, 10.000)
+#tells the e2 to generate a P2M controller and to base its position and angle on that of the BASE:entity that the e2 is wired to
+
+P2M:p2mPushModel("models/mechanics/gears2/vert_12t1.mdl", vec(40.733, -45.663, 7.758), ang(0.004, -179.954, -89.994), vec(0.400, 0.400, 0.400), 0, array(                 vec(0.000, 0.000, 0.000),  vec(-0.300, -1.000, -0.000), vec(-0.000, 0.000, 0.000),     vec(-1.000, 0.300, 0.000)))
+    #like holoCreate                                      the position vector,        the angle vector,               the scale vector,            the array contains     how far the holoclip goes  The direction vector         the second magnitude vector    the second direction vector
+    #but for P2m                                          like holoPos                like holoAng                    like holoScale               all the holoclip 
+    #                                                                                                                                              functions for a mesh part
+
+P2M:p2mBuild()
+#tells the controller to build the mesh once all the mesh components are defined
+
+P2M:parentTo(Base)
+#parents the mesh controller to a defined prop or entity
+
+P2M:setMaterial("models/proppertextures/aluminum")
+#sets the material of the mesh controller/the entire mesh
+
+P2M:setColor(vec(255,255,255))
+#sets the color of the mesh controller/the entire mesh
