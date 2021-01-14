@@ -93,7 +93,7 @@ holoEntity(A):setSubMaterial(5,LocoBrakeLeverMat4)
 
 }
 holoAng(2,E:toWorld(ang(0,ABNotch*30,0)))
-holoAng(3,E:toWorld(ang(0,(ABNotch*30)+20,0)))
+holoAng(3,E:toWorld(ang(0,(LBNotch*30)+20,0)))
 
 
 
