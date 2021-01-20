@@ -643,6 +643,9 @@ holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodScale*Scale))
 holoColor(A,RodColor)
 
+
+}
+
 if(Faxles==0){REOF=0}
 elseif(Faxles==1){REOF=Faxle1}
 elseif(Faxles==2){REOF=Faxle2}
@@ -664,7 +667,7 @@ holoScale(33, vec((((1/256)*(Raxles+Faxles)*AxleSpacing)+((REOR+REOF)/256))*Scal
 holoPos(30,holoEntity(23):toWorld(vec(((((Raxles-Faxles)/-2)*AxleSpacing)-(REOR-REOF)/2)*Scale,0*Scale,0*Scale)))
 holoPos(33,holoEntity(24):toWorld(vec(((((Raxles-Faxles)/-2)*AxleSpacing)-(REOR-REOF)/2)*Scale,0*Scale,0*Scale)))
 
-}
+
 if(Raxles>1){
 A=44
 B=holoEntity(23)
