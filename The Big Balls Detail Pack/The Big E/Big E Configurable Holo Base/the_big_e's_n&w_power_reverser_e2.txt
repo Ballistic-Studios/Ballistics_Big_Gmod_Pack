@@ -60,4 +60,4 @@ holoEntity(A):setSubMaterial(3,LeverMat2)
 }
 holoAng(2,E:toWorld(ang(0,90,Reverser*30)))
 
-if(changed(W|S)&(W|S)>0){soundPlay(1,0,"loknoisbygeordie/steam/misc/power_reverser.wav")   soundVolume(1,0.5)}
+if(changed(W|S)&(W|S)>0){soundPlay(1,0,"locnoisbygeordie/steam/misc/power_reverser.wav")   soundVolume(1,0.5)}
