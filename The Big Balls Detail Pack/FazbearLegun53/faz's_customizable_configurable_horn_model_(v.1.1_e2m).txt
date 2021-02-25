@@ -1,0 +1,589 @@
+@name Faz's Customizable/Configurable Horn Model (V.1.1 "e2m")
+@inputs R 
+@outputs 
+@persist STH
+@trigger 
+
+@inputs PitchIn [SoundOnIn SoundOffIn]:string 
+
+####################################################################
+####################################################################
+#  Hello again, Faz here! (aka, that local SOU/NW/NS nut, the guy who literally foams over horns...yeah, that guy)
+#
+#   With the introduction of ZeXCiV's new horn and manifold models, I decided I would rework how my old e2 (see Nathan Airchime holo by Faz) works, and decided to
+#   update the features on how it works.  Now, bare with me on this, but I will be trying to make this as ent friendly/optomized as possible, but those aren't exactly what I am good at
+#   (see my old M3/5 holo model from the old e2).
+#
+#   This E2 is also going to be, well, very hard to understand (I think, knowing how bad I am at conveying instructions) at first, but it should quickly be easy to get a hold of.
+#
+#   Without further adue, here goes nothing.
+#
+#  version 1.1
+####################################################################
+####################################################################
+
+####---Configuration Stuff---#### (aka, where shit gets real lol)
+Type=6  #this is where you choose the manifold.  Choices are: 
+        #1-standard P/K 1 chime, 2-standard P/K 2 chime, 3-K 4 chime, 4-P low 3 chime, 5-P low 5 chime
+        #6-P Gullwing, 7/8-variations of a K 3 low manifold, 9-K 3 high manifold
+        #10-K5 low manifold, 11-K5 high manifold, (more to come as models update) 
+
+#next comes the bells.  Here, the first digit selects the series of bell, the second selects the bodygroup of that bell, and the third selects orientation
+#bell selections are:
+#   0=blanking plate
+#   1=K series (0 - 6) 1, 1L, 2, 3, 3A, 4, 5
+#   2=P series (0 - 5) 0, 1, 2, 3, 4, 5
+#   more to come (see table below for bell config ideas)
+#the two texture strings are, in order, the outside of the bell, and then the inside of the bell. (exterior and throat)
+#finally, the vector is the color of the bell
+Bell1=table(2, 1, 0, "models/proppertextures/acrylic_metal1", "models/proppertextures/acrylic_metal1_grimey", vec(255))
+Bell2=table(2, 4, 0, "models/proppertextures/acrylic_metal1", "models/proppertextures/acrylic_metal1_grimey", vec(255))
+Bell3=table(2, 2, 0, "models/proppertextures/acrylic_metal1", "models/proppertextures/acrylic_metal1_grimey", vec(255))
+Bell4=table(0, 0, 0, "models/proppertextures/acrylic_metal1", "models/proppertextures/acrylic_metal1_grimey", vec(255))
+Bell5=table(0, 0, 0, "models/proppertextures/acrylic_metal1", "models/proppertextures/acrylic_metal1_grimey", vec(255))
+
+
+#direction, texture, and color!
+Manifold=table(0, "models/proppertextures/acrylic_metal1", vec(255))
+
+Stand=0  #stand selector.  0 is null, 1 is box stand, 2 is circle base.
+STH=3    #this is the control for you stand height.  12 is the max height
+HornPos= vec(0,0,0) #changes the position of the horn
+StandStuff=table("models/proppertextures/acrylic", vec(17))
+
+#Sound configs! (this is pulled straight from my old e2, so it's the same)
+SoundOn = "cubics_pack/horns/p3_start.wav" #The sound of the horn/looping horn
+SoundOff = "cubics_pack/horns/p3_end.wav" #End of said sound above.
+Pitch = 100 #Pitch of the sound played.  100 is about there you'd want to stay, unless you'd want a 'interesting' horn.
+Volume = 1 #Volume.  Keep between 1 and 0, as going past either will make you a bad boy.
+Level = 100 #horn sound level, in decibles. 100 is the default.
+
+###
+#[
+    Having trouble with coming up with those bell combos?  Here are some generic ones for both the K and P horns.
+    (bell order on manifold does not matter, it's what bells are there that counts)
+    P:  P124 (this is what the P3 actually is, and it uses bells 1, 2, and 4 (sometimes a 4a, but there is not external difference)
+            common bell configs are:
+                -P24r1
+                -P12r4
+                -P14r2
+        P12345 (this is your p5)
+            common bell config
+                -P135r24
+        P01235 and P01245 and P01234 (these are 0 bell p horns, and tend to have a deep, rich sound.  No common bell configs exist seeing as so few used them)
+        
+    K:  K12345 (standard canadian K5, see P5 for common configs)
+        K124 (standard canadian K3, see P3 for common configs)
+        K25r25 (only seen on that one 4 chime manifold we have, and the config is stated already)
+        K123a4a5 (this is the K5a, american tune.  Again, see the P5)
+        K124a (standard american tuned K3a, see the P3 for common configs)
+        K1l1234 (this is the K5l model, and for a k5lla, switch the 4 with a 4a bell (no bodygroup change needed)
+        
+    There exist 2 and 1 chime varients of each bell class, but you could really just use any bell combo on those.
+
+]#
+###
+
+####---End o' Config---####
+#Do not go pass this point#
+if(first() | dupefinished()){
+    Blank="models/zexciv_train_stuff/horns/nathan_blank.mdl"
+    Khorn="models/zexciv_train_stuff/horns/bells/nathan_k_bells.mdl"
+    Phorn="models/zexciv_train_stuff/horns/bells/nathan_p_bells.mdl"
+    
+    
+entity():setAlpha(0)
+
+if(Stand){STH=STH}else{STH=0}
+
+if(Type){
+A=0
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,"models/zexciv_train_stuff/horns/mounts/nathan_mounts.mdl")
+holoBodygroup(A,1,Type-1)
+holoEntity(A):setSubMaterial(1,Manifold[2,string])
+holoColor(A,Manifold[3,vector])
+holoPos(A,entity():toWorld(vec(0,0,STH)+HornPos))
+holoAng(A,entity():toWorld(ang(0,-90+(180*Manifold[1,number]),0)))
+A=1
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,"models/sprops/cylinders/size_5/cylinder_12x3.mdl")
+holoMaterial(A,"models/proppertextures/rubber")
+holoScale(A,vec(0.35,0.35,0.15))
+holoPos(A,holoEntity(0):toWorld(vec(0,0,-0.1)))
+holoAng(A,holoEntity(0):toWorld(ang(0,0,0)))
+
+if(Type==1){
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell1[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell1[2,number])
+holoEntity(A):setSubMaterial(1,Bell1[4,string])
+holoEntity(A):setSubMaterial(4,Bell1[5,string])
+holoColor(A,Bell1[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,0,3.21)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell1[3,number],0)))   
+
+}elseif(Type==2){
+
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell1[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell1[2,number])
+holoEntity(A):setSubMaterial(1,Bell1[4,string])
+holoEntity(A):setSubMaterial(4,Bell1[5,string])
+holoColor(A,Bell1[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-1.75,4.925)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell1[3,number],0,90)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell2[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell2[2,number])
+holoEntity(A):setSubMaterial(1,Bell2[4,string])
+holoEntity(A):setSubMaterial(4,Bell2[5,string])
+holoColor(A,Bell2[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,1.75,4.925)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell2[3,number],0,-90))) 
+
+}elseif(Type==3){
+
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell1[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell1[2,number])
+holoEntity(A):setSubMaterial(1,Bell1[4,string])
+holoEntity(A):setSubMaterial(4,Bell1[5,string])
+holoColor(A,Bell1[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-1.75,4.65)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell1[3,number],0,90)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell2[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell2[2,number])
+holoEntity(A):setSubMaterial(1,Bell2[4,string])
+holoEntity(A):setSubMaterial(4,Bell2[5,string])
+holoColor(A,Bell2[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,1.75,4.65)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell2[3,number],0,-90))) 
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell3[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell3[2,number])
+holoEntity(A):setSubMaterial(1,Bell3[4,string])
+holoEntity(A):setSubMaterial(4,Bell3[5,string])
+holoColor(A,Bell3[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-1.75,11)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell3[3,number],0,90)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell4[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell4[2,number])
+holoEntity(A):setSubMaterial(1,Bell4[4,string])
+holoEntity(A):setSubMaterial(4,Bell4[5,string])
+holoColor(A,Bell4[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,1.75,11)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell4[3,number],0,-90))) 
+
+}elseif(Type==4){
+
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell1[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell1[2,number])
+holoEntity(A):setSubMaterial(1,Bell1[4,string])
+holoEntity(A):setSubMaterial(4,Bell1[5,string])
+holoColor(A,Bell1[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-3,3.5)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell1[3,number],0,90)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell2[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell2[2,number])
+holoEntity(A):setSubMaterial(1,Bell2[4,string])
+holoEntity(A):setSubMaterial(4,Bell2[5,string])
+holoColor(A,Bell2[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,3,3.5)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell2[3,number],0,-90))) 
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell3[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell3[2,number])
+holoEntity(A):setSubMaterial(1,Bell3[4,string])
+holoEntity(A):setSubMaterial(4,Bell3[5,string])
+holoColor(A,Bell3[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,0,4.2)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell3[3,number],0)))   
+
+}elseif(Type==5){
+
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell1[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell1[2,number])
+holoEntity(A):setSubMaterial(1,Bell1[4,string])
+holoEntity(A):setSubMaterial(4,Bell1[5,string])
+holoColor(A,Bell1[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-6,3.51)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell1[3,number],0,90)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell2[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell2[2,number])
+holoEntity(A):setSubMaterial(1,Bell2[4,string])
+holoEntity(A):setSubMaterial(4,Bell2[5,string])
+holoColor(A,Bell2[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,6,3.51)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell2[3,number],0,-90))) 
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell3[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell3[2,number])
+holoEntity(A):setSubMaterial(1,Bell3[4,string])
+holoEntity(A):setSubMaterial(4,Bell3[5,string])
+holoColor(A,Bell3[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,0,4.2)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell3[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell4[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell4[2,number])
+holoEntity(A):setSubMaterial(1,Bell4[4,string])
+holoEntity(A):setSubMaterial(4,Bell4[5,string])
+holoColor(A,Bell4[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(1,-4.25,5.7)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell4[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell5[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell5[2,number])
+holoEntity(A):setSubMaterial(1,Bell5[4,string])
+holoEntity(A):setSubMaterial(4,Bell5[5,string])
+holoColor(A,Bell5[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(1,4.25,5.7)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell5[3,number],0)))   
+
+}elseif(Type==6){
+
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell1[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell1[2,number])
+holoEntity(A):setSubMaterial(1,Bell1[4,string])
+holoEntity(A):setSubMaterial(4,Bell1[5,string])
+holoColor(A,Bell1[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-4.5,5.25)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell1[3,number],180)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell2[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell2[2,number])
+holoEntity(A):setSubMaterial(1,Bell2[4,string])
+holoEntity(A):setSubMaterial(4,Bell2[5,string])
+holoColor(A,Bell2[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,4.5,5.25)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell2[3,number],180)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell3[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell3[2,number])
+holoEntity(A):setSubMaterial(1,Bell3[4,string])
+holoEntity(A):setSubMaterial(4,Bell3[5,string])
+holoColor(A,Bell3[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,0,5.41)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell3[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell4[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell4[2,number])
+holoEntity(A):setSubMaterial(1,Bell4[4,string])
+holoEntity(A):setSubMaterial(4,Bell4[5,string])
+holoColor(A,Bell4[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-4.5,7.15)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell4[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell5[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell5[2,number])
+holoEntity(A):setSubMaterial(1,Bell5[4,string])
+holoEntity(A):setSubMaterial(4,Bell5[5,string])
+holoColor(A,Bell5[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,4.5,7.15)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell5[3,number],0)))   
+
+}elseif(Type==7|Type==8){
+
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell1[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell1[2,number])
+holoEntity(A):setSubMaterial(1,Bell1[4,string])
+holoEntity(A):setSubMaterial(4,Bell1[5,string])
+holoColor(A,Bell1[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,0,2.6)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell1[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell2[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell2[2,number])
+holoEntity(A):setSubMaterial(1,Bell2[4,string])
+holoEntity(A):setSubMaterial(4,Bell2[5,string])
+holoColor(A,Bell2[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-6.25,2.6)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell2[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell3[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell3[2,number])
+holoEntity(A):setSubMaterial(1,Bell3[4,string])
+holoEntity(A):setSubMaterial(4,Bell3[5,string])
+holoColor(A,Bell3[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,6.25,2.6)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell3[3,number],0)))   
+
+}elseif(Type==9){
+
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell1[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell1[2,number])
+holoEntity(A):setSubMaterial(1,Bell1[4,string])
+holoEntity(A):setSubMaterial(4,Bell1[5,string])
+holoColor(A,Bell1[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,0,4.7)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell1[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell2[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell2[2,number])
+holoEntity(A):setSubMaterial(1,Bell2[4,string])
+holoEntity(A):setSubMaterial(4,Bell2[5,string])
+holoColor(A,Bell2[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-6.25,4.7)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell2[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell3[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell3[2,number])
+holoEntity(A):setSubMaterial(1,Bell3[4,string])
+holoEntity(A):setSubMaterial(4,Bell3[5,string])
+holoColor(A,Bell3[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,6.25,4.7)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell3[3,number],0)))   
+
+}elseif(Type==10){
+
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell1[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell1[2,number])
+holoEntity(A):setSubMaterial(1,Bell1[4,string])
+holoEntity(A):setSubMaterial(4,Bell1[5,string])
+holoColor(A,Bell1[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,0,4.2)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell1[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell2[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell2[2,number])
+holoEntity(A):setSubMaterial(1,Bell2[4,string])
+holoEntity(A):setSubMaterial(4,Bell2[5,string])
+holoColor(A,Bell2[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-6.25,4.2)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell2[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell3[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell3[2,number])
+holoEntity(A):setSubMaterial(1,Bell3[4,string])
+holoEntity(A):setSubMaterial(4,Bell3[5,string])
+holoColor(A,Bell3[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,6.25,4.2)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell3[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell4[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell4[2,number])
+holoEntity(A):setSubMaterial(1,Bell4[4,string])
+holoEntity(A):setSubMaterial(4,Bell4[5,string])
+holoColor(A,Bell4[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-9.95,3.275)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell4[3,number],0,90)))  
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell5[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell5[2,number])
+holoEntity(A):setSubMaterial(1,Bell5[4,string])
+holoEntity(A):setSubMaterial(4,Bell5[5,string])
+holoColor(A,Bell5[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,9.95,3.275)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell5[3,number],0,-90)))  
+
+}elseif(Type==11){
+
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell1[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell1[2,number])
+holoEntity(A):setSubMaterial(1,Bell1[4,string])
+holoEntity(A):setSubMaterial(4,Bell1[5,string])
+holoColor(A,Bell1[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,0,7.2)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell1[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell2[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell2[2,number])
+holoEntity(A):setSubMaterial(1,Bell2[4,string])
+holoEntity(A):setSubMaterial(4,Bell2[5,string])
+holoColor(A,Bell2[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-6.25,7.2)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell2[3,number],0)))   
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell3[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell3[2,number])
+holoEntity(A):setSubMaterial(1,Bell3[4,string])
+holoEntity(A):setSubMaterial(4,Bell3[5,string])
+holoColor(A,Bell3[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,6.25,7.2)))
+holoAng(A,holoEntity(0):toWorld(ang(0,180*Bell3[3,number],0)))    
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell4[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell4[2,number])
+holoEntity(A):setSubMaterial(1,Bell4[4,string])
+holoEntity(A):setSubMaterial(4,Bell4[5,string])
+holoColor(A,Bell4[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,1.575,3.4)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell4[3,number],0,-90)))  
+A++    
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,select(Bell5[1,number]+1,Blank,Khorn,Phorn))
+holoBodygroup(A,1,Bell5[2,number])
+holoEntity(A):setSubMaterial(1,Bell5[4,string])
+holoEntity(A):setSubMaterial(4,Bell5[5,string])
+holoColor(A,Bell5[6,vector])
+holoPos(A,holoEntity(0):toWorld(vec(0,-1.575,3.4)))
+holoAng(A,holoEntity(0):toWorld(ang(180*Bell5[3,number],0,90))) 
+
+}
+
+}else{}
+
+
+
+#stand holo
+if(Stand==1){
+A=10
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,"models/sprops/cylinders/size_5/cylinder_12x3.mdl")
+holoMaterial(A,"models/proppertextures/rubber")
+holoScale(A,vec(0.1,0.1,(1/3)*STH))
+holoPos(A,holoEntity(0):toWorld(vec(0,0,-STH/2-0.5)))
+holoAng(A,holoEntity(0):toWorld(ang(0,0,0)))
+
+P2M0=p2mCreate(holoEntity(0):pos(), holoEntity(0):angles())
+P2M0:p2mSetParent(holoEntity(0))
+P2M0:p2mSetMaterial(StandStuff[1,string])
+P2M0:p2mSetColor(StandStuff[2,vector])
+P2M0:p2mPushModel("models/sprops/rectangles_thin/size_2/rect_12x12x1_5.mdl", vec(0,0,-0.6),ang(0,0,0),vec(0.5,0.8,0.5))
+P2M0:p2mPushModel("models/sprops/rectangles_thin/size_2/rect_12x12x1_5.mdl", vec(0,-4.43,(-STH/2)-0.5),ang(0,0,90),vec(0.5,STH*1/12,0.5))
+P2M0:p2mPushModel("models/sprops/rectangles_thin/size_2/rect_12x12x1_5.mdl", vec(0,4.43,(-STH/2)-0.5),ang(0,0,90),vec(0.5,STH*1/12,0.5))
+P2M0:p2mPushModel("models/sprops/rectangles_thin/size_2/rect_12x12x1_5.mdl", vec(0,3.6,-STH),ang(0,0,0),vec(0.5,0.2,0.5))
+P2M0:p2mPushModel("models/sprops/rectangles_thin/size_2/rect_12x12x1_5.mdl", vec(0,-3.6,-STH),ang(0,0,0),vec(0.5,0.2,0.5))
+P2M0:p2mBuild()
+}elseif(Stand==2){
+A=10
+holoCreate(A)
+holoParent(A,entity())
+holoModel(A,"models/sprops/cylinders/size_5/cylinder_12x3.mdl")
+holoMaterial(A,StandStuff[1,string])
+holoColor(A,StandStuff[2,vector])
+holoScale(A,vec(0.5,0.5,(1/3)*STH))
+holoPos(A,holoEntity(0):toWorld(vec(0,0,-STH/2-0.2)))
+holoAng(A,holoEntity(0):toWorld(ang(0,0,0)))
+}else{}
+}
+
+
+if(R & ~R){
+    soundStop(1)
+    soundStop(3)
+    holoEntity(0):soundPlay(0,0,SoundOn)
+    holoEntity(1):soundPlay(2,0,SoundOn)
+    soundLevel(0,Level-(Level/5))
+    soundLevel(2,Level+(Level/5))
+    soundDSP(0,0)
+    soundDSP(2,16)
+    soundVolume(0,Volume)
+    soundVolume(2,Volume)
+}elseif(!R & ~R){
+    soundStop(0)
+    soundStop(2)
+    holoEntity(0):soundPlay(1,1,SoundOff)
+    holoEntity(1):soundPlay(3,1,SoundOff)
+    soundLevel(1,Level-(Level/5))
+    soundLevel(3,Level+(Level/5))
+    soundDSP(1,0)
+    soundDSP(3,16)
+    soundVolume(1,Volume)
+    soundVolume(3,Volume)
+}
+for(N=0,3){
+    soundPitch(N,->PitchIn ? PitchIn : Pitch)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
