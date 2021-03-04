@@ -415,7 +415,7 @@ holoClipEnabled(A,1,1)
 holoClip(A,1,vec(-85,0,0),vec(0,0,-1),0)
 
 }
-}
+
 #Code for moving parts                                                                                                                                                                                                                                                                                                                   #The Big E was here lmao
 CB = (CutBar*2)+1-Decouple
 holoBodygroup(200,2,CB)
