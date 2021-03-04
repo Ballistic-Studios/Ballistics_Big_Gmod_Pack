@@ -182,7 +182,7 @@ if(first() | dupefinished())
     holoBodygroup(A,3,Digit3)
     holoBodygroup(A,4,Digit4)
     holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
-    A+
+    A++
     holoCreate(A)
     holoParent(A,Entity)
     holoModel(A,"models/gsgtrainprops/parts/grabs_n_ladders/grab_iron.mdl")
