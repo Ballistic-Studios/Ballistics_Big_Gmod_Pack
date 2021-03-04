@@ -427,13 +427,13 @@ if(Decouple>0){Bogey:constraintBreak("rope")}
 if(D==0){}
 if(D==255){
 A++
-spriteSpawn(A,"sprites/light_glow01")
+spriteSpawn(A,"sprites/light_glow02")
 spriteSetPos(A,entity():toWorld(vec(-10+DitchlightZ,23+DitchlightX,11-DitchlightY)*OvSc))
 spriteSetAlpha(A,255)
 spriteSetColor(A,D2)
 spriteSetParent(A,entity())
 A++
-spriteSpawn(A,"sprites/light_glow01")
+spriteSpawn(A,"sprites/light_glow02")
 spriteSetPos(A,entity():toWorld(vec(-10+DitchlightZ,-23-DitchlightX,11-DitchlightY)*OvSc))
 spriteSetAlpha(A,255)
 spriteSetColor(A,D1)
