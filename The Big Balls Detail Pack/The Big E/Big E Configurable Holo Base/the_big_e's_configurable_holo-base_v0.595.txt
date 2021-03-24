@@ -40,7 +40,7 @@ WheelType=2 #Changes the type of spokes the wheel has.
 Counterweight=2 #Changes the counterweight bodygroup.
 
 SpeedDiv=4.4 #Controls the rate the wheels spin at. Larger is slower. May have to be changed from server-to-server. Making the value negative reverses the direction the wheels spin.
-DirRotate=2   #Changes the axis the base moves relative to. If the base doesnt move when you move the base block forwards and backwards try changing this number. 0 for x-axis, 1 for y-axis, and 2 for z-axis.
+DirRotate=0   #Changes the axis the base moves relative to. If the base doesnt move when you move the base block forwards and backwards try changing this number. 0 for x-axis, 1 for y-axis, and 2 for z-axis.
 
 Scale=1         #Overall Scale multiplier. Makes the entire base larger or smaller. Not recommended for uses beyond G-gauge.
 
