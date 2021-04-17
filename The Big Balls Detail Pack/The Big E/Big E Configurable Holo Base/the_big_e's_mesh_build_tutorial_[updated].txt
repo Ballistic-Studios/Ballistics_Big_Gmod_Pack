@@ -1,0 +1,62 @@
+@name The Big E's Mesh Build Tutorial [UPDATED]
+@inputs Base:entity
+@outputs
+@persist
+@trigger
+
+local P2M = p2mCreate(1, Base:pos(), Base:angles())
+#tells the e2 to generate a P2M controller, sets its index, and tells it to base its position and angle on that of the BASE:entity that the e2 is wired to
+
+P2M:p2mPushModel(       1,                          "models/mechanics/gears2/vert_12t1.mdl",                 vec(7, -10, 12), ang(0.004, -179.954, -89.994), vec(0.400, 0.400, 0.400), 0, array(                 vec(0.000, 0.000, 0.000),  vec(-0.300, -1.000, -0.000), vec(-0.000, 0.000, 0.000),     vec(-1.000, 0.300, 0.000)))
+    #like holoCreate    tells the mesh which                tells the mesh what model you want                        the position vector,        the angle vector,               the scale vector,            the array contains     how far the holoclip goes  The direction vector         the second magnitude vector    the second direction vector
+    #but for P2m        controller it belongs to                                                                         like holoPos                like holoAng              like holoScale               all the holoclip 
+    #                                                                                                                                                                                                 functions for a mesh part
+
+P2M:p2mBuild()
+#tells the controller to build the mesh once all the mesh components are defined
+
+P2M:p2mSetParent(Base)
+#parents the mesh controller to a defined prop or entity
+
+P2M:p2mSetMaterial(1,"bobsters_trains/br_hazard")
+#sets the material of the mesh controller/the entire mesh
+
+P2M:p2mSetColor(1,vec(255,255,255))
+#sets the color of the mesh controller/the entire mesh
+
+P2M:p2mSetUV(1,5)
+#controls the scale of the textures applied to the mesh
+#first number is mesh index, second number is mesh scale
+
+P2M:p2mSetAng(Base:toWorld(ang(0,0,0)))
+#sets the angle of the mesh controller
+
+P2M:p2mSetPos(Base:toWorld(vec(0,0,0)))
+#sets the position of the mesh controller
+
+P2M:p2mSetScale(1,vec(1,1,1))
+#sets the scale of the entire mesh
+#first number is mesh index, second is scale vector
+
+P2M:p2mSetModel("models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl")
+#sets the model of the mesh controller
+
+P2M:p2mSetNodraw(0)
+#defines if the mesh controller is visible or not
+#0 is visible, 1 is invisible, if setNodraw isnt present in the e2 it defaults to 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
