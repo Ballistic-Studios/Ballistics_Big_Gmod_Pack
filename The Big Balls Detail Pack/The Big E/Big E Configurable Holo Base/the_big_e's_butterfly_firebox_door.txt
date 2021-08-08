@@ -12,9 +12,9 @@ if(first() | dupefinished()){
     
     FireSound = "ambient/fire/fire_med_loop1.wav"
     
-    FireDoorMat = "icegt/loco/ice_trainmetal_darkgrey"
+    FireDoorMat = "sprops/textures/sprops_metal1"
     
-    FireDoorColor = vec(50,50,50)
+    FireDoorColor = vec(122,122,122)
     
     Scale = 1
     
@@ -251,7 +251,7 @@ if(first() | dupefinished()){
     holoModel(A, "models/sprops/misc/domes/size_4/dome_48x30.mdl")
     holoScale(A, vec(-0.7)*Scale)
     holoParent(A, entity())  
-    holoMaterial(A,"gulch/gulch_crystal_white") 
+    holoMaterial(A,"models/proppertextures/toolsblack") 
     
     P3 = p2mCreate(1, entity():pos(), entity():angles())
     
@@ -458,7 +458,9 @@ if(Open & (EngineActive | Warmup)){
 
 if(EngineActive | Warmup){
     timer("fboxrefresh",250)
+holoMaterial(19,"gulch/gulch_crystal_white")
 }
+else{holoMaterial(19,"models/proppertextures/toolsblack")}
 
 if(EngineActive | Warmup){if(Open){FireboxCOL = vec(0)}elseif(Closed){FireboxCOL = Firebox}}else{FireboxCOL = vec(0)}
 if(clk("fboxrefresh")){
