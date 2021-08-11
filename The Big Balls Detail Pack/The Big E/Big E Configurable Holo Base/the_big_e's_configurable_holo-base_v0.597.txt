@@ -1,0 +1,1271 @@
+@name The Big E's Configurable Holo-Base V0.597
+@inputs Base:entity Throttle Cocks Reverser Slip
+@outputs WheelRotation Values:array C1L C1R C2L C2R  Chuff1 Chuff2 Chuff3 Chuff4 
+@persist WheelRotation Diameter SpeedDiv Scale PMoveR PWidth Radius PMoveL PRMul PistonAngle PRAngR PRAngL PRAngUp PRAngSide Spin Rev Slip Aaa PistonForward PRodLength DiameterOffset DO DirRotate BaseDir Faxles Raxles AutoThickness
+@trigger none
+if(first()|dupefinished()|duped()){
+#Requires Meem's train parts pack and Bobster's 2nd parts pack
+
+
+#General/Wheels
+BaseAngle=ang(0,0,0)    #Used if the base block/bogey has a rotated center. Rotates the entire wheelbase about the main Drive axle.
+
+BaseOffset=vec(0,0,0)   #Adjusts how far from the center of the base block the wheelbase will be. Will be used to make sure the wheels are touching the track.
+
+Diameter=36     #in inches, range of 21 to 110, although 99-104 may not work. Does not have to be multiples of six!
+
+Radius=10   #The Distance from the center of the wheel the rods will be. Will also adjust rod attachment points.
+
+Faxles=2    #Number of axles in front of the main drive axle. Maximum 3!
+Faxle1=0    #Offset in inches for each Front axle. Will move each front axle forward or backward independently, relative to the Axle Spacing.
+Faxle2=0
+Faxle3=0
+
+Raxles=1   #Number of axles behind the main drive axle. Maximum 3!
+Raxle1=10    #Offset in inches for each Rear axle. Will move each rear axle forward or backward independently, relative to the Axle Spacing.
+Raxle2=0
+Raxle3=0
+
+AxleSpacing=40    #How far apart the wheels will be from center-to-center by default.
+Gauge=42    #Gauge of the track this will run on in Playerscale inches.  Reference: 1 foot = 12 inches. If the wheels do not align with the track width you specified, check to make sure the general scale multiplier is equal to 1.
+
+WheelMat1="icegt/loco/ice_trainmetal_black"     #Materials used for the wheel.
+WheelMat2=""
+WheelMat3=""
+WheelMat4="icegt/loco/ice_trainmetal_black"     #WheelMat4 is also the material that will be used on the rod attachment points.
+WheelMat5="icegt/loco/ice_trainmetal_black"
+WheelColor=vec(255)   #Changes the color of the wheels. 
+
+WheelType=2 #Changes the type of spokes the wheel has.
+Counterweight=2 #Changes the counterweight bodygroup.
+
+AutoThickness=1 #Changes whether the thickness of the wheels depends on guage or not.
+                #Manual thickness will cost more holos.
+AxleDiameter=5  #Sets the diameter of the axle the wheels are attached to.
+                #Only used when AutoThickness is set to 1.
+WheelThicknessScale=1 #Sets how thick the wheels are if AutoThickness is 1.
+
+
+
+
+SpeedDiv=4.4 #Controls the rate the wheels spin at. Larger is slower. May have to be changed from server-to-server. Making the value negative reverses the direction the wheels spin.
+DirRotate=0   #Changes the axis the base moves relative to. If the base doesnt move when you move the base block forwards and backwards try changing this number. 0 for x-axis, 1 for y-axis, and 2 for z-axis.
+
+Scale=1         #Overall Scale multiplier. Makes the entire base larger or smaller. Not recommended for uses beyond G-gauge.
+
+Spin=11            #Used to make the wheels spin while the base is being worked on. For whatever reason, valve gear may bug out if the number is even.
+
+DiameterOffset=0    #This either enables (1) or disables (0) the base being offset by the diameter of the wheels, to keep the wheels in contact with the rails even if you adjust the wheel diameter.
+
+
+
+#Main Rods
+RodMat="models/proppertextures/aluminum"        #The first main rod Submaterial
+RodMat2="models/proppertextures/aluminum"       #The second main rod Submaterial
+RodColor=vec(150,50,50)   #Changes the color of the rod. 
+
+MWidth=20.3    #This changes how far from the center of the wheelbase the Main Side Rods will be.
+RodScale=0.75       #Multiplier for how thick the main rods are.
+
+
+
+
+#Piston Rods
+PRMul=1.75       #Multiplier for the the piston rod angle. Will need to be changed if the PistonForward distance is changed. The farther forward the piston, the higher the PRMul.
+PRodLength=98       #How Long the Piston Rods are, usually will be the same as PistonForward.
+PRWidth=26    #This changes how far from the center of the wheelbase the Piston Rods will be.
+
+
+PistonRodMat="models/proppertextures/aluminum"        #The first piston rod Submaterial
+PistonRodMat2="models/proppertextures/aluminum"       #The second piston rod Submaterial
+
+#Piston Rod models
+PREndMod="models/bobsters_trains_2/modular_rod/rod_end.mdl"   #What model you want to use for the piston rod end
+PREndScale=0.75                                                #Sets the scale for the piston rod end piece
+
+PREndAngL=ang(0,0,0)            #The angle set for the piston rod ends
+PREndAngR=ang(0,0,0)
+
+PREndBG0L=0  #Sets the bodygroups for the left piston rod end
+PREndBG1L=0
+PREndBG2L=0
+PREndBG3L=0
+
+PREndBG0R=0  #Sets the bodygroups for the right piston rod end
+PREndBG1R=0
+PREndBG2R=0
+PREndBG3R=0
+
+PRMidMod="models/bobsters_trains_2/modular_rod/rod_128.mdl"    #What model you want to use for the piston rod center piece
+
+PRMidLength=128                                                #The length of the model you're using for the piston rods
+PRMidScale=0.75                                                 #Sets the scale for the piston rod mid piece
+
+
+
+
+#Piston/Crosshead
+PistonMat="models/proppertextures/aluminum"     #The First Piston Submaterial
+PistonMat2="models/proppertextures/aluminum"    #The Second Piston Submaterial
+PistonColor=vec(150,50,50)   #Changes the color of the rod. 
+
+PistonHeight=0      #How far up the pistons are compared to the center of the axle. Is usually 0.
+PistonForward=98    #How far forward the pistons are compared to the main drive axle.
+
+PistonAngle=0       #How far up the pistons will be angled. Depending on how far up they're angled you may need to change the PRMul.
+
+PWidth=26           #How far from the center of the base block the crossheads will be located.
+PistonMul=0.75         #Multiplier for how big the pistons are.
+
+PClip=-36               #Piston Clip Length
+PClipDir=1             #Limited to 1,0,and -1. Changes the direction of the holoclip.
+
+
+#Crosshead Left
+PistonModelL="models/zexciv_train_stuff/misc/details/crosshead.mdl"    #Right Piston Model
+PistonBGL0=0        #Bodygroups for Left Piston Model
+PistonBGL1=11
+PistonLAng=ang(0,180,0)
+
+#Crosshead Right
+PistonModelR="models/zexciv_train_stuff/misc/details/crosshead.mdl"    #Left Piston Model
+PistonBGR0=0        #Bodygroups for Right Piston Model
+PistonBGR1=11
+PistonRAng=ang(0,180,180)
+
+####################################################################################################################################################################################################################################################################################################################################################################################################################################
+D=(round(Diameter/6))*6
+PistonPos=vec(PistonForward*Scale,0,PistonHeight*Scale)
+PistonAng=ang(-PistonAngle,0,0)
+if(Faxles){}
+
+WTS=WheelThicknessScale
+
+
+
+##################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+#Base holo. Use this to change the overall position of the wheelbase.
+A=1
+holoCreate(A)
+holoParent(A, Base)
+holoAng(A, Base:toWorld(BaseAngle))
+
+if(DiameterOffset){ DO = ((Diameter/2)-12) }
+else{ DO = 0 }
+holoPos(A,Base:toWorld(vec(0,0,DO)+BaseOffset))
+holoScale(A, vec(0))  
+
+if(AutoThickness==0){
+#Main Drive Axle. All the rods are attached to this one.    
+A=2
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight+1)    
+A=3
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=4
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+#1st Front Axle.
+if(Faxles>0){
+A=5
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec((AxleSpacing+Faxle1)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=6
+B=holoEntity(5)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=7
+B=holoEntity(5)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}
+#2nd Front Axle.
+if(Faxles>1){
+A=8
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(((AxleSpacing*2)+Faxle2)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=9
+B=holoEntity(8)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=10
+B=holoEntity(8)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}
+#3rd Front Axle.
+if(Faxles>2){
+A=11
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(((AxleSpacing*3)+Faxle3)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=12
+B=holoEntity(11)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=13
+B=holoEntity(11)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}
+#1st Rear Axle.
+if(Raxles>0){
+A=14
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(-((AxleSpacing*1)+Raxle1)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=15
+B=holoEntity(14)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=16
+B=holoEntity(14)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}
+#2nd Rear Axle.
+if(Raxles>1){
+A=17
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(-((AxleSpacing*2)+Raxle2)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=18
+B=holoEntity(17)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=19
+B=holoEntity(17)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}
+#3rd Rear Axle.
+if(Raxles>2){
+A=20
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(-((AxleSpacing*3)+Raxle3)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=21
+B=holoEntity(20)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=22
+B=holoEntity(20)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}
+}
+elseif(AutoThickness>0){
+    
+#Main Drive Axle. All the rods are attached to this one.    
+A=2
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_24.mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((AxleDiameter/5)*Scale,(Gauge/52)*Scale,(AxleDiameter/5)*Scale))
+holoColor(A,WheelColor)   
+holoClip(A,1,vec(0,-Gauge/2.1,0),vec(0,1,0),0)
+holoClipEnabled(A,1,1)
+holoClip(A,2,vec(0,Gauge/2.1,0),vec(0,-1,0),0)
+holoClipEnabled(A,2,1)
+
+A=3
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/single_"+D+".mdl")
+holoEntity(A):setSubMaterial(2,WheelMat1)
+holoEntity(A):setSubMaterial(1,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(0*Scale,((Gauge/2)-(0.7)-(0.85*WTS*Gauge/32))*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,WTS*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,1,WheelType)    
+holoBodygroup(A,2,Counterweight+1)    
+A=4
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(-90,180,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/single_"+D+".mdl")
+holoEntity(A):setSubMaterial(2,WheelMat1)
+holoEntity(A):setSubMaterial(1,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(0*Scale,((-Gauge/2)+(0.7)+(0.85*WTS*Gauge/32))*1*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,WTS*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,1,WheelType)    
+holoBodygroup(A,2,Counterweight+1)    
+
+A=300
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=400
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+#1st Front Axle.
+if(Faxles>0){
+A=5
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec((AxleSpacing+Faxle1)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=600
+B=holoEntity(5)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=700
+B=holoEntity(5)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}
+#2nd Front Axle.
+if(Faxles>1){
+A=8
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(((AxleSpacing*2)+Faxle2)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=900
+B=holoEntity(8)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=1000
+B=holoEntity(8)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}
+#3rd Front Axle.
+if(Faxles>2){
+A=11
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(((AxleSpacing*3)+Faxle3)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=1200
+B=holoEntity(11)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=1300
+B=holoEntity(11)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}
+#1st Rear Axle.
+if(Raxles>0){
+A=14
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(-((AxleSpacing*1)+Raxle1)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=1500
+B=holoEntity(14)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=1600
+B=holoEntity(14)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}
+#2nd Rear Axle.
+if(Raxles>1){
+A=17
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(-((AxleSpacing*2)+Raxle2)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=1800
+B=holoEntity(17)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=1900
+B=holoEntity(17)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}
+#3rd Rear Axle.
+if(Raxles>2){
+A=20
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/wheels/standard/double_"+D+".mdl")
+holoEntity(A):setSubMaterial(1,WheelMat1)
+holoEntity(A):setSubMaterial(2,WheelMat2)
+holoEntity(A):setSubMaterial(3,WheelMat3)
+holoEntity(A):setSubMaterial(4,WheelMat4)
+holoEntity(A):setSubMaterial(5,WheelMat5)
+holoPos(A,B:toWorld(vec(-((AxleSpacing*3)+Raxle3)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec((Diameter/D)*Scale,(Gauge/56)*Scale,(Diameter/D)*Scale))
+holoColor(A,WheelColor)   
+holoBodygroup(A,2,WheelType)    
+holoBodygroup(A,3,Counterweight)    
+A=2100
+B=holoEntity(20)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,180)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)   
+A=2200
+B=holoEntity(20)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,90,-90)) )
+holoModel(A, "models/meem/wheel/cam.mdl")
+holoMaterial(A,WheelMat4)
+holoPos(A,B:toWorld(vec(0*Scale,-29.25*(Gauge/56)*Scale,0*Scale)))
+holoScale(A, vec((Gauge/56)*1.00*Scale,(Radius)*0.07*Scale,(Radius)*0.07*Scale))
+holoColor(A,WheelColor)    
+}    
+    
+}
+
+
+
+
+
+
+###################################################
+#Main Rod Parent Right.
+A=23
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "")
+holoMaterial(A,"")
+holoPos(A,B:toWorld(vec(-Radius*Scale,-MWidth*Scale,0*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+#Main Rod Parent Left
+A=24
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "")
+holoMaterial(A,"")
+holoPos(A,B:toWorld(vec(0*Scale,MWidth*Scale,-Radius*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+##############################################
+#Piston Rod Parent Right
+A=25
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "")
+holoMaterial(A,"")
+holoPos(A,B:toWorld(vec(-Radius*Scale,-PRWidth*Scale,0*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+#Piston Rod Parent Left
+A=26
+B=holoEntity(2)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "")
+holoMaterial(A,"")
+holoPos(A,B:toWorld(vec(0*Scale,PRWidth*Scale,-Radius*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+#################################################
+#Piston Main Parent
+A=27
+B=holoEntity(1)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(PistonAng) )
+holoModel(A, "")
+holoMaterial(A,"")
+holoPos(A,B:toWorld(PistonPos))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+#Piston Right Parent
+A=28
+B=holoEntity(27)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "")
+holoMaterial(A,"")
+holoPos(A,B:toWorld(vec(0*Scale,-PWidth*Scale,0*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+#Piston Left Parent
+A=29
+B=holoEntity(27)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "")
+holoMaterial(A,"")
+holoPos(A,B:toWorld(vec(0*Scale,PWidth*Scale,0*Scale)))
+holoScale(A, vec(0*Scale))
+holoColor(A,vec(255))
+########################################################################################
+if((Raxles|Faxles)>0){
+#Main Rod Right Detailing
+A=30
+B=holoEntity(23)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_256.mdl")
+holoEntity(A):setSubMaterial(2,RodMat)
+holoEntity(A):setSubMaterial(1,RodMat2)
+holoPos(A,B:toWorld(vec(((Raxles-Faxles)/-2)*AxleSpacing*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(0.0039*(Raxles+Faxles)*AxleSpacing*Scale,RodScale*Scale,RodScale*Scale))
+holoColor(A,RodColor)
+A=31
+B=holoEntity(23)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,180,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_end.mdl")
+holoEntity(A):setSubMaterial(2,RodMat)
+holoEntity(A):setSubMaterial(1,RodMat2)
+holoPos(A,B:toWorld(vec(-Raxles*AxleSpacing*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+A=32
+B=holoEntity(23)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_end.mdl")
+holoEntity(A):setSubMaterial(2,RodMat)
+holoEntity(A):setSubMaterial(1,RodMat2)
+holoPos(A,B:toWorld(vec(Faxles*AxleSpacing*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+#Main Rod Left Detailing
+A=33
+B=holoEntity(24)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_256.mdl")
+holoEntity(A):setSubMaterial(2,RodMat)
+holoEntity(A):setSubMaterial(1,RodMat2)
+holoPos(A,B:toWorld(vec(((Raxles-Faxles)/-2)*AxleSpacing*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(0.0039*(Raxles+Faxles)*AxleSpacing*Scale,RodScale*Scale,RodScale*Scale))
+holoColor(A,RodColor)
+A=34
+B=holoEntity(24)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,180,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_end.mdl")
+holoEntity(A):setSubMaterial(2,RodMat)
+holoEntity(A):setSubMaterial(1,RodMat2)
+holoPos(A,B:toWorld(vec(-Raxles*AxleSpacing*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+A=35
+B=holoEntity(24)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_end.mdl")
+holoEntity(A):setSubMaterial(2,RodMat)
+holoEntity(A):setSubMaterial(1,RodMat2)
+holoPos(A,B:toWorld(vec(Faxles*AxleSpacing*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+}
+#Piston Rod Right
+A=36
+B=holoEntity(25)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(PREndAngR) )
+holoModel(A, PREndMod)
+holoEntity(A):setSubMaterial(2,PistonRodMat)
+holoEntity(A):setSubMaterial(1,PistonRodMat2)
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(PREndScale*Scale))
+holoColor(A,RodColor)
+holoBodygroup(A,0,PREndBG0R)
+holoBodygroup(A,1,PREndBG1R)
+holoBodygroup(A,2,PREndBG2R)
+holoBodygroup(A,3,PREndBG3R)
+
+A=37
+B=holoEntity(25)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, PRMidMod)
+holoEntity(A):setSubMaterial(2,PistonRodMat)
+holoEntity(A):setSubMaterial(1,PistonRodMat2)
+holoPos(A,B:toWorld(vec(-PRodLength/2*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(PRodLength/PRMidLength*Scale,PRMidScale*Scale,PRMidScale*Scale))
+holoColor(A,RodColor)
+#Piston Rod Left
+A=38
+B=holoEntity(26)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(PREndAngL) )
+holoModel(A, PREndMod)
+holoEntity(A):setSubMaterial(2,PistonRodMat)
+holoEntity(A):setSubMaterial(1,PistonRodMat2)
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(PREndScale*Scale))
+holoColor(A,RodColor)
+holoBodygroup(A,0,PREndBG0L)
+holoBodygroup(A,1,PREndBG1L)
+holoBodygroup(A,2,PREndBG2L)
+holoBodygroup(A,3,PREndBG3L)
+
+A=39
+B=holoEntity(26)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, PRMidMod)
+holoEntity(A):setSubMaterial(2,PistonRodMat)
+holoEntity(A):setSubMaterial(1,PistonRodMat2)
+holoPos(A,B:toWorld(vec(-PRodLength/2*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(PRodLength/PRMidLength*Scale,PRMidScale*Scale,PRMidScale*Scale))
+holoColor(A,RodColor)
+#Piston Right
+A=40
+B=holoEntity(28)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(PistonRAng) )
+holoModel(A, PistonModelR)
+holoEntity(A):setSubMaterial(1,PistonMat)
+holoEntity(A):setSubMaterial(2,PistonMat2)
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(PistonMul*Scale))
+holoColor(A,PistonColor)
+holoBodygroup(A,0,PistonBGR0)
+holoBodygroup(A,1,PistonBGR1)
+holoClip(A,1,vec(PClip,0,0),vec(PClipDir,0,0),0)
+holoClipEnabled(A,1,1)
+#Piston Left
+A=41
+B=holoEntity(29)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(PistonLAng) )
+holoModel(A, PistonModelL)
+holoEntity(A):setSubMaterial(1,PistonMat)
+holoEntity(A):setSubMaterial(2,PistonMat2)
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(PistonMul*Scale))
+holoColor(A,PistonColor)
+holoBodygroup(A,0,PistonBGL0)
+holoBodygroup(A,1,PistonBGL1)
+holoClip(A,1,vec(PClip,0,0),vec(PClipDir,0,0),0)
+holoClipEnabled(A,1,1)
+#Rod Connection Points
+if((Raxles&Faxles)>0){
+A=42
+B=holoEntity(23)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
+holoEntity(A):setSubMaterial(1,RodMat)
+holoEntity(A):setSubMaterial(2,RodMat2)
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+A=43
+B=holoEntity(24)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
+holoEntity(A):setSubMaterial(1,RodMat)
+holoEntity(A):setSubMaterial(2,RodMat2)
+holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+
+if(Faxles==0){REOF=0}
+elseif(Faxles==1){REOF=Faxle1}
+elseif(Faxles==2){REOF=Faxle2}
+elseif(Faxles==3){REOF=Faxle3}
+
+if(Raxles==0){REOR=0}
+elseif(Raxles==1){REOR=Raxle1}
+elseif(Raxles==2){REOR=Raxle2}
+elseif(Raxles==3){REOR=Raxle3}
+
+
+holoPos(31,holoEntity(23):toWorld(vec(((-Raxles*AxleSpacing)-REOR)*Scale,0*Scale,0*Scale)))
+holoPos(32,holoEntity(23):toWorld(vec(((Faxles*AxleSpacing)+REOF)*Scale,0*Scale,0*Scale)))
+holoPos(34,holoEntity(24):toWorld(vec(((-Raxles*AxleSpacing)-REOR)*Scale,0*Scale,0*Scale)))
+holoPos(35,holoEntity(24):toWorld(vec(((Faxles*AxleSpacing)+REOF)*Scale,0*Scale,0*Scale)))
+
+holoScale(30, vec((((1/256)*(Raxles+Faxles)*AxleSpacing)+((REOR+REOF)/256))*Scale,RodScale*Scale,RodScale*Scale))
+holoScale(33, vec((((1/256)*(Raxles+Faxles)*AxleSpacing)+((REOR+REOF)/256))*Scale,RodScale*Scale,RodScale*Scale))
+holoPos(30,holoEntity(23):toWorld(vec(((((Raxles-Faxles)/-2)*AxleSpacing)-(REOR-REOF)/2)*Scale,0*Scale,0*Scale)))
+holoPos(33,holoEntity(24):toWorld(vec(((((Raxles-Faxles)/-2)*AxleSpacing)-(REOR-REOF)/2)*Scale,0*Scale,0*Scale)))
+
+}
+if(Raxles>1){
+A=44
+B=holoEntity(23)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
+holoEntity(A):setSubMaterial(1,RodMat)
+holoEntity(A):setSubMaterial(2,RodMat2)
+holoPos(A,B:toWorld(vec(-((AxleSpacing*1)+Raxle1)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+A=45
+B=holoEntity(24)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
+holoEntity(A):setSubMaterial(1,RodMat)
+holoEntity(A):setSubMaterial(2,RodMat2)
+holoPos(A,B:toWorld(vec(-((AxleSpacing*1)+Raxle1)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+}
+if(Raxles>2){
+A=46
+B=holoEntity(23)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
+holoEntity(A):setSubMaterial(1,RodMat)
+holoEntity(A):setSubMaterial(2,RodMat2)
+holoPos(A,B:toWorld(vec(-((AxleSpacing*2)+Raxle2)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+A=47
+B=holoEntity(24)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
+holoEntity(A):setSubMaterial(1,RodMat)
+holoEntity(A):setSubMaterial(2,RodMat2)
+holoPos(A,B:toWorld(vec(-((AxleSpacing*2)+Raxle2)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+}
+if(Faxles>1){
+A=48
+B=holoEntity(23)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
+holoEntity(A):setSubMaterial(1,RodMat)
+holoEntity(A):setSubMaterial(2,RodMat2)
+holoPos(A,B:toWorld(vec(((AxleSpacing*1)+Faxle1)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+A=49
+B=holoEntity(24)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
+holoEntity(A):setSubMaterial(1,RodMat)
+holoEntity(A):setSubMaterial(2,RodMat2)
+holoPos(A,B:toWorld(vec(((AxleSpacing*1)+Faxle1)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+}
+if(Faxles>2){
+A=50
+B=holoEntity(23)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
+holoEntity(A):setSubMaterial(1,RodMat)
+holoEntity(A):setSubMaterial(2,RodMat2)
+holoPos(A,B:toWorld(vec(((AxleSpacing*2)+Faxle2)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+A=51
+B=holoEntity(24)
+holoCreate(A)
+holoParent(A, B)
+holoAng(A, B:toWorld(ang(0,0,0)) )
+holoModel(A, "models/bobsters_trains_2/modular_rod/rod_center.mdl")
+holoEntity(A):setSubMaterial(1,RodMat)
+holoEntity(A):setSubMaterial(2,RodMat2)
+holoPos(A,B:toWorld(vec(((AxleSpacing*2)+Faxle2)*Scale,0*Scale,0*Scale)))
+holoScale(A, vec(RodScale*Scale))
+holoColor(A,RodColor)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function void updateRods(Speed:number){
+
+
+WheelRotation += Speed * 1
+if(WheelRotation > 360) {WheelRotation = WheelRotation - 360}
+elseif(WheelRotation < -360) {WheelRotation = WheelRotation + 360}
+Aaa=(PistonForward-sqrt((PRodLength^2)-(Radius^2)))
+PMoveR=(-cos(WheelRotation)*Radius)-(Aaa*abs(sin(WheelRotation)))
+PMoveL=(-sin(WheelRotation)*Radius)-(Aaa*abs(cos(WheelRotation)))
+#PRAngL=-cos(WheelRotation+PistonAngle)*Radius
+#PRAngR=-sin(WheelRotation+PistonAngle)*Radius
+
+B=holoEntity(1)
+
+
+
+holoAng(2, B:toWorld(ang(WheelRotation,0,0)) )
+if(Faxles>0){holoAng(5, B:toWorld(ang(WheelRotation,0,0)) )}
+if(Faxles>1){holoAng(8, B:toWorld(ang(WheelRotation,0,0)) )}
+if(Faxles>2){holoAng(11, B:toWorld(ang(WheelRotation,0,0)) )}
+if(Raxles>0){holoAng(14, B:toWorld(ang(WheelRotation,0,0)) )}
+if(Raxles>1){holoAng(17, B:toWorld(ang(WheelRotation,0,0)) )}
+if(Raxles>2){holoAng(20, B:toWorld(ang(WheelRotation,0,0)) )}
+
+
+
+holoAng(23, B:toWorld(ang(0,0,0)) )
+holoAng(24, B:toWorld(ang(0,0,0)) )
+#holoAng(25, B:toWorld(ang((-PRAngR/PRMul)-PRAngUp,-PRAngSide,0)) )
+#holoAng(26, B:toWorld(ang((PRAngL/PRMul)-PRAngUp,PRAngSide,0)) )
+holoPos(28,holoEntity(27):toWorld(vec(PMoveR*Scale,-PWidth*Scale,0*Scale)))
+holoPos(29,holoEntity(27):toWorld(vec(PMoveL*Scale,PWidth*Scale,0*Scale)))
+
+local PRAngL=(holoEntity(25):pos()-holoEntity(28):pos()):toAngle()
+holoAng(25,PRAngL)
+
+local PRAngR=(holoEntity(26):pos()-holoEntity(29):pos()):toAngle()
+holoAng(26,PRAngR)
+
+
+if(Speed>0){
+            if(Speed>30){Chuff1=1}
+            else{
+            if((WheelRotation>345 | WheelRotation<15) & Throttle>0 ){Chuff1=1}           
+            else{Chuff1=0}
+            if(WheelRotation>75 & WheelRotation<105 & Throttle>0 ){Chuff2=1}
+            else{Chuff2=0}
+            if(WheelRotation>165 & WheelRotation<195 & Throttle>0 ){Chuff3=1}
+            else{Chuff3=0}
+            if(WheelRotation>255 & WheelRotation<285 & Throttle>0 ){Chuff4=1}
+            else{Chuff4=0}
+            }
+            if(WheelRotation>12.5 & WheelRotation<167.5 & Cocks>0){C2L=0 C1L=1}
+            elseif( WheelRotation>192.5 & WheelRotation<347.5 & Cocks>0){C2L=1 C1L=0}
+            else{C2L=0 C1L=0}
+            if(WheelRotation>102.5 & WheelRotation<257.5  & Cocks>0){C2R=1 C1R=0  }
+            elseif(WheelRotation>282.5 & Cocks>0 | WheelRotation<77.5 & Cocks>0){C2R=0 C1R=1 }
+            else{C2R=0 C1R=0 }        
+            
+            }
+            
+            else{        
+            if(Speed<-30){Chuff1=1}
+            else{
+            if((WheelRotation<-345 | WheelRotation>-15) & Throttle>0 ){Chuff1=1}           
+            else{Chuff1=0}
+            if(WheelRotation<-75 & WheelRotation>-105 & Throttle>0 ){Chuff2=1}
+            else{Chuff2=0}
+            if(WheelRotation<-165 & WheelRotation>-195 & Throttle>0 ){Chuff3=1}
+            else{Chuff3=0}
+            if(WheelRotation<-255 & WheelRotation>-285 & Throttle>0 ){Chuff4=1}
+            else{Chuff4=0}
+            }
+            
+            if(WheelRotation<-12.5 & WheelRotation>-167.5 & Cocks>0){C2R=1 C1R=0}
+            elseif( WheelRotation<-192.5 & WheelRotation>-347.5 & Cocks>0){C2R=0 C1R=1}
+            else{C2L=0 C1L=0}
+            if(WheelRotation<-102.5 & WheelRotation>-257.5  & Cocks>0){C2L=0 C1L=1  }
+            elseif(WheelRotation<-282.5 & Cocks>0 | WheelRotation>-77.5 & Cocks>0){C2L=1 C1L=0 }
+            else{C2R=0 C1R=0 }        
+            
+            }
+if(Reverser>0&Slip>1&Rev<2){Rev+=0.0625}
+elseif(Reverser<0&Slip>1&Rev>-2){Rev-=0.0625}
+elseif(Spin==0&Rev>0){Rev-=0.03125}
+elseif(Spin==0&Rev<0){Rev+=0.03125}
+}    
+
+updateRods(0)
+  
+    
+    
+    
+Values=array(PRWidth,PWidth,RodMat,holoEntity(2),PistonHeight,PistonForward,PistonAngle,Scale,Radius,holoEntity(1),holoEntity(28),holoEntity(29),RodMat2,RodColor)    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+
+Speed = (Spin+((Slip^2)*Rev)+BaseDir/(SpeedDiv*(Diameter/30)))
+
+if(DirRotate==0){ BaseDir = Base:velL():x() }
+elseif(DirRotate==1){ BaseDir = Base:velL():y() }
+elseif(DirRotate==2){ BaseDir = Base:velL():z() }
+else{ BaseDir = Base:velL():x() }
+
+
+if(Slip>1){Speed=clamp(Speed,-120,120)}
+
+
+
+
+
+updateRods(Speed)
+interval(50)
