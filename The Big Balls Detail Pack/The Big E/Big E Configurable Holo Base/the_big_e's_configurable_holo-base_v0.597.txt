@@ -895,6 +895,28 @@ holoEntity(A):setSubMaterial(1,RodMat2)
 holoPos(A,B:toWorld(vec(Faxles*AxleSpacing*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodScale*Scale))
 holoColor(A,RodColor)
+
+if(Faxles==0){REOF=0}
+elseif(Faxles==1){REOF=Faxle1}
+elseif(Faxles==2){REOF=Faxle2}
+elseif(Faxles==3){REOF=Faxle3}
+
+if(Raxles==0){REOR=0}
+elseif(Raxles==1){REOR=Raxle1}
+elseif(Raxles==2){REOR=Raxle2}
+elseif(Raxles==3){REOR=Raxle3}
+
+
+holoPos(31,holoEntity(23):toWorld(vec(((-Raxles*AxleSpacing)-REOR)*Scale,0*Scale,0*Scale)))
+holoPos(32,holoEntity(23):toWorld(vec(((Faxles*AxleSpacing)+REOF)*Scale,0*Scale,0*Scale)))
+holoPos(34,holoEntity(24):toWorld(vec(((-Raxles*AxleSpacing)-REOR)*Scale,0*Scale,0*Scale)))
+holoPos(35,holoEntity(24):toWorld(vec(((Faxles*AxleSpacing)+REOF)*Scale,0*Scale,0*Scale)))
+
+holoScale(30, vec((((1/256)*(Raxles+Faxles)*AxleSpacing)+((REOR+REOF)/256))*Scale,RodScale*Scale,RodScale*Scale))
+holoScale(33, vec((((1/256)*(Raxles+Faxles)*AxleSpacing)+((REOR+REOF)/256))*Scale,RodScale*Scale,RodScale*Scale))
+holoPos(30,holoEntity(23):toWorld(vec(((((Raxles-Faxles)/-2)*AxleSpacing)-(REOR-REOF)/2)*Scale,0*Scale,0*Scale)))
+holoPos(33,holoEntity(24):toWorld(vec(((((Raxles-Faxles)/-2)*AxleSpacing)-(REOR-REOF)/2)*Scale,0*Scale,0*Scale)))
+
 }
 #Piston Rod Right
 A=36
@@ -1009,26 +1031,7 @@ holoPos(A,B:toWorld(vec(0*Scale,0*Scale,0*Scale)))
 holoScale(A, vec(RodScale*Scale))
 holoColor(A,RodColor)
 
-if(Faxles==0){REOF=0}
-elseif(Faxles==1){REOF=Faxle1}
-elseif(Faxles==2){REOF=Faxle2}
-elseif(Faxles==3){REOF=Faxle3}
 
-if(Raxles==0){REOR=0}
-elseif(Raxles==1){REOR=Raxle1}
-elseif(Raxles==2){REOR=Raxle2}
-elseif(Raxles==3){REOR=Raxle3}
-
-
-holoPos(31,holoEntity(23):toWorld(vec(((-Raxles*AxleSpacing)-REOR)*Scale,0*Scale,0*Scale)))
-holoPos(32,holoEntity(23):toWorld(vec(((Faxles*AxleSpacing)+REOF)*Scale,0*Scale,0*Scale)))
-holoPos(34,holoEntity(24):toWorld(vec(((-Raxles*AxleSpacing)-REOR)*Scale,0*Scale,0*Scale)))
-holoPos(35,holoEntity(24):toWorld(vec(((Faxles*AxleSpacing)+REOF)*Scale,0*Scale,0*Scale)))
-
-holoScale(30, vec((((1/256)*(Raxles+Faxles)*AxleSpacing)+((REOR+REOF)/256))*Scale,RodScale*Scale,RodScale*Scale))
-holoScale(33, vec((((1/256)*(Raxles+Faxles)*AxleSpacing)+((REOR+REOF)/256))*Scale,RodScale*Scale,RodScale*Scale))
-holoPos(30,holoEntity(23):toWorld(vec(((((Raxles-Faxles)/-2)*AxleSpacing)-(REOR-REOF)/2)*Scale,0*Scale,0*Scale)))
-holoPos(33,holoEntity(24):toWorld(vec(((((Raxles-Faxles)/-2)*AxleSpacing)-(REOR-REOF)/2)*Scale,0*Scale,0*Scale)))
 
 }
 if(Raxles>1){
