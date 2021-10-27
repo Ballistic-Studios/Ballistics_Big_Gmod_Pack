@@ -5,7 +5,8 @@
 @persist Decouple CB OvSc C
 @trigger 
 #------ General Config
-
+if(duped() | dupefinished()){ reset() }
+if(first()){
 Color = vec(255) #Color of plow
 Color2 = vec(255) #Color of coupler cut bar grabs
 Color3 = vec(30) #Color of ditch lights (if you have them)
@@ -80,7 +81,6 @@ FINE, You can mess with it too E
 
 ]#
 #please help I want to kill myself
-if(first() | duped()){
 if(PlowType <= 1) {MuDoors = 0}
 else{MuDoors = MuDoors}
 if(MuDoors == 0) {B = 2}
