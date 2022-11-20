@@ -10,8 +10,9 @@ if(first()|dupefinished()){
 #    Hayes
 #    ZeXCiV(Redcliffish) thanks for the triangle!
 #    James
-
-    Truckframe = "models/proppertextures/enamel_black" #Texture for the frame of the truck
+#    Ballistic Studios (stop reading this and get back to work - Ball)
+   
+   Truckframe = "models/proppertextures/enamel_black" #Texture for the frame of the truck
     TMMat = "woozie/jazzlok1-1/grey_metal" #Texture for the traction motors
     Color = vec(50) #Sets the color for the truck frame
     Sounds = 1 #Adds TM sounds and wheel friction sounds
