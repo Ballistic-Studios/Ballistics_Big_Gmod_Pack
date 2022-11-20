@@ -1,0 +1,49 @@
+Thank you for downloading Glocks public 3ft pack. With the news of 3ft becoming a thing after a long time of talking I figured making a public pack for 3ft would be a good idea as at the time of this being typed and uploaded, there are no premade 3ft rolling stock locos or public 3ft locos or rolling stock.  I have been working with Dan from trainz forge of several pieces in this pack and I can't thank him enough.
+
+Disclaimers and one thing I ask you not to do
+
+With these being prop to meshed locos and stock that were modeled in Blender, the load time might take a while (same with the load time) but with doing this I've been able to do super detailed optimized locos with this. There might be a little bit of lag when loading the loco in but it goes away after all the p2m’s are loaded, Also the reason there are so many p2m gates is so users may be able to customize the loco to how they want (dif headlights, stacks,pilots,tender loads,cabs,etc)
+
+The one thing I ask is you don't remove the builder plate
+
+
+
+Let's get to the fun parts
+
+Locos included in this pack
+Baldwin class 56 2-8-0  (DSP&P)
+Cooke 2-6-0 (DSP&P)
+Cooke 2-6-0 undecorated  (this is a undecorated cooke with no lamp stack or paint so you can change how it looks (3 dif stacks and all that)
+
+
+rolling stock included in this pack
+C&S Bobber Caboose
+3ft flat car
+3ft gondola 
+3ft box car
+3ft cattle car
+
+
+
+Controls
+
+Johnson bar/reverser: W & S 
+
+Throttle: A & D 
+
+Loco brake: [ ] 
+Train brake : ' 
+Nooter: Alt & Shift 
+Bell: R
+ Start: Firebox door
+
+
+*loco notes
+
+To turn on headlight, there is a button on a valve near the throttle, press it and the light will turn on
+The smokebox doors can be removed incase one wants to add a face or a new door, etc
+If there are any bugs please let me know
+
+
+
+Anyhow, that should be it. Enjoy and i can't wait to see what you all do with these

@@ -1,0 +1,476 @@
+@name The Big E's Butterfly Firebox Door
+@inputs Open Firebox:vector Warmup EngineActive
+@outputs Flame Cinders Closed
+@persist [OpenSound CloseSound]:string FireSound:string Ang Ang2 Closed FireboxCOL:vector FireDoorMat:string FireDoorColor:vector P4:entity P2:entity
+@model models/props_junk/MetalBucket02a.mdl
+@trigger Open Warmup EngineActive
+
+if(first() | dupefinished()){
+    
+    OpenSound = "doors/door_metal_large_open1.wav"
+    CloseSound = "doors/door_metal_large_close2.wav"
+    
+    FireSound = "ambient/fire/fire_med_loop1.wav"
+    
+    FireDoorMat = "sprops/textures/sprops_metal1"
+    
+    FireDoorColor = vec(122,122,122)
+    
+    Scale = 1
+    
+    A = 1
+    holoCreate(A, entity():toWorld(vec(11.5,-3.05,-9)*Scale), vec(1),
+    entity():toWorld(ang(0,0,0)))
+    holoColor(A, vec4(255,255,255,255))
+    holoModel(A, "")
+    holoScale(A, vec(0))
+    holoParent(A, entity())  
+    holoMaterial(A,"") 
+    
+    P = p2mCreate(1, holoEntity(1):pos(), holoEntity(1):angles())
+    
+    P:p2mPushModel(1,"models/sprops/mechanics/sgears/spur_12t_s.mdl",vec(0,0,0)*Scale,ang(0,0,0),vec(1,1,1)*Scale,0,0,0,array(vec(0,0,0)*Scale,vec(-0.27,1,0),vec(-0.67,0,0)*Scale,vec(1,0,0),vec(0,1.3,0)*Scale,vec(0.65,1,0)))
+    
+    
+    P:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-9.63,0.3,-0.5)*Scale,ang(0,0,0),vec(1.5,0.37,0.29)*Scale,0,0,0,array(vec(8,0,0)*Scale,vec(-1,1,0),vec(6,0,0)*Scale,vec(1,0,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-9.63,0.3,-0.5)*Scale,ang(0,0,0),vec(1.5,0.37,0.29)*Scale,0,0,0,array(vec(8,0,0)*Scale,vec(-1,-0.5,0),vec(6,0,0)*Scale,vec(1,0,0)))
+    
+    P:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(8,0,0)*Scale,vec(1,0,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(0,1,0)*Scale,vec(0,1,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(0,-1,0)*Scale,vec(0,-1,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(6,0,0)*Scale,vec(-1,0,0),vec(1,0,0)*Scale,vec(1,0,0),vec(0,-2,0)*Scale,vec(0,1,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(-6,0,0)*Scale,vec(1,0,0),vec(-1,0,0)*Scale,vec(-1,0,0),vec(0,-2,0)*Scale,vec(0,1,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(-8,0,0)*Scale,vec(-1,0,0)))
+    P:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-13,0.45,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-6,0.45,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-20,0.45,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-9.5,-3.2,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-16.5,-3.2,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-13,-6.9,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    
+    P:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-13,0.45,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-6,0.45,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-20,0.45,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-9.5,-3.2,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-16.5,-3.2,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-13,-6.9,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    
+    P:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(-13,-3.2,-1.2)*Scale,ang(0,0,0),vec(0.8,0.8,1)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(-13,-3.2,-2)*Scale,ang(0,0,0),vec(0.7,0.7,1)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/geometry/t_fhex_12.mdl",vec(-13,-3.2,-2.6)*Scale,ang(0,83,90),vec(0.13,1,0.13)*Scale,0,0)
+    
+    
+    
+    #P:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,-3.7,0)*Scale,vec(0,-1,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,-9.7,0)*Scale,vec(0,-1,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,-6,0)*Scale,vec(0,-1,0),vec(1,0,0)*Scale,vec(1,0,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,-6,0)*Scale,vec(0,-1,0),vec(-1,0,0)*Scale,vec(-1,0,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,-6,0)*Scale,vec(0,-1,0),vec(0,-7.7,0)*Scale,vec(0,1,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,-3.7,0)*Scale,vec(0,-1,0),vec(4.5,0,0)*Scale,vec(1,0,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,-7.7,0)*Scale,vec(0,1,0),vec(0,-3.7,0)*Scale,vec(0,-1,0),vec(2.5,0,0)*Scale,vec(-1,0,0),vec(-2.5,0,0)*Scale,vec(1,0,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,-3.7,0)*Scale,vec(0,-1,0),vec(-4.5,0,0)*Scale,vec(-1,0,0)))
+    P:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,-3.7,0)*Scale,vec(0,-1,0),vec(0,-4,0)*Scale,vec(0,1,0)))
+    
+    P:p2mPushModel(1,"models/sprops/misc/tubes/size_1/tube_12x6.mdl",vec(0,0,-0.5)*Scale,ang(0,0,90),vec(0.35,0.7,0.35)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1/rect_3x6.mdl",vec(2,0.3,0)*Scale,ang(90,0,77),vec(0.5,0.334,1)*Scale,0,0)
+    
+    #Lettering
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_b.mdl",vec(-7.8,-6,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_u.mdl",vec(-7.8,-5,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_t.mdl",vec(-7.8,-3.9,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_t.mdl",vec(-7.8,-2.8,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_e.mdl",vec(-7.8,-1.8,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_r.mdl",vec(-7.8,-0.8,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_f.mdl",vec(-7.8,0.2,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_l.mdl",vec(-7.8,1.1,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_y.mdl",vec(-7.8,2,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    
+    
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_p.mdl",vec(-11.3,-3.15,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_a.mdl",vec(-11.3,-2.45,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_t.mdl",vec(-11.3,-1.65,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_e.mdl",vec(-11.3,-0.85,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_n.mdl",vec(-11.3,-0.15,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_t.mdl",vec(-11.3,0.65,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_e.mdl",vec(-11.3,1.45,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_d.mdl",vec(-11.3,2.25,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_f.mdl",vec(-15,-6.65,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0) 
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_r.mdl",vec(-15,-5.85,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0) 
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_a.mdl",vec(-15,-5.05,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0) 
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_n.mdl",vec(-15,-4.25,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0) 
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_k.mdl",vec(-15,-3.45,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0) 
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_l.mdl",vec(-15,-2.65,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0) 
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_i.mdl",vec(-15,-2.05,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_n.mdl",vec(-15,-1.35,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_r.mdl",vec(-15,0.15,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_a.mdl",vec(-15,0.95,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_i.mdl",vec(-15,1.65,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_l.mdl",vec(-15,2.25,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    
+    
+    
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_n.mdl",vec(-18.25,0.55,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_e.mdl",vec(-18.25,1.35,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_w.mdl",vec(-18.25,2.25,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_n.mdl",vec(-13,1.7,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_o.mdl",vec(-13,2.5,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_m.mdl",vec(-4,-1.5,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_9.mdl",vec(-4,-0.7,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_7.mdl",vec(-4,0,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_3.mdl",vec(-4,0.7,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_a.mdl",vec(-4,1.5,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    #----------------
+    A = 8
+    holoCreate(A, entity():toWorld(vec(11.5,3.05,-9)*Scale), vec(1),
+    entity():toWorld(ang(0,0,0)))
+    holoColor(A, vec4(255,255,255,255))
+    holoModel(A, "")
+    holoScale(A, vec(0))
+    holoParent(A, entity())  
+    holoMaterial(A,"") 
+    
+    P2 = p2mCreate(1, holoEntity(8):pos(), holoEntity(8):angles())
+    
+    P2:p2mPushModel(1,"models/sprops/mechanics/sgears/spur_12t_s.mdl",vec(0,0,0)*Scale,ang(0,0,0),vec(1,1,1)*Scale,0,0,0,array(vec(0,0,0)*Scale,vec(0,-1,0),vec(-0.8,0,0)*Scale,vec(1,0,0),vec(0,-1.3,0)*Scale,vec(0.65,-1,0)))
+    
+    
+    P2:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-9.63,-0.3,-0.5)*Scale,ang(0,0,0),vec(1.5,0.37,0.29)*Scale,0,0,0,array(vec(8,0,0)*Scale,vec(-1,0.5,0),vec(6,0,0)*Scale,vec(1,0,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-9.63,-0.3,-0.5)*Scale,ang(0,0,0),vec(1.5,0.37,0.29)*Scale,0,0,0,array(vec(8,0,0)*Scale,vec(-1,-1,0),vec(6,0,0)*Scale,vec(1,0,0)))
+    #P2:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,-0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0)
+    #P2:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,-1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,3.7,0)*Scale,vec(0,1,0)))
+    
+    
+    P2:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,-0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(8,0,0)*Scale,vec(1,0,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,-0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(0,1,0)*Scale,vec(0,1,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,-0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(0,-1,0)*Scale,vec(0,-1,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,-0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(6,0,0)*Scale,vec(-1,0,0),vec(1,0,0)*Scale,vec(1,0,0),vec(0,-2,0)*Scale,vec(0,1,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,-0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(-6,0,0)*Scale,vec(1,0,0),vec(-1,0,0)*Scale,vec(-1,0,0),vec(0,-2,0)*Scale,vec(0,1,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-13,-0.45,-0.5)*Scale,ang(0,0,0),vec(1.8,0.42,0.3)*Scale,0,0,0,array(vec(-8,0,0)*Scale,vec(-1,0,0)))
+    P2:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-13,-0.45,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-6,-0.45,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-20,-0.45,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-9.5,3.2,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-16.5,3.2,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/sq_holes/sqhole_d3_18.mdl",vec(-13,6.9,-0.5)*Scale,ang(0,0,90),vec(2/18,1.2,2/18)*Scale,0,0)
+    
+    P2:p2mPushModel(1,"models/holograms/hq_rcube_thin.mdl",vec(-3,0.95,-2.25)*Scale,ang(0,0,0),vec(0.05,0.1,0.3)*Scale,0,0)
+    
+    P2:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-13,-0.45,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-6,-0.45,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-20,-0.45,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-9.5,3.2,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-16.5,3.2,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_1/t_tube_12x6.mdl",vec(-13,6.9,-0.5)*Scale,ang(0,0,90),vec(1.5/12,0.7,1.5/12)*Scale,0,0)
+    
+    P2:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(-13,3.2,-1.2)*Scale,ang(0,0,0),vec(0.8,0.8,1)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(-13,3.2,-2)*Scale,ang(0,0,0),vec(0.7,0.7,1)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/geometry/t_fhex_12.mdl",vec(-13,3.2,-2.6)*Scale,ang(0,58,90),vec(0.13,1,0.13)*Scale,0,0)
+    
+    #P:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,-3.7,0)*Scale,vec(0,-1,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,-1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,9.7,0)*Scale,vec(0,1,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,-1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,6,0)*Scale,vec(0,1,0),vec(1,0,0)*Scale,vec(1,0,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,-1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,6,0)*Scale,vec(0,1,0),vec(-1,0,0)*Scale,vec(-1,0,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,-1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,6,0)*Scale,vec(0,1,0),vec(0,7.7,0)*Scale,vec(0,-1,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,-1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,3.7,0)*Scale,vec(0,1,0),vec(4.5,0,0)*Scale,vec(1,0,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,-1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,7.7,0)*Scale,vec(0,-1,0),vec(0,3.7,0)*Scale,vec(0,1,0),vec(2.5,0,0)*Scale,vec(-1,0,0),vec(-2.5,0,0)*Scale,vec(1,0,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,-1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,3.7,0)*Scale,vec(0,1,0),vec(-4.5,0,0)*Scale,vec(-1,0,0)))
+    P2:p2mPushModel(1,"models/holograms/hq_rcylinder_thin.mdl",vec(-13,-1.8,-0.5)*Scale,ang(0,0,0),vec(1.9,1.9,0.3)*Scale,0,0,0,array(vec(0,3.7,0)*Scale,vec(0,1,0),vec(0,4,0)*Scale,vec(0,-1,0)))
+    
+    P2:p2mPushModel(1,"models/sprops/misc/tubes/size_1/tube_12x6.mdl",vec(0,0,-0.5)*Scale,ang(0,0,90),vec(0.35,0.7,0.35)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1/rect_3x6.mdl",vec(2,0,0)*Scale,ang(90,0,90),vec(0.5,0.334,1)*Scale,0,0)
+    
+    #lettering
+    
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_f.mdl",vec(-7.8,-2,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_i.mdl",vec(-7.8,-1.2,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_r.mdl",vec(-7.8,-0.2,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_e.mdl",vec(-7.8,0.8,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_d.mdl",vec(-7.8,2.8,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_o.mdl",vec(-7.8,4,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_o.mdl",vec(-7.8,5.2,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_r.mdl",vec(-7.8,6.4,-2.3)*Scale,ang(0,-90,-90),vec(0.1,0.2,0.1)*Scale,0,0)
+    
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_j.mdl",vec(-11.3,-2.25,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_u.mdl",vec(-11.3,-1.55,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_l.mdl",vec(-11.3,-0.75,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_y.mdl",vec(-11.3,-0.05,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_2.mdl",vec(-11.3,1.15,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_1.mdl",vec(-11.3,2.35,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_9.mdl",vec(-11.3,2.95,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_1.mdl",vec(-11.3,3.65,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_2.mdl",vec(-11.3,4.25,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_w.mdl",vec(-15,-2.25,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_a.mdl",vec(-15,-1.45,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_y.mdl",vec(-15,-0.75,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_s.mdl",vec(-15,0.55,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_u.mdl",vec(-15,1.35,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_p.mdl",vec(-15,2.15,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_p.mdl",vec(-15,2.85,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_l.mdl",vec(-15,3.55,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_y.mdl",vec(-15,4.15,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_c.mdl",vec(-15,5.25,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_o.mdl",vec(-15,6.05,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_i.mdl",vec(-15,7.05,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_n.mdl",vec(-15,7.65,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_c.mdl",vec(-15,8.45,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    
+    
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_y.mdl",vec(-18.25,-2.25,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_o.mdl",vec(-18.25,-1.45,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_r.mdl",vec(-18.25,-0.65,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_k.mdl",vec(-18.25,0.15,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_8.mdl",vec(-13,-2.25,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_m.mdl",vec(-4,-1.5,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_9.mdl",vec(-4,-0.7,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_7.mdl",vec(-4,0,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_4.mdl",vec(-4,0.7,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/alphanum/alphanum_a.mdl",vec(-4,1.5,-2.3)*Scale,ang(0,-90,-90),vec(0.07,0.2,0.07)*Scale,0,0)
+    
+    
+    
+    A = 19
+    holoCreate(A, entity():toWorld(vec(0,0,-5)*Scale), vec(1),
+    entity():toWorld(ang(0,0,180)))
+    holoColor(A, vec4(0,0,0,255))
+    holoModel(A, "models/sprops/misc/domes/size_4/dome_48x30.mdl")
+    holoScale(A, vec(-0.7)*Scale)
+    holoParent(A, entity())  
+    holoMaterial(A,"models/proppertextures/toolsblack") 
+    
+    P3 = p2mCreate(1, entity():pos(), entity():angles())
+    
+    P3:p2mPushModel(1,"models/sprops/geometry/superthin/discs/fdisc_12.mdl",vec(11.5,-3.05,-7.2)*Scale,ang(0,0,90),vec(0.4,1,0.4)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/geometry/superthin/discs/fdisc_12.mdl",vec(11.5,3.05,-7.2)*Scale,ang(0,0,90),vec(0.4,1,0.4)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1_5/rect_6x6.mdl",vec(11.5,0,-7.2)*Scale,ang(0,0,0),vec(0.8,6.1/6,1)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1_5/rect_6x12.mdl",vec(13.75,0,-7.2)*Scale,ang(0,90,0),vec(((6*0.8)+6.1)/12,0.75,1)*Scale,0,0)
+    
+    P3:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1_5/rect_6x12.mdl",vec(15.75,0,-9.4)*Scale,ang(0,90,90),vec(((6*0.8)+6.1)/12,3.9/6,1)*Scale,0,0)
+    
+    P3:p2mPushModel(1,"models/sprops/geometry/superthin/discs/fdisc_12.mdl",vec(10.5,-3.05,-11.6)*Scale,ang(0,0,90),vec(0.4,1,0.4)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/geometry/superthin/discs/fdisc_12.mdl",vec(11.5,3.05,-11.6)*Scale,ang(0,0,90),vec(0.4,1,0.4)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1_5/rect_6x6.mdl",vec(10.5,0,-11.6)*Scale,ang(0,0,0),vec(0.8,6.1/6,1)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1_5/rect_6x12.mdl",vec(13.25,0,-11.6)*Scale,ang(0,90,0),vec(((6*0.8)+6.1)/12,5.5/6,1)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(11.5,-3.05,-11)*Scale,ang(0,0,0),vec(1,1,1)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(11.5,-3.05,-9.1-2)*Scale,ang(0,0,0),vec(0.9,0.9,1.15)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(11.5,-3.05,-9.1-3)*Scale,ang(0,0,0),vec(0.7,0.7,1)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/geometry/t_fhex_12.mdl",vec(11.5,-3.05,-9.1-3.6)*Scale,ang(0,54,90),vec(0.13,1,0.13)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(11.5,-3.05,-11)*Scale,ang(0,0,0),vec(1,1,1)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_2/t_tube_24x6.mdl",vec(11.5,3.05,-11.5)*Scale,ang(0,0,90),vec(0.37,1.1,0.37)*Scale,0,0,0,array(vec(0,0,0)*Scale,vec(-1,0,0.45),vec(0,0,0)*Scale,vec(1,0,-0.1),vec(0,0,0*Scale),vec(0,-1,0)))
+    P3:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_2/t_tube_24x6.mdl",vec(11.5,3.05,-11.5)*Scale,ang(0,0,90),vec(0.37,1.1,0.37)*Scale,0,0,0,array(vec(0,0,0)*Scale,vec(1,0,0.45),vec(0,0,0)*Scale,vec(-1,0,-0.1),vec(0,0,0)*Scale,vec(0,-1,0)))
+    P3:p2mPushModel(1,"models/sprops/misc/tubes_thin/size_2/t_tube_24x6.mdl",vec(11.5,3.05,-11.5)*Scale,ang(0,0,90),vec(0.37,0.8,0.37)*Scale,0,0,0,array(vec(0,0,0)*Scale,vec(-1,0,0.7),vec(0,0,0)*Scale,vec(1,0,0.7),vec(0,0,0)*Scale,vec(0,-1,0)))
+    P3:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1_5/rect_6x24.mdl",vec(11.5,3.05,-11.5)*Scale,ang(0,-55.4,90),vec(0.37,0.8,0.1)*Scale,0,0,0,array(vec(3.89,0,0)*Scale,vec(1,0,0),vec(0,0,0),vec(0,-1,0)))
+    P3:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1_5/rect_6x24.mdl",vec(11.5,3.06,-11.5)*Scale,ang(0,-66,90),vec(0.37,1.1,0.1)*Scale,0,0,0,array(vec(3.89,0,0)*Scale,vec(1,0,0),vec(0,0,0),vec(0,-1,0)))
+    P3:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1_5/rect_6x24.mdl",vec(11.5,3.07,-11.5)*Scale,ang(0,-83.8,90),vec(0.37,1.1,0.1)*Scale,0,0,0,array(vec(3.89,0,0)*Scale,vec(1,0,0),vec(0,0,0),vec(0,-1,0)))
+    
+    P3:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1_5/rect_6x24.mdl",vec(11.5,3.05,-11.5)*Scale,ang(0,55.4,90),vec(0.37,0.8,0.1)*Scale,0,0,0,array(vec(-3.89,0,0)*Scale,vec(-1,0,0),vec(0,0,0)*Scale,vec(0,-1,0)))
+    P3:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1_5/rect_6x24.mdl",vec(11.5,3.06,-11.5)*Scale,ang(0,66,90),vec(0.37,1.1,0.1)*Scale,0,0,0,array(vec(-3.89,0,0)*Scale,vec(-1,0,0),vec(0,0,0)*Scale,vec(0,-1,0)))
+    P3:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1_5/rect_6x24.mdl",vec(11.5,3.07,-11.5)*Scale,ang(0,83.8,90),vec(0.37,1.1,0.1)*Scale,0,0,0,array(vec(-3.89,0,0)*Scale,vec(-1,0,0),vec(0,0,0)*Scale,vec(0,-1,0)))
+    
+    
+    P3:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(11.5,3.05,-12.8-2)*Scale,ang(0,0,0),vec(0.75,0.75,0.2)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(11.5,3.05,-11.3-3)*Scale,ang(0,0,0),vec(0.7,0.7,1)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/geometry/t_fhex_12.mdl",vec(11.5,3.05,-12-2.9)*Scale,ang(0,54,90),vec(0.13,1,0.13)*Scale,0,0)
+    
+    
+    P2:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,0,-3.8)*Scale,ang(0,0,0),vec(0.75,0.75,1)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/triangles_thin/misc/t_ctri_6.mdl",vec(sin(30)*5.875,cos(30)*-5.875,-4.3)*Scale,ang(0,30,90),vec(0.67,0.67,2)*Scale,0,0,0,array(vec(0,0,-3)*Scale,vec(0,0,-1)))
+    P2:p2mPushModel(1,"models/sprops/rectangles_superthin/size_1/rect_3x6.mdl",vec(sin(30)*2.875,cos(30)*-2.875,-4.3)*Scale,ang(0,30,90),vec(0.28,0.34,0.5)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/misc/sq_holes/superthin/hhole_12.mdl",vec(sin(30)*2.875,cos(30)*-2.875,-5.06)*Scale,ang(0,30,0),vec(0.39/4,0.5,0.34/4)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/geometry/hring_18.mdl",vec(sin(30)*2.875,cos(30)*-2.875,-6.56)*Scale,ang(180,30,0),vec(0.38/4,0.09,0.38/4)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/rectangles_superthin/size_0/rect_1_5x6.mdl",vec(sin(30)*1.65,cos(30)*-3.285,-5.16)*Scale,ang(90,-60,0),vec(0.34,0.34/2,0.5)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/rectangles_superthin/size_0/rect_1_5x6.mdl",vec(sin(30)*4.11,cos(30)*-2.465,-5.16)*Scale,ang(90,-60,0),vec(0.34,0.34/2,0.5)*Scale,0,0)
+    P2:p2mPushModel(1,"models/sprops/geometry/t_hdisc_12.mdl",vec(-1.7,-0.55,-3.5)*Scale,ang(0,0,90),vec(0.3,0.5,0.3)*Scale,0,0)
+    
+    
+    #doorframe
+    P3:p2mPushModel(1,"models/sprops/geometry/fring_24.mdl",vec(-1.5,0,-6.4)*Scale,ang(0,90,90),vec(1.2,0.5,1.2)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/geometry/fring_72.mdl",vec(-1.5,0,-6.6)*Scale,ang(0,90,90),vec(0.32,0.7,0.32)*Scale,0,0,0,array(vec(0,0,10)*Scale,vec(0,0,-1),vec(0,0,-10)*Scale,vec(0,0,1)))
+    P3:p2mPushModel(1,"models/sprops/rectangles/size_1/rect_3x12x3.mdl",vec(-12,0,-6.4)*Scale,ang(0,90,0),vec(1,1,0.5)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/rectangles/size_1/rect_3x12x3.mdl",vec(9,0,-6.4)*Scale,ang(0,90,0),vec(1,1,0.5)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/rectangles/size_1/rect_3x24x3.mdl",vec(-10.99,0,-6.6)*Scale,ang(0,90,90),vec(0.468,0.7,0.34)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/rectangles/size_1/rect_3x24x3.mdl",vec(7.99,0,-6.6)*Scale,ang(0,90,90),vec(0.468,0.7,0.34)*Scale,0,0)
+    P3:p2mPushModel(1,"models/props_spytech/glass_door_handle001a.mdl",vec(-17,0,-6.2)*Scale,ang(90,90,0),vec(0.5,0.4,0.4)*Scale,0,0)
+    P3:p2mPushModel(1,"models/props_spytech/glass_door_handle001a.mdl",vec(-17,0,-6.2)*Scale,ang(90,90,0),vec(0.5,0.27,0.35)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/geometry/superthin/discs/fdisc_12.mdl",vec(-17,0,-6.8)*Scale,ang(0,0,90),vec(0.17,0.3,0.17)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x6.mdl",vec(-17,0,-4.4)*Scale,ang(0,0,0),vec(0.5,0.5,1)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/geometry/t_fhex_12.mdl",vec(-17,0,-7.1)*Scale,ang(0,84,90),vec(0.12,0.3,0.12)*Scale,0,0)
+    
+    P3:p2mPushModel(1,"models/props_spytech/glass_door_handle001a.mdl",vec(-1.5+sin(30)*15.5,cos(30)*-15.5,-6.2)*Scale,ang(90,30,0),vec(0.5,0.4,0.4)*Scale,0,0)
+    P3:p2mPushModel(1,"models/props_spytech/glass_door_handle001a.mdl",vec(-1.5+sin(30)*15.5,cos(30)*-15.5,-6.2)*Scale,ang(90,30,0),vec(0.5,0.27,0.35)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/geometry/superthin/discs/fdisc_12.mdl",vec(-1.5+sin(30)*15.5,cos(30)*-15.5,-6.8)*Scale,ang(0,0,90),vec(0.17,0.3,0.17)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x6.mdl",vec(-1.5+sin(30)*15.5,cos(30)*-15.5,-4.4)*Scale,ang(0,0,0),vec(0.5,0.5,1)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/geometry/t_fhex_12.mdl",vec(-1.5+sin(30)*15.5,cos(30)*-15.5,-7.1)*Scale,ang(0,48,90),vec(0.12,0.3,0.12)*Scale,0,0)
+    
+    
+    P3:p2mPushModel(1,"models/props_spytech/glass_door_handle001a.mdl",vec(-1.5+sin(30)*15.5,cos(30)*15.5,-6.2)*Scale,ang(90,-30,0),vec(0.5,0.4,0.4)*Scale,0,0)
+    P3:p2mPushModel(1,"models/props_spytech/glass_door_handle001a.mdl",vec(-1.5+sin(30)*15.5,cos(30)*15.5,-6.2)*Scale,ang(90,-30,0),vec(0.5,0.27,0.35)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/geometry/superthin/discs/fdisc_12.mdl",vec(-1.5+sin(30)*15.5,cos(30)*15.5,-6.8)*Scale,ang(0,0,90),vec(0.17,0.3,0.17)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x6.mdl",vec(-1.5+sin(30)*15.5,cos(30)*15.5,-4.4)*Scale,ang(0,0,0),vec(0.5,0.5,1)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/geometry/t_fhex_12.mdl",vec(-1.5+sin(30)*15.5,cos(30)*15.5,-7.1)*Scale,ang(0,63,90),vec(0.12,0.3,0.12)*Scale,0,0)
+    
+    
+    P3:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(11.5,-3.05,-6.4)*Scale,ang(0,90,0),vec(1.5,1.5,0.5)*Scale,0,0)
+    P3:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(11.5,3.05,-6.4)*Scale,ang(0,90,0),vec(1.5,1.5,0.5)*Scale,0,0)
+    
+    
+    P4 = p2mCreate(1, P2:toWorld(vec(0,0,-5.4)*Scale), P2:toWorld(ang(0,-60,0)))
+    
+    
+    P4:p2mPushModel(1,"models/holograms/hq_torus_oldsize.mdl",vec(0,0,0)*Scale,ang(0,0,0),vec(0.165,0.165,0.34)*Scale,0,0)
+    P4:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x24.mdl",vec(12,0,0)*Scale,ang(90,0,0),vec(0.5,0.5,1)*Scale,0,0)
+    P4:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,0,0)*Scale,ang(0,0,90),vec(0.3,0.3,0.85)*Scale,0,0)
+    P4:p2mPushModel(1,"models/holograms/hq_icosphere.mdl",vec(24,0,0)*Scale,ang(90,0,0),vec(0.12,0.12,0.4)*Scale,0,0)
+    
+    
+    P:p2mSetColor(1, FireDoorColor)
+    P:p2mSetMaterial(1,FireDoorMat)
+    P:p2mSetParent(holoEntity(1))
+    P:p2mSetUV(1,17)
+    P:p2mBuild()
+    
+    P2:p2mSetColor(1, FireDoorColor)
+    P2:p2mSetMaterial(1,FireDoorMat)
+    P2:p2mSetParent(holoEntity(8))
+    P2:p2mSetUV(1,17)
+    P2:p2mBuild()
+    
+    P3:p2mSetColor(1, FireDoorColor)
+    P3:p2mSetMaterial(1,FireDoorMat)
+    P3:p2mSetParent(entity())
+    P3:p2mSetUV(1,17)
+    P3:p2mBuild()
+    
+    P4:p2mSetColor(1, FireDoorColor)
+    P4:p2mSetMaterial(1,FireDoorMat)
+    P4:p2mSetParent(P2)
+    P4:p2mSetUV(1,17)
+    P4:p2mBuild()
+    
+    
+}
+interval(250)
+
+if(Open&Ang2<1&Ang<1){
+    timer("door",100)
+    if(clk("door")){
+        Ang2+=0.5
+        P4:p2mSetAng(P2:toWorld(ang(Ang2*15,-60,0)))
+    }
+}
+
+if(Open&(Ang2==1|(Ang==1&Ang2<1))){
+    stoptimer("door")
+    timer("door2",100)
+    if(clk("door2")&Ang<1){
+        Ang+=0.25
+        holoAng(1,entity():toWorld(ang(0,Ang*60,0)))
+        holoAng(8,entity():toWorld(ang(0,-Ang*60,0)))
+    }
+    if(clk("door2")&Ang==1&Ang2>0){
+        Ang2-=0.5
+        P4:p2mSetAng(P2:toWorld(ang(Ang2*15,-60,0)))
+    }
+    if(clk("door2")&Ang==1&Ang2==0){
+        stoptimer("door2")  
+    }
+}
+   
+
+if(!Open&Ang2<1&Ang>0){
+    timer("door",100)
+    if(clk("door")){
+        Ang2+=0.5
+        P4:p2mSetAng(P2:toWorld(ang(Ang2*15,-60,0)))
+    }
+}
+
+if(!Open&(Ang2==1|(Ang==0&Ang2<1))){
+    stoptimer("door")
+    timer("door2",100)
+    if(clk("door2")&Ang>0){
+        Ang-=0.25
+        holoAng(1,entity():toWorld(ang(0,Ang*60,0)))
+        holoAng(8,entity():toWorld(ang(0,-Ang*60,0)))
+    }
+    if(clk("door2")&Ang==0  &Ang2>0){
+        Ang2-=0.5
+        P4:p2mSetAng(P2:toWorld(ang(Ang2*15,-60,0)))
+    }
+    if(clk("door2")&Ang==0&Ang2==0){
+        stoptimer("door2")  
+    }
+}
+
+
+if(Ang < 0.5){
+    Closed = 1
+}else{Closed = 0}
+
+
+
+if(changed(Closed) & Closed){
+    
+    entity():soundPlay(1,0,CloseSound)
+    soundStop(2)
+    
+}
+
+if(changed(Open) & Open){
+    entity():soundPlay(1,0,OpenSound)
+    if(EngineActive | Warmup){
+        holoEntity(1):soundPlay(2,0,FireSound)
+    }
+    
+}
+#[elseif(Ang <= 0.1 & changed(Ang)){
+    entity():soundPlay(1,0,CloseSound)
+    soundStop(2)
+    Firebox = Firebox
+}]#
+
+if(Open & (EngineActive | Warmup)){
+    Flame = 1
+    if(Warmup){
+        Cinders = 1
+    }else{
+        Cinders = 0
+    }
+}else{
+    Cinders = 0
+    Flame = 0
+}
+
+if(EngineActive | Warmup){
+    timer("fboxrefresh",250)
+holoMaterial(19,"gulch/gulch_crystal_white")
+}
+else{holoMaterial(19,"models/proppertextures/toolsblack")}
+
+if(EngineActive | Warmup){if(Open){FireboxCOL = vec(0)}elseif(Closed){FireboxCOL = Firebox}}else{FireboxCOL = vec(0)}
+if(clk("fboxrefresh")){
+    holoColor(4,FireboxCOL)
+    holoColor(5,FireboxCOL)
+    holoColor(6,FireboxCOL)
+    holoColor(7,FireboxCOL)
+    holoColor(11,FireboxCOL)
+    holoColor(12,FireboxCOL)
+    holoColor(13,FireboxCOL)
+    holoColor(14,FireboxCOL)
+    holoColor(19,Firebox)
+}
