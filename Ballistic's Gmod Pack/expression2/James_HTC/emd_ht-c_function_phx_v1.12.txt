@@ -10,6 +10,7 @@ if(first()|dupefinished()){
 #    Hayes
 #    ZeXCiV(Redcliffish) thanks for the triangle!
 #    James
+#    Ballistic Studios (yeah james I am the one who uploaded your shit but you deiced not to put me in here so I'll do it myself)
 
     Truckframe = "models/proppertextures/enamel_black" #Texture for the frame of the truck
     TMMat = "woozie/jazzlok1-1/grey_metal" #Texture for the traction motors
