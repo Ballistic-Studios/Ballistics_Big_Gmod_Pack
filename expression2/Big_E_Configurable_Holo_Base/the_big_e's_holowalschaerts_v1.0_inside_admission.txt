@@ -1,0 +1,472 @@
+@name The Big E's HoloWalschaerts V1.0 Inside Admission
+@inputs Values:array WheelRotation Reverser
+@outputs RevMain:entity
+@persist Values:array WheelRotation Base:entity Reverser RodMat:string PMoveL Aaa PistonForward Radius 
+@persist P EM EA EO:vector CO:vector CAO CAM CL UO:vector UL ERL
+@persist ValveStmL ComboAngL PL:entity UnionAngL EccAngL EccRAngL PistonHeight PWidth H ValveStmR PMoveR ComboAngR PR:entity UnionAngR EccAngR EccRAngR RevMain:entity
+@trigger #WheelRotation Reverser
+
+#Valve Gear is a lot more complex than the main set of rods, so they will require a lot more manual editing than the base e2. 
+
+
+
+if(first()|dupefinished()|duped()){
+
+##############Config Stuff, no touchie#########################################################################################################################################################################################################################
+PRWidth=Values[1,number]        
+PWidth=Values[2,number]         
+RodMat=Values[3,string]         
+Wheel=Values[4,entity]          
+PistonHeight=Values[5,number]   
+PistonForward=Values[6,number]  
+PistonAngle=Values[7,number]    
+Scale=Values[8,number]          
+Radius=Values[9,number]         
+Base=Values[10,entity]          
+PR=Values[11,entity]            
+PL=Values[12,entity]               
+##########################################################################################################################
+
+
+#valve stem left
+holoCreate(1,Base:toWorld(vec(65,33,15)),vec(0),Base:toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(1,Base)
+#combination lever left
+holoCreate(2,holoEntity(1):toWorld(vec(0,0,0)),vec(0),holoEntity(1):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(2,holoEntity(1))
+#radius rod to combo lever left
+holoCreate(3,holoEntity(2):toWorld(vec(0,0,3)),vec(0),holoEntity(2):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(3,holoEntity(2))
+#combo lever to union link left
+holoCreate(4,holoEntity(2):toWorld(vec(0,0,-19)),vec(0),holoEntity(2):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(4,holoEntity(2))
+#union link left
+holoCreate(5,PL:toWorld(vec(0,5,0)),vec(0),PL:toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(5,PL)
+#expansion link left
+holoCreate(6,Base:toWorld(vec(30,33,18)),vec(0),Base:toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(6,Base)          #radius of eccentric holo is 72; scale = distance from valve stem / 72
+
+holoCreate(7,holoEntity(6):toWorld(vec(35,0,0)),vec(0),holoEntity(6):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(7,holoEntity(6)) 
+#the yoinky sploinky
+holoCreate(8,holoEntity(7):toWorld(vec(-35,0,0)),vec(0),holoEntity(7):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(8,holoEntity(7)) 
+
+holoCreate(9,holoEntity(6):toWorld(vec(-7.25*(35/72),0,-23.5*(35/72))),vec(0),holoEntity(6):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(9,holoEntity(6)) 
+
+#eccentric Crank left
+holoCreate(10,Wheel:toWorld(vec(3.5,33,0)),vec(0),Wheel:toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(10,Wheel) #cranck dat soulja!!!!!!!
+
+
+
+#valve stem right
+holoCreate(11,Base:toWorld(vec(65,-33,15)),vec(0),Base:toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(11,Base)
+#combination lever right
+holoCreate(12,holoEntity(11):toWorld(vec(0,0,0)),vec(0),holoEntity(11):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(12,holoEntity(11))
+#radius rod to combo lever right
+holoCreate(13,holoEntity(12):toWorld(vec(0,0,3)),vec(0),holoEntity(12):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(13,holoEntity(12))
+#combo lever to union link right
+holoCreate(14,holoEntity(12):toWorld(vec(0,0,-19)),vec(0),holoEntity(12):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(14,holoEntity(12))
+#union link right
+holoCreate(15,PR:toWorld(vec(0,-5,0)),vec(0),PR:toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(15,PR)
+#expansion link right
+holoCreate(16,Base:toWorld(vec(30,-33,18)),vec(0),Base:toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(16,Base)          #radius of eccentric holo is 72; scale = distance from valve stem / 72
+
+holoCreate(17,holoEntity(16):toWorld(vec(35,0,0)),vec(0),holoEntity(16):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(17,holoEntity(16)) 
+#the yoinky sploinky
+holoCreate(18,holoEntity(17):toWorld(vec(-35,0,0)),vec(0),holoEntity(17):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(18,holoEntity(17)) 
+
+holoCreate(19,holoEntity(16):toWorld(vec(-7.25*(35/72),0,-23.5*(35/72))),vec(0),holoEntity(16):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(19,holoEntity(16)) 
+
+#eccentric Crank right
+holoCreate(20,Wheel:toWorld(vec(0,-33,-3.5)),vec(0),Wheel:toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(20,Wheel) #cranck dat soulja!!!!!!!
+RevMain=holoEntity(20)
+
+#reverser center
+holoCreate(0,Base:toWorld(vec(25,0,25)),vec(0),Base:toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(0,Base) #reverse reverse! cha cha real smooth!
+#reverser left (where did it leave to?)
+holoCreate(21,holoEntity(0):toWorld(vec(14,33,0)),vec(0),holoEntity(0):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(21,holoEntity(0))
+
+holoCreate(22,holoEntity(8):toWorld(vec(8.5,0,0)),vec(0),holoEntity(8):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(22,holoEntity(8))
+
+#reverser right
+holoCreate(23,holoEntity(0):toWorld(vec(14,-33,0)),vec(0),holoEntity(0):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(23,holoEntity(0))
+
+holoCreate(24,holoEntity(18):toWorld(vec(8.5,0,0)),vec(0),holoEntity(18):toWorld(ang(0,0,0)),vec4(255,255,255,255))
+holoParent(24,holoEntity(18))
+
+H=100
+
+#Expansion Link Left
+H++
+holoCreate(H,holoEntity(6):toWorld(vec(0,0,0)),vec(35/72),holoEntity(6):toWorld(ang(0,-90,0)),vec4(255,255,255,255))
+holoParent(H,holoEntity(6))                         #scale equals distance in inches from combo lever divided by 72
+holoModel(H,"models/zexciv_train_stuff/details/expansionlink.mdl")
+holoEntity(H):setSubMaterial(2,RodMat)
+
+#Expansion Link Right
+H++
+holoCreate(H,holoEntity(16):toWorld(vec(0,0,0)),vec(35/72),holoEntity(16):toWorld(ang(0,-90,0)),vec4(255,255,255,255))
+holoParent(H,holoEntity(16))                         #scale equals distance in inches from combo lever divided by 72
+holoModel(H,"models/zexciv_train_stuff/details/expansionlink.mdl")
+holoEntity(H):setSubMaterial(2,RodMat)
+
+#Eccentric Crank Left
+H++
+holoCreate(H,Wheel:toWorld(vec(0,32,-Radius)),vec(sqrt(Radius^2+3.5^2)/18),Wheel:toWorld(ang(0,90,atan(3.5/Radius))),vec4(255,255,255,255))
+holoParent(H,Wheel)      
+holoModel(H,"models/anytrains/rods/eccentriccrank2.mdl")
+holoEntity(H):setSubMaterial(1,RodMat)
+
+H++
+holoCreate(H,Wheel:toWorld(vec(0,27.5,-Radius)),vec(0.7,0.7,0.7),Wheel:toWorld(ang(0,0,90)),vec4(255,255,255,255))
+holoParent(H,Wheel)      
+holoModel(H,"models/sprops/cylinders/size_3/cylinder_6x12.mdl")
+holoEntity(H):setSubMaterial(1,RodMat)
+
+#Eccentric Crank Right
+H++
+holoCreate(H,Wheel:toWorld(vec(-Radius,-32,0)),vec(sqrt(Radius^2+3.5^2)/18),Wheel:toWorld(ang(0,-90,-90-atan(3.5/Radius))),vec4(255,255,255,255))
+holoParent(H,Wheel)      
+holoModel(H,"models/anytrains/rods/eccentriccrank2.mdl")
+holoEntity(H):setSubMaterial(1,RodMat)
+
+H++
+holoCreate(H,Wheel:toWorld(vec(-Radius,-27.5,0)),vec(0.7,0.7,0.7),Wheel:toWorld(ang(0,0,90)),vec4(255,255,255,255))
+holoParent(H,Wheel)      
+holoModel(H,"models/sprops/cylinders/size_3/cylinder_6x12.mdl")
+holoEntity(H):setSubMaterial(1,RodMat)
+
+
+local P2MExpLinkL = p2mCreate(1,holoEntity(9):pos(), holoEntity(9):angles())
+
+P2MExpLinkL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,1.55,0),ang(0,0,90),vec(0.67,0.67,0.75),0,0,0)
+P2MExpLinkL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,1.7,0),ang(0,0,90),vec(0.5,0.5,0.92),0,0,0)
+P2MExpLinkL:p2mPushModel(1,"models/sprops/rectangles/size_1/rect_3x3x3.mdl",vec(0,1.7,1.3),ang(0,0,90),vec(0.3),0,0,0)
+
+P2MExpLinkL:p2mBuild()
+P2MExpLinkL:parentTo(holoEntity(9))
+P2MExpLinkL:p2mSetMaterial(1,RodMat)
+P2MExpLinkL:p2mSetUV(1,35)
+
+
+local P2MEccRodL = p2mCreate(1,holoEntity(10):pos(), holoEntity(10):angles())
+
+P2MEccRodL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,1.55,0),ang(0,0,90),vec(0.67,0.67,0.75),0,0,0)
+P2MEccRodL:p2mPushModel(1,"models/sprops/rectangles/size_1/rect_3x30x3.mdl",vec(27.75/2,1.7,0),ang(0,0,90),vec(27.75/30,0.45,0.45),0,0,0)
+P2MEccRodL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,1.7,0),ang(0,0,90),vec(0.5,0.5,0.92),0,0,0)
+P2MEccRodL:p2mPushModel(1,"models/sprops/rectangles/size_1/rect_3x3x3.mdl",vec(0,1.7,1.3),ang(0,0,90),vec(0.3),0,0,0)
+
+P2MEccRodL:p2mBuild()
+P2MEccRodL:parentTo(holoEntity(10))
+P2MEccRodL:p2mSetMaterial(1,RodMat)
+P2MEccRodL:p2mSetUV(1,35)
+
+
+local P2MRadRodL = p2mCreate(1,holoEntity(8):pos(), holoEntity(8):angles())
+
+P2MRadRodL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,0,0),ang(0,0,90),vec(1,1,0.87),0,0,0)
+P2MRadRodL:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(3,0.9,0),ang(0,0,90),vec(1,0.35,0.5),0,0,0)
+P2MRadRodL:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(3,-0.9,0),ang(0,0,90),vec(1,0.35,0.5),0,0,0)
+P2MRadRodL:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x30x1_5.mdl",vec(20,0,0),ang(0,0,0),vec(30/30,0.4,0.7),0,0,0)
+P2MRadRodL:p2mPushModel(1,"models/sprops/triangles_thin/right/size_0/t_rtri_3x6.mdl",vec(9,0.9,0),ang(0,0,-90),vec(1,0.7,0.25),0,0,0)
+P2MRadRodL:p2mPushModel(1,"models/sprops/triangles_thin/right/size_0/t_rtri_3x6.mdl",vec(9,-0.9,0),ang(0,0,90),vec(1,0.7,0.25),0,0,0)
+
+P2MRadRodL:p2mBuild()
+P2MRadRodL:parentTo(holoEntity(8))
+P2MRadRodL:p2mSetMaterial(1,RodMat)
+P2MRadRodL:p2mSetUV(1,35)
+
+
+local P2MRadRod2L = p2mCreate(1,holoEntity(3):pos(), holoEntity(3):angles())
+
+P2MRadRod2L:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,0.9,0),ang(0,0,90),vec(0.5,0.5,1.2),0,0,0)
+
+P2MRadRod2L:p2mBuild()
+P2MRadRod2L:parentTo(holoEntity(3))
+P2MRadRod2L:p2mSetMaterial(1,RodMat)
+P2MRadRod2L:p2mSetUV(1,35)
+
+
+local P2MUnLinkL = p2mCreate(1,holoEntity(5):pos(), holoEntity(5):angles())
+
+P2MUnLinkL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-0.3,0),ang(0,0,90),vec(1,1,0.7),0,0,0)
+P2MUnLinkL:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(4.75,-0.3,0),ang(0,0,0),vec(9.5/6,0.8,0.8),0,0,0)
+P2MUnLinkL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-0.3,1),ang(0,0,0),vec(0.3,0.3,0.7),0,0,0)
+
+P2MUnLinkL:p2mBuild()
+P2MUnLinkL:parentTo(holoEntity(5))
+P2MUnLinkL:p2mSetMaterial(1,RodMat)
+P2MUnLinkL:p2mSetUV(1,35)
+
+
+local P2MCombLevL = p2mCreate(1,holoEntity(2):pos(), holoEntity(2):angles())
+
+P2MCombLevL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,0.4,-19),ang(0,0,90),vec(0.6,0.6,1),0,0,0)
+P2MCombLevL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,0.4,-19),ang(0,0,90),vec(0.45,0.45,1.2),0,0,0)
+P2MCombLevL:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x12x1_5.mdl",vec(0,1.1,-13.5),ang(90,0,0),vec(1,0.8,0.8),0,0,0)
+P2MCombLevL:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(0,1.6,0),ang(90,0,0),vec(1,0.8,0.8),0,0,0)
+P2MCombLevL:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(0,1.35,-5.25),ang(-83.8,90,0),vec(4.75/6,0.8,0.8),0,0,0)
+P2MCombLevL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,1.6,3),ang(0,0,90),vec(0.7,0.7,0.5),0,0,0)
+P2MCombLevL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,1.6,4),ang(0,0,0),vec(0.25,0.25,0.5),0,0,0)
+P2MCombLevL:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,1.6,0),ang(0,0,90),vec(0.7,0.7,0.5),0,0,0)
+
+P2MCombLevL:p2mBuild()
+P2MCombLevL:parentTo(holoEntity(2))
+P2MCombLevL:p2mSetMaterial(1,RodMat)
+P2MCombLevL:p2mSetUV(1,35)
+
+
+local P2MVlvStmL = p2mCreate(1,holoEntity(1):pos(), holoEntity(1):angles())
+
+P2MVlvStmL:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x12.mdl",vec(10,0,0),ang(90,0,0),vec(1,1,1),0,0,0)
+P2MVlvStmL:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(1.5,0,0),ang(0,0,90),vec(1,0.8,1.2),0,0,0)
+P2MVlvStmL:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,1.2,0),ang(0,0,90),vec(1,1,1),0,0,0)
+P2MVlvStmL:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(3.5,0,1),ang(0,0,0),vec(0.5,0.5,0.7),0,0,0)
+
+P2MVlvStmL:p2mBuild()
+P2MVlvStmL:parentTo(holoEntity(1))
+P2MVlvStmL:p2mSetMaterial(1,RodMat)
+P2MVlvStmL:p2mSetUV(1,35)
+
+
+local P2MRevLinkL = p2mCreate(1,holoEntity(22):pos(), holoEntity(22):angles())
+
+P2MRevLinkL:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,0,0),ang(0,0,90),vec(0.5,0.5,0.8),0,0,0)
+P2MRevLinkL:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(0,0,3.5),ang(90,0,0),vec(7/6,0.6,0.6),0,0,0)
+
+P2MRevLinkL:p2mBuild()
+P2MRevLinkL:parentTo(holoEntity(22))
+P2MRevLinkL:p2mSetMaterial(1,RodMat)
+P2MRevLinkL:p2mSetUV(1,35)
+
+local P2MRevLink2L = p2mCreate(1,holoEntity(21):pos(), holoEntity(21):angles())
+
+P2MRevLink2L:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,0,0),ang(0,0,90),vec(1.3,1.3,0.5),0,0,0)
+
+P2MRevLink2L:p2mBuild()
+P2MRevLink2L:parentTo(holoEntity(21))
+P2MRevLink2L:p2mSetMaterial(1,RodMat)
+P2MRevLink2L:p2mSetUV(1,35)
+
+
+local P2MRevCenter = p2mCreate(1,holoEntity(0):pos(), holoEntity(0):angles())
+
+P2MRevCenter:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x60.mdl",vec(0,0,0),ang(0,0,90),vec(1,1,1),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,28.5,0),ang(0,0,90),vec(1.4,1.4,0.5),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl",vec(-0.1,28.5,0),ang(0,0,90),vec(1,0.4,0.6),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(-1.2,28.5,0),ang(0,0,90),vec(0.05,0.6,0.05),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x12x1_5.mdl",vec(7,28.5,0),ang(0,0,90),vec(14/12,1.4,1),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(14,28.5,0),ang(0,0,90),vec(1.4,1.4,0.5),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x6.mdl",vec(14,31,0),ang(0,0,90),vec(1,1,1),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(13,28.5,0),ang(0,0,90),vec(0.065,0.9,0.065),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,-28.5,0),ang(0,0,90),vec(1.4,1.4,0.5),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl",vec(-0.1,-28.5,0),ang(0,0,90),vec(1,0.4,0.6),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(-1.2,-28.5,0),ang(0,0,90),vec(0.05,0.6,0.05),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x12x1_5.mdl",vec(7,-28.5,0),ang(0,0,90),vec(14/12,1.4,1),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(14,-28.5,0),ang(0,0,90),vec(1.4,1.4,0.5),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x6.mdl",vec(14,-31,0),ang(0,0,90),vec(1,1,1),0,0,0)
+P2MRevCenter:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(13,-28.5,0),ang(0,0,90),vec(0.065,0.9,0.065),0,0,0)
+
+P2MRevCenter:p2mBuild()
+P2MRevCenter:parentTo(holoEntity(0))
+P2MRevCenter:p2mSetMaterial(1,RodMat)
+P2MRevCenter:p2mSetUV(1,35)
+
+#right
+local P2MExpLinkR = p2mCreate(1,holoEntity(19):pos(), holoEntity(19):angles())
+
+P2MExpLinkR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-1.55,0),ang(0,0,90),vec(0.67,0.67,0.75),0,0,0)
+P2MExpLinkR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-1.7,0),ang(0,0,90),vec(0.5,0.5,0.92),0,0,0)
+P2MExpLinkR:p2mPushModel(1,"models/sprops/rectangles/size_1/rect_3x3x3.mdl",vec(0,-1.7,1.3),ang(0,0,90),vec(0.3),0,0,0)
+
+P2MExpLinkR:p2mBuild()
+P2MExpLinkR:parentTo(holoEntity(19))
+P2MExpLinkR:p2mSetMaterial(1,RodMat)
+P2MExpLinkR:p2mSetUV(1,35)
+
+
+local P2MEccRodR = p2mCreate(1,holoEntity(20):pos(), holoEntity(20):angles())
+
+P2MEccRodR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-1.55,0),ang(0,0,90),vec(0.67,0.67,0.75),0,0,0)
+P2MEccRodR:p2mPushModel(1,"models/sprops/rectangles/size_1/rect_3x30x3.mdl",vec(27.75/2,-1.7,0),ang(0,0,90),vec(27.75/30,0.45,0.45),0,0,0)
+P2MEccRodR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-1.7,0),ang(0,0,90),vec(0.5,0.5,0.92),0,0,0)
+P2MEccRodR:p2mPushModel(1,"models/sprops/rectangles/size_1/rect_3x3x3.mdl",vec(0,-1.7,1.3),ang(0,0,90),vec(0.3),0,0,0)
+
+P2MEccRodR:p2mBuild()
+P2MEccRodR:parentTo(holoEntity(20))
+P2MEccRodR:p2mSetMaterial(1,RodMat)
+P2MEccRodR:p2mSetUV(1,35)
+
+
+local P2MRadRodR = p2mCreate(1,holoEntity(18):pos(), holoEntity(18):angles())
+
+P2MRadRodR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,0,0),ang(0,0,90),vec(1,1,0.87),0,0,0)
+P2MRadRodR:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(3,0.9,0),ang(0,0,90),vec(1,0.35,0.5),0,0,0)
+P2MRadRodR:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(3,-0.9,0),ang(0,0,90),vec(1,0.35,0.5),0,0,0)
+P2MRadRodR:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x30x1_5.mdl",vec(20,0,0),ang(0,0,0),vec(30/30,0.4,0.7),0,0,0)
+P2MRadRodR:p2mPushModel(1,"models/sprops/triangles_thin/right/size_0/t_rtri_3x6.mdl",vec(9,0.9,0),ang(0,0,-90),vec(1,0.7,0.25),0,0,0)
+P2MRadRodR:p2mPushModel(1,"models/sprops/triangles_thin/right/size_0/t_rtri_3x6.mdl",vec(9,-0.9,0),ang(0,0,90),vec(1,0.7,0.25),0,0,0)
+
+P2MRadRodR:p2mBuild()
+P2MRadRodR:parentTo(holoEntity(18))
+P2MRadRodR:p2mSetMaterial(1,RodMat)
+P2MRadRodR:p2mSetUV(1,35)
+
+
+local P2MRadRod2R = p2mCreate(1,holoEntity(13):pos(), holoEntity(13):angles())
+
+P2MRadRod2R:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-0.9,0),ang(0,0,90),vec(0.5,0.5,1.2),0,0,0)
+
+P2MRadRod2R:p2mBuild()
+P2MRadRod2R:parentTo(holoEntity(13))
+P2MRadRod2R:p2mSetMaterial(1,RodMat)
+P2MRadRod2R:p2mSetUV(1,35)
+
+
+local P2MUnLinkR = p2mCreate(1,holoEntity(15):pos(), holoEntity(15):angles())
+
+P2MUnLinkR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,0.3,0),ang(0,0,90),vec(1,1,0.7),0,0,0)
+P2MUnLinkR:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(4.75,0.3,0),ang(0,0,0),vec(9.5/6,0.8,0.8),0,0,0)
+P2MUnLinkR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,0.3,1),ang(0,0,0),vec(0.3,0.3,0.7),0,0,0)
+
+P2MUnLinkR:p2mBuild()
+P2MUnLinkR:parentTo(holoEntity(15))
+P2MUnLinkR:p2mSetMaterial(1,RodMat)
+P2MUnLinkR:p2mSetUV(1,35)
+
+
+local P2MCombLevR = p2mCreate(1,holoEntity(12):pos(), holoEntity(12):angles())
+
+P2MCombLevR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-0.4,-19),ang(0,0,90),vec(0.6,0.6,1),0,0,0)
+P2MCombLevR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-0.4,-19),ang(0,0,90),vec(0.45,0.45,1.2),0,0,0)
+P2MCombLevR:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x12x1_5.mdl",vec(0,-1.1,-13.5),ang(90,0,0),vec(1,0.8,0.8),0,0,0)
+P2MCombLevR:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(0,-1.6,0),ang(90,0,0),vec(1,0.8,0.8),0,0,0)
+P2MCombLevR:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(0,-1.35,-5.25),ang(83.8,90,0),vec(4.75/6,0.8,0.8),0,0,0)
+P2MCombLevR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-1.6,3),ang(0,0,90),vec(0.7,0.7,0.5),0,0,0)
+P2MCombLevR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-1.6,4),ang(0,0,0),vec(0.25,0.25,0.5),0,0,0)
+P2MCombLevR:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,-1.6,0),ang(0,0,90),vec(0.7,0.7,0.5),0,0,0)
+
+P2MCombLevR:p2mBuild()
+P2MCombLevR:parentTo(holoEntity(12))
+P2MCombLevR:p2mSetMaterial(1,RodMat)
+P2MCombLevR:p2mSetUV(1,35)
+
+
+local P2MVlvStmR = p2mCreate(1,holoEntity(11):pos(), holoEntity(11):angles())
+
+P2MVlvStmR:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x12.mdl",vec(10,0,0),ang(90,0,0),vec(1,1,1),0,0,0)
+P2MVlvStmR:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(1.5,0,0),ang(0,0,90),vec(1,0.8,1.2),0,0,0)
+P2MVlvStmR:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,-1.2,0),ang(0,0,90),vec(1,1,1),0,0,0)
+P2MVlvStmR:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(3.5,0,1),ang(0,0,0),vec(0.5,0.5,0.7),0,0,0)
+
+P2MVlvStmR:p2mBuild()
+P2MVlvStmR:parentTo(holoEntity(11))
+P2MVlvStmR:p2mSetMaterial(1,RodMat)
+P2MVlvStmR:p2mSetUV(1,35)
+
+
+local P2MRevLinkR = p2mCreate(1,holoEntity(24):pos(), holoEntity(24):angles())
+
+P2MRevLinkR:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,0,0),ang(0,0,90),vec(0.5,0.5,0.8),0,0,0)
+P2MRevLinkR:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(0,0,3.5),ang(90,0,0),vec(7/6,0.6,0.6),0,0,0)
+
+P2MRevLinkR:p2mBuild()
+P2MRevLinkR:parentTo(holoEntity(24))
+P2MRevLinkR:p2mSetMaterial(1,RodMat)
+P2MRevLinkR:p2mSetUV(1,35)
+
+local P2MRevLink2R = p2mCreate(1,holoEntity(23):pos(), holoEntity(23):angles())
+
+P2MRevLink2R:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,0,0),ang(0,0,90),vec(1.3,1.3,0.5),0,0,0)
+
+P2MRevLink2R:p2mBuild()
+P2MRevLink2R:parentTo(holoEntity(23))
+P2MRevLink2R:p2mSetMaterial(1,RodMat)
+P2MRevLink2R:p2mSetUV(1,35)
+
+}
+
+Aaa=(PistonForward-sqrt((PistonForward^2)-(Radius^2)))
+PMoveR=(-cos(WheelRotation)*Radius)-(Aaa*abs(sin(WheelRotation)))
+PMoveL=(-sin(WheelRotation)*Radius)-(Aaa*abs(cos(WheelRotation)))
+
+
+EccRAngL=(-Reverser*7)+(abs(Reverser)*(1-Reverser)*sin(abs(EccAngL/20)*15))
+EccAngL=-cos(WheelRotation+10)*20
+ComboAngL=-atan(PMoveL/21)+(EccAngL*3.9/20*-Reverser)
+                    #divide PMove by the length in inches of the combination lever
+ValveStmL=(-sin(ComboAngL)*3)+(EccAngL*1.45/20*-Reverser)
+                          # multiply sin(ComboAng) by the distance in inches 
+                          # the valve stem is above or below the rotation
+                          # point of the combination lever
+
+EccRAngR=(-Reverser*7)+(abs(Reverser)*(1-Reverser)*sin(abs(EccAngR/20)*15))
+EccAngR=sin(WheelRotation+10)*20
+ComboAngR=-atan(PMoveR/21)+(EccAngR*3.9/20*-Reverser)
+                    #divide PMove by the length in inches of the combination lever
+ValveStmR=(-sin(ComboAngR)*3)+(EccAngR*1.45/20*-Reverser)
+                          # multiply sin(ComboAng) by the distance in inches 
+                          # the valve stem is above or below the rotation
+                          # point of the combination lever
+
+holoPos(1,Base:toWorld(vec(ValveStmL,0,0)+vec(65,33,15)))
+holoAng(2,holoEntity(1):toWorld(ang(ComboAngL,0,0)))
+holoAng(6,Base:toWorld(ang(EccAngL+0,0,0)))
+holoAng(7,holoEntity(6):toWorld(ang(EccRAngL+0,0,0)))
+
+holoPos(11,Base:toWorld(vec(ValveStmR,0,0)+vec(65,-33,15)))
+holoAng(12,holoEntity(11):toWorld(ang(ComboAngR,0,0)))
+holoAng(16,Base:toWorld(ang(EccAngR+0,0,0)))
+holoAng(17,holoEntity(16):toWorld(ang(EccRAngR+0,0,0)))
+
+holoAng(0,Base:toWorld(ang(Reverser*13,0,0)))
+
+
+local UnionAngL = elevation(holoEntity(4):pos(),Base:angles(),holoEntity(5):pos()) 
+holoAng(5,Base:toWorld(ang(UnionAngL,0,0)))
+
+local EccRodAngL = elevation(holoEntity(9):pos(),Wheel:angles(),holoEntity(10):pos()) 
+holoAng(10,Base:toWorld(ang(EccRodAngL,0,0)))
+holoAng(9,Base:toWorld(ang(EccRodAngL,0,0)))
+
+local RadRodAngL = elevation(holoEntity(8):pos(),Base:angles(),holoEntity(3):pos()) 
+holoAng(8,Base:toWorld(ang(-RadRodAngL,0,0)))
+holoAng(3,Base:toWorld(ang(-RadRodAngL,0,0)))
+
+local RevLinkL = elevation(holoEntity(21):pos(),Base:toWorld(ang(90,0,0)),holoEntity(22):pos()) 
+holoAng(21,Base:toWorld(ang(-RevLinkL,0,0)))
+holoAng(22,Base:toWorld(ang(-RevLinkL,0,0)))
+
+
+local UnionAngR = elevation(holoEntity(14):pos(),Base:angles(),holoEntity(15):pos()) 
+holoAng(15,Base:toWorld(ang(UnionAngR,0,0)))
+
+local EccRodAngR = elevation(holoEntity(19):pos(),Wheel:angles(),holoEntity(20):pos()) 
+holoAng(20,Base:toWorld(ang(EccRodAngR,0,0)))
+holoAng(19,Base:toWorld(ang(EccRodAngR,0,0)))
+
+local RadRodAngR = elevation(holoEntity(18):pos(),Base:angles(),holoEntity(13):pos()) 
+holoAng(18,Base:toWorld(ang(-RadRodAngR,0,0)))
+holoAng(13,Base:toWorld(ang(-RadRodAngR,0,0)))
+
+local RevLinkR = elevation(holoEntity(23):pos(),Base:toWorld(ang(90,0,0)),holoEntity(24):pos()) 
+holoAng(23,Base:toWorld(ang(-RevLinkR,0,0)))
+holoAng(24,Base:toWorld(ang(-RevLinkR,0,0)))

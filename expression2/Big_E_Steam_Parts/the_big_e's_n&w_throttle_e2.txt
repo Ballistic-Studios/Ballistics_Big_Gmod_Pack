@@ -1,0 +1,109 @@
+@name The Big E's N&W Throttle E2
+@inputs Throttle 
+@outputs 
+@persist E:entity Scale
+@trigger Throttle
+
+
+if(first()|dupefinished()){
+
+#Config
+
+#Base
+BaseMat1="icegt/loco/ice_trainmetal_black"
+BaseMat2=""
+BaseColor=vec(255,255,255)
+
+#Lever
+LeverMat1="icegt/loco/ice_trainmetal_black"
+LeverMat2=""
+LeverMat3="icegt/loco/ice_trainmetal_white"
+LeverColor=vec(150,50,50)
+
+#Bar
+BarMat1="icegt/loco/ice_trainmetal_black"
+BarMat2=""
+BarColor=vec(255,255,255)
+
+#Connector
+ConnectorMat1="icegt/loco/ice_trainmetal_black"
+ConnectorMat2=""
+ConnectorColor=vec(255,255,255)
+
+
+Scale = 1
+
+#End of Config
+
+E = entity()
+
+
+
+#Base
+A = 1
+holoCreate(A)
+holoModel(A,"models/zexciv_train_stuff/details/nw_regulator.mdl")
+holoParent(A,E)
+holoPos(A,E:toWorld(vec(0,0,0)*Scale))
+holoAng(A,E:toWorld(ang(0,0,0)))
+holoColor(A,BaseColor)
+holoScale(A,vec(1,1,1)*Scale)
+holoMaterial(A,"")
+holoEntity(A):setSubMaterial(1,BaseMat1)
+holoEntity(A):setSubMaterial(2,BaseMat2)
+
+#Lever
+A = 2
+holoCreate(A)
+holoModel(A,"models/zexciv_train_stuff/details/nw_regulator.mdl")
+holoParent(A,E)
+holoPos(A,E:toWorld(vec(0,0,0)*Scale))
+holoAng(A,E:toWorld(ang(0,0,0)))
+holoColor(A,LeverColor)
+holoScale(A,vec(1,1,1)*Scale)
+holoBodygroup(A,1,2)
+holoEntity(A):setSubMaterial(1,LeverMat1)
+holoEntity(A):setSubMaterial(2,LeverMat2)
+holoEntity(A):setSubMaterial(3,LeverMat3)
+
+A = 3
+holoCreate(A)
+holoModel(A,"models/zexciv_train_stuff/details/nw_regulator.mdl")
+holoParent(A,E)
+holoPos(A,E:toWorld(vec(0,8.125,0)*Scale))
+holoAng(A,E:toWorld(ang(0,0,0)))
+holoColor(A,BarColor)
+holoScale(A,vec(1,1,1)*Scale)
+holoBodygroup(A,1,1)
+holoEntity(A):setSubMaterial(1,BarMat1)
+holoEntity(A):setSubMaterial(2,BarMat2)
+
+A = 4
+D=holoEntity(2)
+holoCreate(A)
+holoModel(A,"models/zexciv_train_stuff/details/nw_regulator.mdl")
+holoParent(A,D)
+holoPos(A,D:toWorld(vec(1,8.125,0)*Scale))
+holoAng(A,D:toWorld(ang(0,0,0)))
+holoColor(A,ConnectorColor)
+holoScale(A,vec(1,1,1)*Scale)
+holoBodygroup(A,1,3)
+holoEntity(A):setSubMaterial(1,ConnectorMat1)
+holoEntity(A):setSubMaterial(2,ConnectorMat2)
+local ConnecterAng=(holoEntity(3):pos()-holoEntity(4):pos()):toAngle()
+holoAng(4,ConnecterAng)
+
+}
+holoAng(2,E:toWorld(ang(0,(-Throttle*3)+20,0)))
+holoPos(3,E:toWorld(vec((Throttle*0.42)+3.75,8.125,0)*Scale))
+
+local ConnecterAng=(holoEntity(3):pos()-holoEntity(4):pos()):toAngle()
+holoAng(4,ConnecterAng)
+
+if(Throttle & ~Throttle){
+    soundPlay(3,0,"heavycubemsts/flyingscotsman/fs_reverserf.wav") 
+    soundPitch(3,24)  
+    }
+
+
+
