@@ -1,0 +1,249 @@
+@name The Big E's Mechanical Reverser
+@inputs Reverser W S Base:entity 
+@outputs 
+@persist [Hinge E LockPin]:entity Ang2
+@trigger Reverser W S
+
+
+if(first()|dupefinished()){
+
+#Config
+
+BarColor = vec(130)
+BarMaterial = "sprops/textures/sprops_metal1"
+FrameColor = vec(180)
+FrameMaterial = "sprops/textures/sprops_metal1"
+GripColor = vec(255)
+GripMaterial = "models/proppertextures/brass"
+
+#End of Config
+
+E = entity()
+
+E:setColor(vec4(0,0,0,0))
+
+#Body
+local P2M = p2mCreate(1,E:toWorld(vec(0,0,0)), E:angles())
+
+
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_1_5/rect_6x12x1_5.mdl",vec(0,0,-2.5),ang(0,0,0),vec(0.85,1,1))
+
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl",vec(0,1,0),ang(0,0,90),vec(1.35,1.35,0.65))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl",vec(0,1,0),ang(0,0,90),vec(2,1.1,0.45))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x18x1_5.mdl",vec(-5.25,1,6),ang(75,0,90),vec(1,0.85,0.5))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x18x1_5.mdl",vec(0,1,7),ang(90,0,90),vec(1,0.55,0.5))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x18x1_5.mdl",vec(5.25,1,6),ang(-75,0,90),vec(1,0.85,0.5))
+P2M:p2mPushModel(1,"models/sprops/geometry/fring_96.mdl",vec(0,1,0),ang(0,0,0),vec(0.36,0.3,0.36),0,0,0,array(vec(0,0,0),vec(1,0,0.62),vec(0,0,0),vec(-1,0,0.62)))
+P2M:p2mPushModel(1,"models/sprops/geometry/fring_96.mdl",vec(0,1,0),ang(0,0,0),vec(0.34,0.3,0.34),0,0,0,array(vec(0,0,0),vec(1,0,0.62),vec(0,0,0),vec(-1,0,0.62)))
+P2M:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(cos(121.8)*16.25,1,sin(121.8)*16.25),ang(-31.8,0,90),vec(0.655,0.655,0.3))
+P2M:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(cos(58.2)*16.25,1,sin(58.2)*16.25),ang(31.8,0,90),vec(0.655,0.655,0.3))
+
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(62.5)*17.25,1,sin(62.5)*17.25),ang(0,90,27.5),vec(0.15,0.8,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(68)*17.25,1,sin(68)*17.25),ang(0,90,22),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(72)*17.25,1,sin(72)*17.25),ang(0,90,18),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(76)*17.25,1,sin(76)*17.25),ang(0,90,14),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(80)*17.25,1,sin(80)*17.25),ang(0,90,10),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(84)*17.25,1,sin(84)*17.25),ang(0,90,6),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(88)*17.25,1,sin(88)*17.25),ang(0,90,2),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(92)*17.25,1,sin(92)*17.25),ang(0,90,-2),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(96)*17.25,1,sin(96)*17.25),ang(0,90,-6),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(100)*17.25,1,sin(100)*17.25),ang(0,90,-10),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(104)*17.25,1,sin(104)*17.25),ang(0,90,-14),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(108)*17.25,1,sin(108)*17.25),ang(0,90,-18),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(112)*17.25,1,sin(112)*17.25),ang(0,90,-22),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(117.5)*17.25,1,sin(117.5)*17.25),ang(0,90,-27.5),vec(0.15,0.8,0.655))
+
+
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl",vec(0,-1,0),ang(0,0,90),vec(1.35,1.35,0.65))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl",vec(0,-1,0),ang(0,0,90),vec(2,1.1,0.45))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x18x1_5.mdl",vec(-5.25,-1,6),ang(75,0,90),vec(1,0.85,0.5))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x18x1_5.mdl",vec(0,-1,7),ang(90,0,90),vec(1,0.55,0.5))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x18x1_5.mdl",vec(5.25,-1,6),ang(-75,0,90),vec(1,0.85,0.5))
+P2M:p2mPushModel(1,"models/sprops/geometry/fring_96.mdl",vec(0,-1,0),ang(0,0,0),vec(0.36,0.3,0.36),0,0,0,array(vec(0,0,0),vec(1,0,0.62),vec(0,0,0),vec(-1,0,0.62)))
+P2M:p2mPushModel(1,"models/sprops/geometry/fring_96.mdl",vec(0,-1,0),ang(0,0,0),vec(0.34,0.3,0.34),0,0,0,array(vec(0,0,0),vec(1,0,0.62),vec(0,0,0),vec(-1,0,0.62)))
+P2M:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(cos(121.8)*16.25,-1,sin(121.8)*16.25),ang(-31.8,0,90),vec(0.655,0.655,0.3))
+P2M:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(cos(58.2)*16.25,-1,sin(58.2)*16.25),ang(31.8,0,90),vec(0.655,0.655,0.3))
+
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(62.5)*17.25,-1,sin(62.5)*17.25),ang(0,90,27.5),vec(0.15,0.8,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(68)*17.25,-1,sin(68)*17.25),ang(0,90,22),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(72)*17.25,-1,sin(72)*17.25),ang(0,90,18),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(76)*17.25,-1,sin(76)*17.25),ang(0,90,14),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(80)*17.25,-1,sin(80)*17.25),ang(0,90,10),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(84)*17.25,-1,sin(84)*17.25),ang(0,90,6),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(88)*17.25,-1,sin(88)*17.25),ang(0,90,2),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(92)*17.25,-1,sin(92)*17.25),ang(0,90,-2),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(96)*17.25,-1,sin(96)*17.25),ang(0,90,-6),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(100)*17.25,-1,sin(100)*17.25),ang(0,90,-10),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(104)*17.25,-1,sin(104)*17.25),ang(0,90,-14),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(108)*17.25,-1,sin(108)*17.25),ang(0,90,-18),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(112)*17.25,-1,sin(112)*17.25),ang(0,90,-22),vec(0.15,0.4,0.655))
+P2M:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x6x1_5.mdl",vec(cos(117.5)*17.25,-1,sin(117.5)*17.25),ang(0,90,-27.5),vec(0.15,0.8,0.655))
+
+
+P2M:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(cos(121.8)*16.25,0,sin(121.8)*16.25),ang(-31.8,0,90),vec(0.43,0.43,0.6))
+P2M:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(cos(58.2)*16.25,0,sin(58.2)*16.25),ang(31.8,0,90),vec(0.43,0.43,0.6))
+P2M:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(cos(121.8)*16.25,0,sin(121.8)*16.25),ang(37,0,0),vec(0.1,1.27,0.1))
+P2M:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(cos(58.2)*16.25,0,sin(58.2)*16.25),ang(78,0,0),vec(0.1,1.27,0.1))
+
+
+
+#models/sprops/geometry/fring_96.mdl
+#models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl
+
+
+
+
+#Main Lever
+A = 1
+holoCreate(A)
+holoModel(A,"")
+holoParent(A,E)
+holoPos(A,E:toWorld(vec(0,0,0)))
+holoAng(A,E:toWorld(ang(0,0,0)))
+holoScale(A,vec(0))
+Hinge=holoEntity(A)
+
+local P2M2 = p2mCreate(1,Hinge:toWorld(vec(0,0,0)), Hinge:angles())
+local P2M2 = p2mCreate(2,Hinge:toWorld(vec(0,0,0)), Hinge:angles())
+
+
+P2M2:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,0,0),ang(0,0,90),vec(1.3,1.3,1.1))
+P2M2:p2mPushModel(1,"models/sprops/geometry/t_fhex_12.mdl",vec(0,0,0),ang(0,0,0),vec(0.1,2.8,0.1))
+P2M2:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x36x1_5.mdl",vec(0,0,18),ang(90,0,90),vec(36/36,0.7,0.65))
+P2M2:p2mPushModel(1,"models/sprops/misc/fittings/cubinder_3_to_3.mdl",vec(0,0,36.75),ang(0,0,0),vec(0.7,0.325,0.5))
+P2M2:p2mPushModel(2,"models/holograms/hq_rcylinder.mdl",vec(0,0,37.35),ang(0,0,0),vec(0.2,0.1,0.04))
+P2M2:p2mPushModel(2,"models/holograms/hq_rcylinder.mdl",vec(0,0,40),ang(0,0,0),vec(0.09,0.09,0.5))
+
+
+A = 2
+holoCreate(A)
+holoModel(A,"")
+holoParent(A,Hinge)
+holoPos(A,Hinge:toWorld(vec(0,0,35)))
+holoAng(A,Hinge:toWorld(ang(10,0,0))) #10 to -12
+holoScale(A,vec(0))
+CatchHinge=holoEntity(A)
+
+local P2M3 = p2mCreate(1,CatchHinge:toWorld(vec(0,0,0)), CatchHinge:angles())
+local P2M3 = p2mCreate(2,CatchHinge:toWorld(vec(0,0,0)), CatchHinge:angles())
+
+P2M3:p2mPushModel(2,"models/sprops/mechanics/misc/cam_a0.mdl",vec(0.35,0.79,0),ang(90,0,0),vec(0.5,0.37,0.8))
+P2M3:p2mPushModel(2,"models/sprops/mechanics/misc/cam_a0.mdl",vec(0.35,-0.79,0),ang(90,0,0),vec(0.5,0.37,0.8))
+P2M3:p2mPushModel(2,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(1.6,0,0),ang(0,0,90),vec(0.32,0.24,0.65))
+P2M3:p2mPushModel(2,"models/sprops/misc/tubes_thin/size_1/t_h_tube_12x42.mdl",vec(1.75,0,3),ang(0,90,90),vec(0.11,0.14,0.07))
+P2M3:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0,0,0),ang(0,0,90),vec(0.2,0.2,0.85))
+P2M3:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(1.6,0,0),ang(0,0,90),vec(0.2,0.2,0.85))
+
+A = 3
+holoCreate(A)
+holoModel(A,"")
+holoParent(A,Hinge)
+holoPos(A,Hinge:toWorld(vec(0,0,19.4)))
+holoAng(A,Hinge:toWorld(ang(0,0,0))) 
+holoScale(A,vec(0))
+LockPin=holoEntity(A)
+
+local P2M4 = p2mCreate(1,LockPin:toWorld(vec(0,0,0)), LockPin:angles())
+
+P2M4:p2mPushModel(1,"models/sprops/rectangles/size_1_5/rect_6x6x3.mdl",vec(0.2,0,0),ang(90,90,0),vec(0.5,0.54,0.75))
+P2M4:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl",vec(0,1,-1.35),ang(90,0,0),vec(0.5,0.3,0.39))
+P2M4:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl",vec(0,-1,-1.35),ang(90,0,0),vec(0.5,0.3,0.39))
+P2M4:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x3x1_5.mdl",vec(1.45,0,1.75),ang(0,0,90),vec(0.2,0.25,0.75))
+P2M4:p2mPushModel(1,"models/sprops/geometry/t_fhex_12.mdl",vec(2,0,0),ang(21,90,0),vec(0.1,0.3,0.1))
+P2M4:p2mPushModel(1,"models/sprops/rectangles/size_1/rect_3x3x3.mdl",vec(2.3,0,0),ang(0,0,-21),vec(0.15))
+
+
+
+A = 4
+holoCreate(A)
+holoModel(A,"")
+holoParent(A,CatchHinge)
+holoPos(A,CatchHinge:toWorld(vec(1.6,0,0)))
+holoAng(A,CatchHinge:toWorld(ang(0,0,0))) 
+holoScale(A,vec(0))
+
+A = 5
+holoCreate(A)
+holoModel(A,"")
+holoParent(A,LockPin)
+holoPos(A,LockPin:toWorld(vec(1.45,0,1.75)))
+holoAng(A,LockPin:toWorld(ang(0,0,0))) 
+holoScale(A,vec(0))
+PushRod=holoEntity(A)
+
+local PushRodAng = elevation(holoEntity(5):pos(),E:toWorld(ang(90,0,0)),holoEntity(4):pos()) 
+holoAng(5,LockPin:toWorld(ang(PushRodAng,0,0)))
+
+
+local P2M5 = p2mCreate(1,PushRod:toWorld(vec(0,0,0)), PushRod:angles())
+
+P2M5:p2mPushModel(1,"models/sprops/rectangles_thin/size_0/rect_1_5x12x1_5.mdl",vec(0,0,6.75),ang(90,0,0),vec(13.5/12,0.4,0.25))
+P2M5:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,0,0),ang(0,0,90),vec(0.3,0.3,0.5))
+
+
+
+
+
+
+
+
+
+
+P2M:p2mBuild()
+P2M:parentTo(E)
+P2M:p2mSetMaterial(1,FrameMaterial)
+P2M:p2mSetColor(FrameColor)
+P2M:p2mSetUV(1,15)
+
+
+P2M2:p2mBuild()
+P2M2:parentTo(Hinge)
+P2M2:p2mSetMaterial(1,BarMaterial)
+P2M2:p2mSetColor(1,BarColor)
+P2M2:p2mSetMaterial(2,GripMaterial)
+P2M2:p2mSetColor(2,GripColor)
+P2M2:p2mSetUV(1,15)
+
+P2M3:p2mBuild()
+P2M3:parentTo(CatchHinge)
+P2M3:p2mSetMaterial(1,BarMaterial)
+P2M3:p2mSetColor(1,BarColor)
+P2M3:p2mSetMaterial(2,GripMaterial)
+P2M3:p2mSetColor(2,GripColor)
+P2M3:p2mSetUV(1,15)
+
+P2M4:p2mBuild()
+P2M4:parentTo(LockPin)
+P2M4:p2mSetMaterial(1,BarMaterial)
+P2M4:p2mSetColor(1,BarColor)
+P2M4:p2mSetUV(1,15)
+
+P2M5:p2mBuild()
+P2M5:parentTo(LockPin)
+P2M5:p2mSetMaterial(1,BarMaterial)
+P2M5:p2mSetColor(1,BarColor)
+P2M5:p2mSetUV(1,15)
+
+Ang2=0
+}
+
+interval(100)
+
+#if(changed(Reverser)){
+Ang=(Reverser*-24)
+
+if(changed(Reverser)){ Ang2=1  }
+else{Ang2=0}
+
+if(changed(Reverser)){soundPlay(1,0,"locnoisbygeordie/steam/misc/johnson_bar_move.wav")   soundVolume(1,0.5)}
+
+holoAng(1,E:toWorld(ang(Ang,0,0)))    #30,0,90
+holoAng(2,Hinge:toWorld(ang(Ang2*-22+10,0,0)))
+holoPos(3,Hinge:toWorld(vec(0,0,19.4+Ang2*0.65)))
+
+local PushRodAng = elevation(holoEntity(5):pos(),E:toWorld(ang(90,0,0)),holoEntity(4):pos()) 
+holoAng(5,LockPin:toWorld(ang(PushRodAng,0,0)))
+
+#}
+
+
