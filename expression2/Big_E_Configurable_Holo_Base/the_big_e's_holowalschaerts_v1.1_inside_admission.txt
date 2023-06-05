@@ -28,6 +28,11 @@ PR=Values[11,entity]
 PL=Values[12,entity]               
 ##########################################################################################################################
 
+# You'll need to wire WheelRotation and Values:array to their corresponding outputs on the Main Base.
+# For Reverser, you can either wire it to the reverser output on RSC or not wire it at all.
+
+# Useful reference for what part is called what: https://35011gsn.co.uk/____impro/1/onewebmedia/valve-diagram.jpg?etag=%223886c-5eb03495%22&sourceContentType=image%2Fjpeg&quality=85
+
 
 RadiusRodLength=50
 EccentricRodLength=46.5
