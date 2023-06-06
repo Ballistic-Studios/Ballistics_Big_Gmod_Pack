@@ -517,7 +517,7 @@ PMoveL=(-sin(WheelRotation)*Radius)-(Aaa*abs(cos(WheelRotation)))
 
 EccRAngL=(-Reverser*7)+(abs(Reverser)*(1-Reverser)*sin(abs(EccAngL/20)*15))
 EccAngL=-cos(WheelRotation+ELD)*ELS
-ComboAngL=-atan(PMoveL/(CLL+VSTRRD))+(EccAngL*3.9/20*-Reverser)
+ComboAngL=-atan(PMoveL/(CLL+VSTRRD^2/13))+(EccAngL*3.9/20*-Reverser)
                     #divide PMove by the length in inches of the combination lever
 ValveStmL=(-sin(ComboAngL)*VSTRRD)+(EccAngL*1.45*RRL/35/20*-Reverser)
                           # multiply sin(ComboAng) by the distance in inches 
@@ -526,7 +526,7 @@ ValveStmL=(-sin(ComboAngL)*VSTRRD)+(EccAngL*1.45*RRL/35/20*-Reverser)
 
 EccRAngR=(-Reverser*7)+(abs(Reverser)*(1-Reverser)*sin(abs(EccAngR/20)*15))
 EccAngR=sin(WheelRotation+ELD)*ELS
-ComboAngR=-atan(PMoveR/(CLL+VSTRRD))+(EccAngR*3.9/20*-Reverser)
+ComboAngR=-atan(PMoveR/(CLL+VSTRRD^2/13))+(EccAngR*3.9/20*-Reverser)
                     #divide PMove by the length in inches of the combination lever
 ValveStmR=(-sin(ComboAngR)*VSTRRD)+(EccAngR*1.45*RRL/35/20*-Reverser)
                           # multiply sin(ComboAng) by the distance in inches 
