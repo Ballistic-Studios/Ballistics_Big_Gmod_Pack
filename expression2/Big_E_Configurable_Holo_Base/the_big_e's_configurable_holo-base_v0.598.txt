@@ -481,7 +481,7 @@ holoPos(A,B:toWorld(vec(0*Scale,((-Gauge/2)+(0.7)+(0.85*WTS*Gauge/32))*1*Scale,0
 holoScale(A, vec((Diameter/D)*Scale,WTS*Scale,(Diameter/D)*Scale))
 holoColor(A,WheelColor)   
 holoBodygroup(A,1,WheelType)    
-holoBodygroup(A,2,Counterweight)    
+holoBodygroup(A,2,Counterweight+1)    
 
 A=300
 B=holoEntity(2)
@@ -539,7 +539,7 @@ holoPos(A,B:toWorld(vec(0*Scale,((Gauge/2)-(0.7)-(0.85*WTS*Gauge/32))*Scale,0*Sc
 holoScale(A, vec((Diameter/D)*Scale,WTS*Scale,(Diameter/D)*Scale))
 holoColor(A,WheelColor)   
 holoBodygroup(A,1,WheelType)    
-holoBodygroup(A,2,Counterweight+1)    
+holoBodygroup(A,2,Counterweight)    
 A=7
 B=holoEntity(5)
 holoCreate(A)
@@ -614,7 +614,7 @@ holoPos(A,B:toWorld(vec(0*Scale,((Gauge/2)-(0.7)-(0.85*WTS*Gauge/32))*Scale,0*Sc
 holoScale(A, vec((Diameter/D)*Scale,WTS*Scale,(Diameter/D)*Scale))
 holoColor(A,WheelColor)   
 holoBodygroup(A,1,WheelType)    
-holoBodygroup(A,2,Counterweight+1)    
+holoBodygroup(A,2,Counterweight)    
 A=10
 B=holoEntity(8)
 holoCreate(A)
@@ -689,7 +689,7 @@ holoPos(A,B:toWorld(vec(0*Scale,((Gauge/2)-(0.7)-(0.85*WTS*Gauge/32))*Scale,0*Sc
 holoScale(A, vec((Diameter/D)*Scale,WTS*Scale,(Diameter/D)*Scale))
 holoColor(A,WheelColor)   
 holoBodygroup(A,1,WheelType)    
-holoBodygroup(A,2,Counterweight+1)    
+holoBodygroup(A,2,Counterweight)    
 A=13
 B=holoEntity(11)
 holoCreate(A)
@@ -764,7 +764,7 @@ holoPos(A,B:toWorld(vec(0*Scale,((Gauge/2)-(0.7)-(0.85*WTS*Gauge/32))*Scale,0*Sc
 holoScale(A, vec((Diameter/D)*Scale,WTS*Scale,(Diameter/D)*Scale))
 holoColor(A,WheelColor)   
 holoBodygroup(A,1,WheelType)    
-holoBodygroup(A,2,Counterweight+1)    
+holoBodygroup(A,2,Counterweight)    
 A=16
 B=holoEntity(14)
 holoCreate(A)
@@ -839,7 +839,7 @@ holoPos(A,B:toWorld(vec(0*Scale,((Gauge/2)-(0.7)-(0.85*WTS*Gauge/32))*Scale,0*Sc
 holoScale(A, vec((Diameter/D)*Scale,WTS*Scale,(Diameter/D)*Scale))
 holoColor(A,WheelColor)   
 holoBodygroup(A,1,WheelType)    
-holoBodygroup(A,2,Counterweight+1)    
+holoBodygroup(A,2,Counterweight)    
 A=19
 B=holoEntity(17)
 holoCreate(A)
@@ -914,7 +914,7 @@ holoPos(A,B:toWorld(vec(0*Scale,((Gauge/2)-(0.7)-(0.85*WTS*Gauge/32))*Scale,0*Sc
 holoScale(A, vec((Diameter/D)*Scale,WTS*Scale,(Diameter/D)*Scale))
 holoColor(A,WheelColor)   
 holoBodygroup(A,1,WheelType)    
-holoBodygroup(A,2,Counterweight+1)    
+holoBodygroup(A,2,Counterweight)    
 A=22
 B=holoEntity(20)
 holoCreate(A)
