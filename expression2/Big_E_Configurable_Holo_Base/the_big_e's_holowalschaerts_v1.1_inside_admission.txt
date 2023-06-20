@@ -549,7 +549,7 @@ holoAng(0,Base:toWorld(ang((Reverser*CAMA)-CASA,0,0)))
 local UnionAngL = elevation(holoEntity(4):pos(),Base:angles(),holoEntity(5):pos()) 
 holoAng(5,Base:toWorld(ang(UnionAngL,0,0)))
 
-local EccRodAngL = elevation(holoEntity(9):pos(),Wheel:angles(),holoEntity(10):pos()) 
+local EccRodAngL = elevation(holoEntity(9):pos(),Base:angles(),holoEntity(10):pos()) 
 holoAng(10,Base:toWorld(ang(EccRodAngL,0,0)))
 holoAng(9,Base:toWorld(ang(EccRodAngL,0,0)))
 
@@ -565,7 +565,7 @@ holoAng(22,Base:toWorld(ang(-RevLinkL,0,0)))
 local UnionAngR = elevation(holoEntity(14):pos(),Base:angles(),holoEntity(15):pos()) 
 holoAng(15,Base:toWorld(ang(UnionAngR,0,0)))
 
-local EccRodAngR = elevation(holoEntity(19):pos(),Wheel:angles(),holoEntity(20):pos()) 
+local EccRodAngR = elevation(holoEntity(19):pos(),Base:angles(),holoEntity(20):pos()) 
 holoAng(20,Base:toWorld(ang(EccRodAngR,0,0)))
 holoAng(19,Base:toWorld(ang(EccRodAngR,0,0)))
 
