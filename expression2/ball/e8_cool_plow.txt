@@ -1,0 +1,112 @@
+@name E8 Cool Plow
+@inputs E:entity
+
+if((first() | dupefinished())){
+local P2M = p2mCreate(2, E:pos(), E:angles())
+
+#The Plow
+P2M:p2mPushModel(1,table(
+"model" = "models/fox/emd_fl9.mdl",
+"pos" = vec(-125,0,-41),
+"ang" = ang(0,180,0),
+"bodygroup" = 0,
+"submodels" = array(5), 
+"submodelswl" = 1,
+"clips" = array(vec(0,0,0),vec(0,0,0)),
+"scale" = vec(0.95,0.99,0.95)
+))
+
+#Pilot Fillers
+P2M:p2mPushModel(2,table(
+"model" = "models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl",
+"pos" = vec(-368.5,-56.5,7),
+"ang" = ang(0,180,0),
+"bodygroup" = 0,
+"submodels" = array(0), 
+"submodelswl" = 1,
+"clips" = array(vec(0,2.3,0),vec(0,1,0)),
+"scale" = vec(1,0.77,0.79)
+))
+P2M:p2mPushModel(1,table(
+"model" = "models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl",
+"pos" = vec(-368.5,-56.5,7),
+"ang" = ang(0,180,0),
+"bodygroup" = 0,
+"submodels" = array(0), 
+"submodelswl" = 1,
+"clips" = array(vec(0,2.3,0),vec(0,-1,0)),
+"scale" = vec(1,0.77,0.79)
+))
+P2M:p2mPushModel(2,table(
+"model" = "models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl",
+"pos" = vec(-368.5,56.5,7),
+"ang" = ang(0,180,0),
+"bodygroup" = 0,
+"submodels" = array(0), 
+"submodelswl" = 1,
+"clips" = array(vec(0,-2.3,0),vec(0,-1,0)),
+"scale" = vec(1,0.77,0.79)
+))
+P2M:p2mPushModel(1,table(
+"model" = "models/sprops/cuboids/height06/size_1/cube_6x6x6.mdl",
+"pos" = vec(-368.5,56.5,7),
+"ang" = ang(0,180,0),
+"bodygroup" = 0,
+"submodels" = array(0), 
+"submodelswl" = 1,
+"clips" = array(vec(0,-2.3,0),vec(0,1,0)),
+"scale" = vec(1,0.77,0.79)
+))
+P2M:p2mPushModel(2,table(
+"model" = "models/sprops/triangles/right/size_0/rtri_3x3.mdl",
+"pos" = vec(-362.5,-56.5,7),
+"ang" = ang(0,0,180),
+"bodygroup" = 0,
+"submodels" = array(0), 
+"submodelswl" = 1,
+"clips" = array(vec(0,2.3,0),vec(0,1,0)),
+"scale" = vec(1,0.77,0.79)*2
+))
+P2M:p2mPushModel(1,table(
+"model" = "models/sprops/triangles/right/size_0/rtri_3x3.mdl",
+"pos" = vec(-362.5,-56.5,7),
+"ang" = ang(0,0,180),
+"bodygroup" = 0,
+"submodels" = array(0), 
+"submodelswl" = 1,
+"clips" = array(vec(0,2.3,0),vec(0,-1,0)),
+"scale" = vec(1,0.77,0.79)*2
+))
+P2M:p2mPushModel(2,table(
+"model" = "models/sprops/triangles/right/size_0/rtri_3x3.mdl",
+"pos" = vec(-362.5,56.5,7),
+"ang" = ang(0,0,180),
+"bodygroup" = 0,
+"submodels" = array(0), 
+"submodelswl" = 1,
+"clips" = array(vec(0,-2.3,0),vec(0,-1,0)),
+"scale" = vec(1,0.77,0.79)*2
+))
+P2M:p2mPushModel(1,table(
+"model" = "models/sprops/triangles/right/size_0/rtri_3x3.mdl",
+"pos" = vec(-362.5,56.5,7),
+"ang" = ang(0,0,180),
+"bodygroup" = 0,
+"submodels" = array(0), 
+"submodelswl" = 1,
+"clips" = array(vec(0,-2.3,0),vec(0,1,0)),
+"scale" = vec(1,0.77,0.79)*2
+))
+
+
+P2M:p2mSetParent(E)
+P2M:p2mSetMaterial(1,"models/proppertextures/enamel_black")
+P2M:p2mSetMaterial(2,"models/proppertextures/acrylic")
+P2M:p2mSetColor(2,vec(132))
+P2M:p2mSetAng(E:toWorld(ang(0,0,0)))
+P2M:p2mSetPos(E:toWorld(vec(0,0,0)))
+P2M:p2mSetNodraw(1)
+
+P2M:p2mBuild()
+
+}
