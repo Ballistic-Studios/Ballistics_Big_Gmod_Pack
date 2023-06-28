@@ -1,0 +1,537 @@
+@name E Unit Gauges
+@inputs E:wirelink On1 MainRes EqualRes BrakePipe Cyl Load
+@outputs 
+@persist A Boiler MainRes1 EqualRes1 BrakePipe1 Cyl1 Load1
+@trigger On1
+#@model models/hunter/plates/plate1x8.mdl
+
+if(first() | dupefinished()){
+Model=E:entity()
+
+Boiler = 0 #1 If you have a boiler installed
+
+A=1
+holoCreate(A,Model:toWorld(vec(-338.1,38.845,86.9)), vec(1),
+Model:toWorld(ang(69.6,0,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"plane")
+holoScale(A,vec(0.35,0.67,1))
+holoBodygroup(A,0,0)
+holoParent(A,Model)
+holoEntity(A):setSubMaterial(1,"jazzie/trains/gauges/ammeter_1500")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=2
+holoCreate(A,holoEntity(1):toWorld(vec(2.2,0,0.01)), vec(1),
+holoEntity(1):toWorld(ang(0,128.1-127,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/lazpack/detail/holo_plane.mdl")
+holoScale(A,vec(0.55,0.55,1))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(1))
+holoEntity(A):setSubMaterial(1,"models/gsgtrainprops/cab/needle_load_emd_old_white")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=3
+holoCreate(A,Model:toWorld(vec(-338.95,25.09,91.45)), vec(1),
+Model:toWorld(ang(69.6,7.5,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/gsgtrainprops/parts/cab/anim/gauge_air_anim.mdl")
+holoScale(A,vec(0.85))
+holoBodygroup(A,1,0)
+holoParent(A,Model)
+holoEntity(A):setSubMaterial(3,"models/gsgtrainprops/cab/gauge_air_westinghouse_200_1_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=4
+holoCreate(A,holoEntity(3):toWorld(vec(0.6,4.35,0)), vec(1),
+holoEntity(3):toWorld(ang(0,0,0)))
+holoColor(A,vec4(255,255,255,255))
+holoModel(A,"models/gsgtrainprops/parts/cab/anim/gauge_air_anim.mdl")
+holoScale(A,vec(0.85))
+holoBodygroup(A,1,0)
+holoParent(A,Model)
+holoEntity(A):setSubMaterial(3,"models/gsgtrainprops/cab/gauge_air_westinghouse_200_2_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=5
+holoCreate(A,holoEntity(3):toWorld(vec(9.75,3.95,0)), vec(1),
+holoEntity(3):toWorld(ang(0,0,0)))
+holoColor(A,vec4(255,255,255,254))
+holoModel(A,"models/gsgtrainprops/parts/cab/anim/gauge_air_anim.mdl")
+holoScale(A,vec(0.85))
+holoBodygroup(A,1,1)
+holoParent(A,Model)
+holoEntity(A):setSubMaterial(3,"models/gsgtrainprops/cab/gauge_air_westinghouse_160_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=7
+holoCreate(A,holoEntity(1):toWorld(vec(0,0,0.1)), vec(1),
+holoEntity(1):toWorld(ang(0,0,0)))
+holoColor(A,vec4(255,255,255,254))
+holoModel(A,"models/lazpack/detail/holo_plane.mdl")
+holoScale(A,vec(0.7))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(1))
+holoEntity(A):setSubMaterial(1,"models/proppertextures/glass_new")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+#Penalty (PTGamma doesnt simulate this lmao)
+A=12
+holoCreate(A,holoEntity(5):toWorld(vec(0,0,0.1)), vec(1),
+holoEntity(5):toWorld(ang(0,90-46,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/gsgtrainprops/parts/cab/anim/gauge_needles_holo.mdl")
+holoScale(A,vec(0.85))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(5))
+#holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=14
+holoCreate(A,holoEntity(1):toWorld(vec(4,9,0.48)), vec(1),
+holoEntity(1):toWorld(ang(0,0,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"plane")
+holoScale(A,vec(0.5,0.6,1))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(1))
+holoEntity(A):setSubMaterial(1,"models/proppertextures/aluminum")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=15
+holoCreate(A,holoEntity(1):toWorld(vec(2.5,7,0.48)), vec(1),
+holoEntity(1):toWorld(ang(0,0,90)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/titus's_propper_model_pack_2.4/propper/airbrakes/regulating_valve.mdl")
+holoScale(A,vec(0.2,0.2,0.2))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(1))
+holoEntity(A):setSubMaterial(1,"models/proppertextures/plastic_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=16
+holoCreate(A,holoEntity(1):toWorld(vec(5.5,7,0)), vec(1),
+holoEntity(1):toWorld(ang(0,0,90)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/rlc_delta_lua/cstands/buttons.mdl")
+holoScale(A,vec(0.8))
+holoBodygroup(A,0,2)
+holoParent(A,holoEntity(1))
+#holoEntity(A):setSubMaterial(1,"models/proppertextures/plastic_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=17
+holoCreate(A,holoEntity(1):toWorld(vec(2.5,11,0.48)), vec(1),
+holoEntity(1):toWorld(ang(0,45,90)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/rlc_delta_lua/cstands/rotary_switch_1.mdl")
+holoScale(A,vec(0.8,0.5,0.8))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(1))
+#holoEntity(A):setSubMaterial(1,"models/proppertextures/plastic_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=18
+holoCreate(A,holoEntity(1):toWorld(vec(5.5,11,0.48)), vec(1),
+holoEntity(1):toWorld(ang(0,45,90)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/rlc_delta_lua/cstands/rotary_switch_1.mdl")
+holoScale(A,vec(0.8,0.5,0.8))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(1))
+#holoEntity(A):setSubMaterial(1,"models/rlc_delta_lua/cstands/rotary_switch_1.mdl")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=19
+holoCreate(A,Model:toWorld(vec(-336.3,-46,83.563)), vec(1),
+Model:toWorld(ang(70.3,0,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"plane")
+holoScale(A,vec(0.35,0.7,1))
+holoBodygroup(A,0,0)
+holoParent(A,Model)
+holoEntity(A):setSubMaterial(1,"models/proppertextures/aluminum")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=20
+holoCreate(A,holoEntity(19):toWorld(vec(0,-2,-0.5)), vec(1),
+holoEntity(19):toWorld(ang(0,0,90)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/rlc_delta_lua/cstands/buttons.mdl")
+holoScale(A,vec(0.8))
+holoBodygroup(A,0,2)
+holoParent(A,holoEntity(19))
+#holoEntity(A):setSubMaterial(1,"models/proppertextures/plastic_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=21
+holoCreate(A,holoEntity(19):toWorld(vec(0,2,0)), vec(1),
+holoEntity(19):toWorld(ang(0,45,90)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/rlc_delta_lua/cstands/rotary_switch_1.mdl")
+holoScale(A,vec(0.8,0.5,0.8))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(19))
+#holoEntity(A):setSubMaterial(1,"models/rlc_delta_lua/cstands/rotary_switch_1.mdl")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=25
+holoCreate(A,holoEntity(19):toWorld(vec(-6,18.3,-0.05)), vec(1),
+holoEntity(19):toWorld(ang(0,0,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/gsgtrainprops/parts/cab/anim/gauge_air_anim.mdl")
+holoScale(A,vec(0.85))
+holoBodygroup(A,1,1)
+holoParent(A,Model)
+holoEntity(A):setSubMaterial(3,"models/gsgtrainprops/cab/gauge_air_westinghouse_160_white")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+#Trainline steam pressure (PTGamma doesnt simulate this lmao)
+A=26
+holoCreate(A,holoEntity(25):toWorld(vec(0,0,0.1)), vec(1),
+holoEntity(25):toWorld(ang(0,90-46,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/gsgtrainprops/parts/cab/anim/gauge_needles_holo.mdl")
+holoScale(A,vec(0.85))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(25))
+holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=28
+holoCreate(A,Model:toWorld(vec(-282.4,24.15,90.27)), vec(1),
+Model:toWorld(ang(90,180,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/gsgtrainprops/parts/cab/anim/gauge_load_arc_late_anim.mdl")
+holoScale(A,vec(1.1))
+holoBodygroup(A,0,0)
+holoParent(A,Model)
+holoEntity(A):setSubMaterial(3,"models/gsgtrainprops/cab/gauge_battery_generic_1")
+holoEntity(A):setSubMaterial(5,"models/proppertextures/acrylic_black")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=29
+holoCreate(A,Model:toWorld(vec(-283.7,24.15,90.27)), vec(1),
+Model:toWorld(ang(90,180,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/holograms/hq_torus.mdl")
+holoScale(A,vec(0.5))
+holoBodygroup(A,0,0)
+holoParent(A,Model)
+holoMaterial(A,"models/proppertextures/rubber")
+#holoEntity(A):setSubMaterial(5,"models/proppertextures/acrylic_black")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=30
+holoCreate(A,Model:toWorld(vec(-283,24.15,90.27)), vec(1),
+Model:toWorld(ang(0,90,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/sprops/misc/tubes_superthin/size_1/tube_3.mdl")
+holoScale(A,vec(0.44))
+holoBodygroup(A,0,0)
+holoParent(A,Model)
+holoMaterial(A,"models/proppertextures/rubber")
+#holoEntity(A):setSubMaterial(5,"models/proppertextures/acrylic_black")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=31
+holoCreate(A,Model:toWorld(vec(-283,25.93,94.75)), vec(1),
+Model:toWorld(ang(0,90,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/rlc_delta_lua/cstands/buttons.mdl")
+holoScale(A,vec(0.8))
+holoBodygroup(A,0,3)
+holoParent(A,Model)
+holoEntity(A):setSubMaterial(4,"models/proppertextures/acrylic_red")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=32
+holoCreate(A,Model:toWorld(vec(-283,21.85,94.75)), vec(1),
+Model:toWorld(ang(0,180,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/rlc_delta_lua/cstands/indicators.mdl")
+holoScale(A,vec(1))
+holoBodygroup(A,0,3)
+holoParent(A,Model)
+#holoEntity(A):setSubMaterial(4,"models/proppertextures/acrylic_red")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+
+if(Boiler==1){
+A=6
+holoCreate(A,holoEntity(3):toWorld(vec(9.15,-0.4,0)), vec(1),
+holoEntity(3):toWorld(ang(0,0,0)))
+holoColor(A,vec4(255,255,255,254))
+holoModel(A,"models/gsgtrainprops/parts/cab/anim/gauge_air_anim.mdl")
+holoScale(A,vec(0.85))
+holoBodygroup(A,1,1)
+holoParent(A,Model)
+holoEntity(A):setSubMaterial(3,"models/gsgtrainprops/cab/gauge_boiler_pressure_400lb")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+#Boiler Pressure (PTGamma doesnt simulate this lmao)
+A=13
+holoCreate(A,holoEntity(6):toWorld(vec(0,0,0.1)), vec(1),
+holoEntity(6):toWorld(ang(0,90-46,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/gsgtrainprops/parts/cab/anim/gauge_needles_holo.mdl")
+holoScale(A,vec(0.85))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(6))
+holoEntity(A):setSubMaterial(1,"models/proppertextures/acrylic_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=22
+holoCreate(A,holoEntity(19):toWorld(vec(-1.8,11,0)), vec(1),
+holoEntity(19):toWorld(ang(0,0,0)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"plane")
+holoScale(A,vec(0.65,0.65,1))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(19))
+holoEntity(A):setSubMaterial(1,"models/proppertextures/aluminum")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=23
+holoCreate(A,holoEntity(22):toWorld(vec(2,0,-0.5)), vec(1),
+holoEntity(22):toWorld(ang(0,0,90)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/rlc_delta_lua/cstands/buttons.mdl")
+holoScale(A,vec(1))
+holoBodygroup(A,0,2)
+holoParent(A,holoEntity(22))
+#holoEntity(A):setSubMaterial(1,"models/proppertextures/plastic_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+
+A=24
+holoCreate(A,holoEntity(22):toWorld(vec(-2,0,-0.5)), vec(1),
+holoEntity(22):toWorld(ang(0,0,90)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/rlc_delta_lua/cstands/buttons.mdl")
+holoScale(A,vec(1))
+holoBodygroup(A,0,2)
+holoParent(A,holoEntity(22))
+#holoEntity(A):setSubMaterial(1,"models/proppertextures/plastic_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+A=33
+holoCreate(A,holoEntity(22):toWorld(vec(0,2.2,-0.35)), vec(1),
+holoEntity(22):toWorld(ang(0,-90,90)))
+holoColor(A,vec(255,255,255))
+holoModel(A,"models/titus's_propper_model_pack_2.4/propper/circuitbreakers/breaker_large.mdl")
+holoScale(A,vec(1))
+holoBodygroup(A,0,0)
+holoParent(A,holoEntity(22))
+#holoEntity(A):setSubMaterial(1,"models/proppertextures/plastic_black")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+}else{
+A=6
+holoCreate(A,holoEntity(3):toWorld(vec(9.15,-0.4,0.5)), vec(1),
+holoEntity(3):toWorld(ang(-90,0,0)))
+holoColor(A,vec4(255,255,255,254))
+holoModel(A,"models/gsgtrainprops/parts/brakewheel/instructions_plate.mdl")
+holoScale(A,vec(0.35))
+holoBodygroup(A,1,1)
+holoParent(A,Model)
+holoMaterial(A,"models/proppertextures/cabmetal_gray")
+#holoEntity(A):setSubMaterial(2,"models/proppertextures/acrylic")
+#holoClipEnabled(A,1,1)
+#holoClipEnabled(A,2,1)
+#holoClipEnabled(A,3,1)
+#holoClipEnabled(A,4,1)
+#holoClipEnabled(A,5,1)
+#holoClip(A,1,vec(0,0,0),vec(0,0,0),0)
+}
+    holoEntity(3):setBoneAngRelative(1,ang(-46,0,0))
+    holoEntity(3):setBoneAngRelative(2,ang(-46,0,0))
+    holoEntity(4):setBoneAngRelative(1,ang(-46,0,0))
+    holoEntity(4):setBoneAngRelative(2,ang(-46,0,0))
+    MainRes1 = 0
+    EqualRes1 = 0
+    BrakePipe1 = 0
+    Cyl1 = 0
+    Load1 = 0
+}
+if(On1){
+    interval(100)
+    #-46,-314
+    
+    BrakePipe1 = BrakePipe1 + ((BrakePipe) - BrakePipe1) * 0.75
+    Cyl1 = Cyl1 + ((Cyl) - Cyl1) * 0.75
+    EqualRes1 = EqualRes1 + ((EqualRes) - EqualRes1) * 0.75
+    MainRes1 = MainRes1 + ((MainRes) - MainRes1) * 0.75
+    Load1 = Load1 + ((Load) - Load1) * 0.75
+    
+        holoEntity(3):setBoneAngRelative(1,ang(-46-(268*(EqualRes1/200)),0,0))
+        holoEntity(3):setBoneAngRelative(2,ang(-46-(268*(MainRes1/200)),0,0))
+        holoEntity(4):setBoneAngRelative(1,ang(-46-(268*(BrakePipe1/200)),0,0))
+        holoEntity(4):setBoneAngRelative(2,ang(-46-(268*(Cyl1/200)),0,0))
+        if(Load > 0){
+        holoAng(2,holoEntity(1):toWorld(ang(0,(Load1/1500)*-127,0)))
+        }else{
+        holoAng(2,holoEntity(1):toWorld(ang(0,(Load1/1500)*127,0)))
+    }
+}
