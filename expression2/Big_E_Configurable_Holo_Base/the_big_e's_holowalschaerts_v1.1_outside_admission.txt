@@ -232,7 +232,7 @@ holoEntity(H):setSubMaterial(2,RodMat)
 
 #Eccentric Crank Left
 H++
-holoCreate(H,Wheel:toWorld(vec(0,PRWidth+3,-Radius)),vec(sqrt(Radius^2-ECR^2)/18),Wheel:toWorld(ang(0,90,atan(-ECR/Radius))),vec4(255,255,255,255))
+holoCreate(H,Wheel:toWorld(vec(0,PRWidth+3,-Radius)),vec(sqrt(Radius^2+ECR^2)/18),Wheel:toWorld(ang(0,90,atan(-ECR/Radius))),vec4(255,255,255,255))
 holoParent(H,Wheel)      
 holoModel(H,"models/anytrains/rods/eccentriccrank2.mdl")
 holoEntity(H):setSubMaterial(1,RodMat)
@@ -245,7 +245,7 @@ holoEntity(H):setSubMaterial(1,RodMat)
 
 #Eccentric Crank Right
 H++
-holoCreate(H,Wheel:toWorld(vec(-Radius,-PRWidth-3,0)),vec(sqrt(Radius^2-ECR^2)/18),Wheel:toWorld(ang(0,-90,-90-atan(-ECR/Radius))),vec4(255,255,255,255))
+holoCreate(H,Wheel:toWorld(vec(-Radius,-PRWidth-3,0)),vec(sqrt(Radius^2+ECR^2)/18),Wheel:toWorld(ang(0,-90,-90-atan(-ECR/Radius))),vec4(255,255,255,255))
 holoParent(H,Wheel)      
 holoModel(H,"models/anytrains/rods/eccentriccrank2.mdl")
 holoEntity(H):setSubMaterial(1,RodMat)
