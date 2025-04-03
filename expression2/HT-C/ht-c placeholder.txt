@@ -1,0 +1,256 @@
+@name Hayes' EMD HT-C Detail Placeholder
+@inputs FrontTruck:entity RearTruck:entity
+@outputs 
+@persist E1:entity E2:entity
+@strict
+
+if(first()|dupefinished()){
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------#
+#    This is a VERY simple E2 to bring some aspects (detail-wise) of the HT-C to be used on Zexciv's Flexicoil Cs.                                      #
+#    James and I talked, and we concluded this would be a decent solution to hold people over until he can comfortably fix everything with his HT-C.    #
+#    Everything is static, no moving parts are included in this both to save on CPU usage, and because that code is not mine to give out.               #
+#    You are more than welcome to edit this E2 to include moving parts if you wish, but neither James or I will.                                        #
+#    If it throws an error at you upon spawning the E2, just wire & refresh it.                                                                         #
+#-------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
+#---options!!!---#
+    Truckframe = "models/proppertextures/enamel2_cast_gray" #Texture for the frame of the truck
+    TMMat = "models/proppertextures/acrylic2_grey_hw" #Texture for the traction motors
+    Color = vec(50) #Sets the color for the truck frame
+
+    FB1Rec = 0 #Adds a speed recorder on the front left bearing on the front truck
+    FB3Rec = 0 #Adds a speed recorder on the rear left bearing on the front truck
+    FB4Rec = 0 #Adds a speed recorder on the front right bearing on the front truck
+    FB6Rec = 0 #Adds a speed recorder on the rear right bearing on the front truck
+    
+    RB1Rec = 0 #Adds a speed recorder on the front left bearing on the rear truck
+    RB3Rec = 0 #Adds a speed recorder on the rear left bearing on the rear truck
+    RB4Rec = 0 #Adds a speed recorder on the front right bearing on the rear truck
+    RB6Rec = 0 #Adds a speed recorder on the rear right bearing on the rear truck
+    
+    E1=FrontTruck
+    E1:propPhysicalMaterial("gmod_ice")
+    noCollideAll(E1,0)
+    E1:setAlpha(0)
+    E1:propShadow(0)
+    
+    E2=RearTruck
+    E2:propPhysicalMaterial("gmod_ice")
+    noCollideAll(E2,0)
+    E2:setAlpha(0)
+    E2:propShadow(0)
+    
+    A=1
+    holoCreate(A,E1:toWorld(vec(0,0,0)),vec(1),E1:toWorld(ang(0,0,0)),Color,"models/zexciv_train_stuff/usa/emd/emd_flexicoil_c.mdl")
+    holoParent(A,E1)
+    holoBodygroup(A,2,1)
+    holoBodygroup(A,4,2+FB1Rec)
+    holoBodygroup(A,5,2)
+    holoBodygroup(A,6,2+FB3Rec)
+    holoBodygroup(A,7,2+FB4Rec)
+    holoBodygroup(A,8,2)
+    holoBodygroup(A,9,2+FB6Rec)
+    holoEntity(A):setSubMaterial(1,Truckframe)
+    holoEntity(A):setSubMaterial(5,Truckframe)
+    holoEntity(A):setSubMaterial(6,Truckframe)
+    holoEntity(A):setSubMaterial(10,"models/proppertextures/invisible")
+    holoEntity(A):setSubMaterial(11,"models/proppertextures/invisible")
+    
+    A=11
+    holoCreate(A,E1:toWorld(vec(80,0,-24.5)),vec(1,1,1.1),E1:toWorld(ang(0,90,0)),Color,"models/lazpack/detail/tractionmotorkit.mdl")
+    holoParent(A,E1)
+    holoBodygroup(A,2,1)
+    holoEntity(A):setSubMaterial(1,TMMat)
+    A=111
+    holoCreate(A,E1:toWorld(vec(80+26,16.5,-8.5)),vec(0.8,1,0.8),E1:toWorld(ang(0,90,0)),Color,"models/anytrains/props/detail/truck_damper.mdl")
+    holoParent(A,E1)
+    holoEntity(A):setSubMaterial(1,"models/proppertextures/rubber")
+    holoClipEnabled(A,1) holoClip(A,1,vec(0,0,12.5),vec(0,0,-1),0)
+    A=12
+    holoCreate(A,E1:toWorld(vec(-1.5,0,-24.5)),vec(1,1,1.1),E1:toWorld(ang(0,90,0)),Color,"models/lazpack/detail/tractionmotorkit.mdl")
+    holoParent(A,E1)
+    holoBodygroup(A,2,1)
+    holoEntity(A):setSubMaterial(1,TMMat)
+    A=121
+    holoCreate(A,E1:toWorld(vec(-1.5+26,16.5,-8.5)),vec(0.8,1,0.8),E1:toWorld(ang(0,90,0)),Color,"models/anytrains/props/detail/truck_damper.mdl")
+    holoParent(A,E1)
+    holoEntity(A):setSubMaterial(1,"models/proppertextures/rubber")
+    holoClipEnabled(A,1) holoClip(A,1,vec(0,0,12.5),vec(0,0,-1),0)
+    A=13
+    holoCreate(A,E1:toWorld(vec(-83,0,-24.5)),vec(1,1,1.1),E1:toWorld(ang(0,90,0)),Color,"models/lazpack/detail/tractionmotorkit.mdl")
+    holoParent(A,E1)
+    holoBodygroup(A,2,1)
+    holoEntity(A):setSubMaterial(1,TMMat)
+    A=131
+    holoCreate(A,E1:toWorld(vec(-83+26,16.5,-8.5)),vec(0.8,1,0.8),E1:toWorld(ang(0,90,0)),Color,"models/anytrains/props/detail/truck_damper.mdl")
+    holoParent(A,E1)
+    holoEntity(A):setSubMaterial(1,"models/proppertextures/rubber")
+    holoClipEnabled(A,1) holoClip(A,1,vec(0,0,12.5),vec(0,0,-1),0)
+    
+    A=2
+    holoCreate(A,E2:toWorld(vec(0,0,0)),vec(1),E2:toWorld(ang(0,0,0)),Color,"models/zexciv_train_stuff/usa/emd/emd_flexicoil_c.mdl")
+    holoParent(A,E2)
+    holoBodygroup(A,2,1)
+    holoBodygroup(A,4,2+FB1Rec)
+    holoBodygroup(A,5,2)
+    holoBodygroup(A,6,2+FB3Rec)
+    holoBodygroup(A,7,2+FB4Rec)
+    holoBodygroup(A,8,2)
+    holoBodygroup(A,9,2+FB6Rec)
+    holoEntity(A):setSubMaterial(1,Truckframe)
+    holoEntity(A):setSubMaterial(5,Truckframe)
+    holoEntity(A):setSubMaterial(6,Truckframe)
+    holoEntity(A):setSubMaterial(10,"models/proppertextures/invisible")
+    holoEntity(A):setSubMaterial(11,"models/proppertextures/invisible")
+    
+    A=21
+    holoCreate(A,E2:toWorld(vec(80,0,-24.5)),vec(1,1,1.1),E2:toWorld(ang(0,90,0)),Color,"models/lazpack/detail/tractionmotorkit.mdl")
+    holoParent(A,E2)
+    holoBodygroup(A,2,1)
+    holoEntity(A):setSubMaterial(1,TMMat)
+    A=211
+    holoCreate(A,E2:toWorld(vec(80+26,16.5,-8.5)),vec(0.8,1,0.8),E2:toWorld(ang(0,90,0)),Color,"models/anytrains/props/detail/truck_damper.mdl")
+    holoParent(A,E2)
+    holoEntity(A):setSubMaterial(1,"models/proppertextures/rubber")
+    holoClipEnabled(A,1) holoClip(A,1,vec(0,0,12.5),vec(0,0,-1),0)
+    A=22
+    holoCreate(A,E2:toWorld(vec(-1.5,0,-24.5)),vec(1,1,1.1),E2:toWorld(ang(0,90,0)),Color,"models/lazpack/detail/tractionmotorkit.mdl")
+    holoParent(A,E2)
+    holoBodygroup(A,2,1)
+    holoEntity(A):setSubMaterial(1,TMMat)
+    A=221
+    holoCreate(A,E2:toWorld(vec(-1.5+26,16.5,-8.5)),vec(0.8,1,0.8),E2:toWorld(ang(0,90,0)),Color,"models/anytrains/props/detail/truck_damper.mdl")
+    holoParent(A,E2)
+    holoEntity(A):setSubMaterial(1,"models/proppertextures/rubber")
+    holoClipEnabled(A,1) holoClip(A,1,vec(0,0,12.5),vec(0,0,-1),0)
+    A=23
+    holoCreate(A,E2:toWorld(vec(-83,0,-24.5)),vec(1,1,1.1),E2:toWorld(ang(0,90,0)),Color,"models/lazpack/detail/tractionmotorkit.mdl")
+    holoParent(A,E2)
+    holoBodygroup(A,2,1)
+    holoEntity(A):setSubMaterial(1,TMMat)
+    A=231
+    holoCreate(A,E2:toWorld(vec(-83+26,16.5,-8.5)),vec(0.8,1,0.8),E2:toWorld(ang(0,90,0)),Color,"models/anytrains/props/detail/truck_damper.mdl")
+    holoParent(A,E2)
+    holoEntity(A):setSubMaterial(1,"models/proppertextures/rubber")
+    holoClipEnabled(A,1) holoClip(A,1,vec(0,0,12.5),vec(0,0,-1),0)
+    
+    P1=p2mCreate(2,E1:toWorld(vec(0,0,0)),E1:angles())
+    P1:p2mPushModel(1,"models/sprops/misc/tubes/size_1/q_tube_12x6.mdl",vec(117.5,35.75,-13.5),ang(0,180,90),vec(1.8,1.2,2.075))
+    P1:p2mPushModel(1,"models/sprops/misc/tubes/size_1/q_tube_12x6.mdl",vec(117.5,-35.75,-13.5),ang(0,90,90),vec(2.075,1.2,1.8))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_1/cube_6x60x6.mdl",vec(120.2,0,-13.5),ang(0,90,0),vec(0.9845,0.905,1.2))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_2/cube_12x18x6.mdl",vec(120.2,0,-24.5),ang(0,90,90),vec(1.1,1.25,0.905))
+    P1:p2mPushModel(1,"models/sprops/triangles/right/size_0_5/rtri_6x6.mdl",vec(120.2,0,-34.25),ang(0,0,180),vec(0.905,6.6,0.75))
+    P1:p2mPushModel(1,"models/sprops/misc/sq_holes/superthin/qhole_42.mdl",vec(120.2,-13.55,-24.3),ang(0,90,0),vec(0.35,10.85,0.7))
+    P1:p2mPushModel(1,"models/sprops/misc/sq_holes/superthin/qhole_42.mdl",vec(120.2,13.55,-24.3),ang(0,-90,0),vec(0.35,10.85,0.7))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_1/cube_6x12x6.mdl",vec(106,38.875,-13.5),ang(0,0,0),vec(1.02,1.035,1.2))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_1/cube_6x12x6.mdl",vec(96.8,38.875,-12.37),ang(25,0,0),vec(0.8,1.035,1))
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(103.5,39.6,-10.05),ang(20,0,0),vec(1.4,0.398,0.398),0,0,0,array(vec(-0.75,0,0),vec(1,0,0.35),vec(0,0,0.09),vec(-0.375,0,1),vec(0,-0.725,0),vec(0,1,0)))
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(103.5,38.15,-10.05),ang(20,0,0),vec(1.4,0.398,0.398),0,0,0,array(vec(-0.75,0,0),vec(1,0,0.35),vec(0,0,0.09),vec(-0.375,0,1),vec(0,0.725,0),vec(0,-1,0)))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_1/cube_6x12x6.mdl",vec(106,-38.875,-13.5),ang(0,0,0),vec(1.02,1.035,1.2))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_1/cube_6x12x6.mdl",vec(96.8,-38.875,-12.37),ang(25,0,0),vec(0.8,1.035,1))
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(103.5,-39.6,-10.05),ang(20,0,0),vec(1.4,0.398,0.398),0,0,0,array(vec(-0.75,0,0),vec(1,0,0.35),vec(0,0,0.09),vec(-0.375,0,1),vec(0,0.725,0),vec(0,-1,0)))
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(103.5,-38.15,-10.05),ang(20,0,0),vec(1.4,0.398,0.398),0,0,0,array(vec(-0.75,0,0),vec(1,0,0.35),vec(0,0,0.09),vec(-0.375,0,1),vec(0,-0.725,0),vec(0,1,0)))
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(101,38.875,-17.05),ang(-30,0,0),vec(0.75,0.355,0.355),0,0,0)
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(101,-38.875,-17.05),ang(-30,0,0),vec(0.75,0.355,0.355),0,0,0)
+    
+        P1:p2mPushModel(1,"models/holograms/cube.mdl",vec(0,-45.75,-24.5),ang(0,0,0),vec(9.5/12,0.5/12,13.5/12),0,0,0)       
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(3,-44.75,-18.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(-3,-44.75,-18.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(3,-44.75,-30.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(-3,-44.75,-30.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/holograms/cube.mdl",vec(0,-42.68,-6.72),ang(0,0,0),vec(0.69,0.22,0.76),0,0,0) #38
+        P1:p2mPushModel(1,"models/sprops/prisms/tri/size_3/tprism_12x12.mdl",vec(6.78,-42.68,-6.72),ang(0,0,90),vec(0.44,0.76,0.22),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/prisms/tri/size_3/tprism_12x12.mdl",vec(-6.78,-42.68,-6.72),ang(0,180,-90),vec(0.44,0.76,0.22),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/trans/misc/shock_2.mdl",vec(0,-48.88,-24.72),ang(0,0,-5),vec(1.1),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x12.mdl",vec(0,-47.86,-12.72),ang(0,0,-5),vec(1.1,1.1,0.8),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(1.7,-45.68,-6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(-1.7,-45.68,-6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,-47.23,-6.1),ang(90,0,0),vec(1.2,1.2,0.8),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(1.7,-45.68-1.6,-6-18.6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(-1.7,-45.68-1.6,-6-18.6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,-47.23-1.6,-6.1-18.6),ang(90,0,0),vec(1.2,1.2,0.8),0,0,1)
+        
+        P1:p2mPushModel(1,"models/holograms/cube.mdl",vec(0,45.75,-24.5),ang(0,0,0),vec(9.5/12,0.5/12,13.5/12),0,0,0)       
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(3,44.75,-18.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(-3,44.75,-18.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(3,44.75,-30.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(-3,44.75,-30.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/holograms/cube.mdl",vec(0,42.68,-6.72),ang(0,0,0),vec(0.69,0.22,0.76),0,0,0) #38
+        P1:p2mPushModel(1,"models/sprops/prisms/tri/size_3/tprism_12x12.mdl",vec(6.78,42.68,-6.72),ang(0,0,90),vec(0.44,0.76,0.22),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/prisms/tri/size_3/tprism_12x12.mdl",vec(-6.78,42.68,-6.72),ang(0,180,-90),vec(0.44,0.76,0.22),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/trans/misc/shock_2.mdl",vec(0,48.88,-24.72),ang(0,0,5),vec(1.1),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x12.mdl",vec(0,47.86,-12.72),ang(0,0,5),vec(1.1,1.1,0.8),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(1.7,45.68,-6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(-1.7,45.68,-6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,47.23,-6.1),ang(90,0,0),vec(1.2,1.2,0.8),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(1.7,45.68+1.6,-6-18.6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(-1.7,45.68+1.6,-6-18.6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,47.23+1.6,-6.1-18.6),ang(90,0,0),vec(1.2,1.2,0.8),0,0,1)
+        
+    P1:p2mSetParent(E1)
+    P1:p2mSetMaterial(1,Truckframe)
+    P1:p2mSetColor(1,Color)
+    P1:p2mSetUV(1,30)
+    P1:p2mBuild()
+    
+    P1=p2mCreate(2,E2:toWorld(vec(0,0,0)),E2:angles())
+    P1:p2mPushModel(1,"models/sprops/misc/tubes/size_1/q_tube_12x6.mdl",vec(117.5,35.75,-13.5),ang(0,180,90),vec(1.8,1.2,2.075))
+    P1:p2mPushModel(1,"models/sprops/misc/tubes/size_1/q_tube_12x6.mdl",vec(117.5,-35.75,-13.5),ang(0,90,90),vec(2.075,1.2,1.8))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_1/cube_6x60x6.mdl",vec(120.2,0,-13.5),ang(0,90,0),vec(0.9845,0.905,1.2))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_2/cube_12x18x6.mdl",vec(120.2,0,-24.5),ang(0,90,90),vec(1.1,1.25,0.905))
+    P1:p2mPushModel(1,"models/sprops/triangles/right/size_0_5/rtri_6x6.mdl",vec(120.2,0,-34.25),ang(0,0,180),vec(0.905,6.6,0.75))
+    P1:p2mPushModel(1,"models/sprops/misc/sq_holes/superthin/qhole_42.mdl",vec(120.2,-13.55,-24.3),ang(0,90,0),vec(0.35,10.85,0.7))
+    P1:p2mPushModel(1,"models/sprops/misc/sq_holes/superthin/qhole_42.mdl",vec(120.2,13.55,-24.3),ang(0,-90,0),vec(0.35,10.85,0.7))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_1/cube_6x12x6.mdl",vec(106,38.875,-13.5),ang(0,0,0),vec(1.02,1.035,1.2))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_1/cube_6x12x6.mdl",vec(96.8,38.875,-12.37),ang(25,0,0),vec(0.8,1.035,1))
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(103.5,39.6,-10.05),ang(20,0,0),vec(1.4,0.398,0.398),0,0,0,array(vec(-0.75,0,0),vec(1,0,0.35),vec(0,0,0.09),vec(-0.375,0,1),vec(0,-0.725,0),vec(0,1,0)))
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(103.5,38.15,-10.05),ang(20,0,0),vec(1.4,0.398,0.398),0,0,0,array(vec(-0.75,0,0),vec(1,0,0.35),vec(0,0,0.09),vec(-0.375,0,1),vec(0,0.725,0),vec(0,-1,0)))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_1/cube_6x12x6.mdl",vec(106,-38.875,-13.5),ang(0,0,0),vec(1.02,1.035,1.2))
+    P1:p2mPushModel(1,"models/sprops/cuboids/height06/size_1/cube_6x12x6.mdl",vec(96.8,-38.875,-12.37),ang(25,0,0),vec(0.8,1.035,1))
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(103.5,-39.6,-10.05),ang(20,0,0),vec(1.4,0.398,0.398),0,0,0,array(vec(-0.75,0,0),vec(1,0,0.35),vec(0,0,0.09),vec(-0.375,0,1),vec(0,0.725,0),vec(0,-1,0)))
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(103.5,-38.15,-10.05),ang(20,0,0),vec(1.4,0.398,0.398),0,0,0,array(vec(-0.75,0,0),vec(1,0,0.35),vec(0,0,0.09),vec(-0.375,0,1),vec(0,-0.725,0),vec(0,1,0)))
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(101,38.875,-17.05),ang(-30,0,0),vec(0.75,0.355,0.355),0,0,0)
+    P1:p2mPushModel(1,"models/holograms/hq_rcube.mdl",vec(101,-38.875,-17.05),ang(-30,0,0),vec(0.75,0.355,0.355),0,0,0)
+    
+        P1:p2mPushModel(1,"models/holograms/cube.mdl",vec(0,-45.75,-24.5),ang(0,0,0),vec(9.5/12,0.5/12,13.5/12),0,0,0)       
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(3,-44.75,-18.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(-3,-44.75,-18.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(3,-44.75,-30.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(-3,-44.75,-30.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/holograms/cube.mdl",vec(0,-42.68,-6.72),ang(0,0,0),vec(0.69,0.22,0.76),0,0,0) #38
+        P1:p2mPushModel(1,"models/sprops/prisms/tri/size_3/tprism_12x12.mdl",vec(6.78,-42.68,-6.72),ang(0,0,90),vec(0.44,0.76,0.22),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/prisms/tri/size_3/tprism_12x12.mdl",vec(-6.78,-42.68,-6.72),ang(0,180,-90),vec(0.44,0.76,0.22),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/trans/misc/shock_2.mdl",vec(0,-48.88,-24.72),ang(0,0,-5),vec(1.1),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x12.mdl",vec(0,-47.86,-12.72),ang(0,0,-5),vec(1.1,1.1,0.8),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(1.7,-45.68,-6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(-1.7,-45.68,-6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,-47.23,-6.1),ang(90,0,0),vec(1.2,1.2,0.8),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(1.7,-45.68-1.6,-6-18.6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(-1.7,-45.68-1.6,-6-18.6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,-47.23-1.6,-6.1-18.6),ang(90,0,0),vec(1.2,1.2,0.8),0,0,1)
+        
+        P1:p2mPushModel(1,"models/holograms/cube.mdl",vec(0,45.75,-24.5),ang(0,0,0),vec(9.5/12,0.5/12,13.5/12),0,0,0)       
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(3,44.75,-18.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(-3,44.75,-18.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(3,44.75,-30.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/geometry/fhex_12.mdl",vec(-3,44.75,-30.5),ang(0,0,0),vec(1.25/12,3/3,1.25/12),0,0,0)
+        P1:p2mPushModel(1,"models/holograms/cube.mdl",vec(0,42.68,-6.72),ang(0,0,0),vec(0.69,0.22,0.76),0,0,0) #38
+        P1:p2mPushModel(1,"models/sprops/prisms/tri/size_3/tprism_12x12.mdl",vec(6.78,42.68,-6.72),ang(0,0,90),vec(0.44,0.76,0.22),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/prisms/tri/size_3/tprism_12x12.mdl",vec(-6.78,42.68,-6.72),ang(0,180,-90),vec(0.44,0.76,0.22),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/trans/misc/shock_2.mdl",vec(0,48.88,-24.72),ang(0,0,5),vec(1.1),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_2/cylinder_3x12.mdl",vec(0,47.86,-12.72),ang(0,0,5),vec(1.1,1.1,0.8),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(1.7,45.68,-6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(-1.7,45.68,-6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,47.23,-6.1),ang(90,0,0),vec(1.2,1.2,0.8),0,0,1)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(1.7,45.68+1.6,-6-18.6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/rectangles_thin/size_1/rect_3x6x1_5.mdl",vec(-1.7,45.68+1.6,-6-18.6),ang(0,90,90),vec(1,1,1),0,0,0)
+        P1:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x3.mdl",vec(0,47.23+1.6,-6.1-18.6),ang(90,0,0),vec(1.2,1.2,0.8),0,0,1)
+        
+    P1:p2mSetParent(E2)
+    P1:p2mSetMaterial(1,Truckframe)
+    P1:p2mSetColor(1,Color)
+    P1:p2mSetUV(1,30)
+    P1:p2mBuild()
+}
